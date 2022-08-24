@@ -1,7 +1,0 @@
-Buen día, mi nombre es Karen Solange Alfaro Medina
-estoy en ciclo 3 de mintic con la Udea
-
-quisiera saber:
-1. Pregunta: Enfoque del negocio
-2. Pregunta: Qué versión es la más adecuada para trabajar en grupo Java?
-3. Pregunta: las ramas de github son master/main , develop y feature repo local
