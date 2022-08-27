@@ -1,36 +1,53 @@
 package com.proyecto_ciclo3.proyecto_ciclo3.modelos;
 
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Date;
+import java.lang.String;
 
+@Entity
+@Table(name = "Movimiento Dinero")
 public class MovimientoDinero {
     @Id
-    private int id;
-    private long monto;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
     private String concepto;
+    private float monto;
 
-    private Empresa usuario;
+    @ManyToOne
+    private Empleado usuario;
+
+    @ManyToOne
+    private Empresa empresa;
+
+    private Date createdAt;
+
+    private Date updatedAt;
 
 
-
-    // constructor vacío
+    // constructor vacío porque debe usar entity
     public MovimientoDinero() {
     }
 
     // constructor lleno
-    public MovimientoDinero(long monto, String concepto, Empresa usuario) {
-        this.monto = monto;
+
+    public MovimientoDinero(String concepto, float monto, Empleado usuario, Empresa empresa, Date createdAt, Date updatedAt) {
         this.concepto = concepto;
+        this.monto = monto;
         this.usuario = usuario;
+        this.empresa = empresa;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     // setters & getters
 
-    public long getMonto() {
-        return monto;
+    public long getId() {
+        return id;
     }
 
-    public void setMonto(long monto) {
-        this.monto = monto;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getConcepto() {
@@ -41,11 +58,43 @@ public class MovimientoDinero {
         this.concepto = concepto;
     }
 
-    public Empresa getUsuario() {
+    public float getMonto() {
+        return monto;
+    }
+
+    public void setMonto(float monto) {
+        this.monto = monto;
+    }
+
+    public Empleado getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Empresa usuario) {
+    public void setUsuario(Empleado usuario) {
         this.usuario = usuario;
+    }
+
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }

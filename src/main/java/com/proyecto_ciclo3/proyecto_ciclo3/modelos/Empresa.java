@@ -1,34 +1,58 @@
 package com.proyecto_ciclo3.proyecto_ciclo3.modelos;
 
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Date;
 
+@Entity
+@Table(name = "Empresa")
 public class Empresa {
     @Id
-    private int id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
+    @Column(unique = true)
     private String nombre;
-    private String direccion;
+
+    @Column(unique = true)
+    private String NIT;  // documento empresa
+
     private String telefono;
-    private String NIT;
 
-    // constructor vacío
+    private String direccion;
 
+    @OneToMany
+    private Empresa[] usuario;
+
+    @OneToMany
+    private MovimientoDinero movimientoDinero;
+
+    private Date createdAt;
+
+    private Date updatedAt;
+
+    // constructor vacío porque debe usar entity
     public Empresa() {
     }
 
     // constructor lleno
-    public Empresa(String nombre, String direccion, String telefono, String NIT) {
+    public Empresa(String nombre, String NIT, String telefono, String direccion, Empresa[] usuario, MovimientoDinero movimientoDinero, Date createdAt, Date updatedAt) {
         this.nombre = nombre;
-        this.direccion = direccion;
-        this.telefono = telefono;
         this.NIT = NIT;
+        this.telefono = telefono;
+        this.direccion = direccion;
+        this.usuario = usuario;
+        this.movimientoDinero = movimientoDinero;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     // getters & setters
-    public int getId() {
+
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -40,12 +64,12 @@ public class Empresa {
         this.nombre = nombre;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public String getNIT() {
+        return NIT;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setNIT(String NIT) {
+        this.NIT = NIT;
     }
 
     public String getTelefono() {
@@ -56,11 +80,43 @@ public class Empresa {
         this.telefono = telefono;
     }
 
-    public String getNIT() {
-        return NIT;
+    public String getDireccion() {
+        return direccion;
     }
 
-    public void setNIT(String NIT) {
-        this.NIT = NIT;
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public Empresa[] getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Empresa[] usuario) {
+        this.usuario = usuario;
+    }
+
+    public MovimientoDinero getMovimientoDinero() {
+        return movimientoDinero;
+    }
+
+    public void setMovimientoDinero(MovimientoDinero movimientoDinero) {
+        this.movimientoDinero = movimientoDinero;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }
