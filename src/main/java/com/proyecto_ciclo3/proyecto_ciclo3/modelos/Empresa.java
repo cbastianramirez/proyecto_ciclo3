@@ -22,36 +22,33 @@ public class Empresa {
 
     private String direccion;
 
-    @OneToMany
-    private List<Empresa> usuario = new ArrayList<>();
+    /*@OneToMany
+    //private List<Empresa> usuario = new ArrayList<>();
 
-    @OneToMany
-    private MovimientoDinero movimientoDinero;
+    //@OneToMany
+    private List <MovimientoDinero> movimientosDinero =  new ArrayList<>();*/
 
-    private Date createdAt;
+    //private Date createdAt;
 
-    private Date updatedAt;
+    //private Date updatedAt;
 
     // constructor vacío porque debe usar entity
     public Empresa() {
     }
 
     // constructor lleno
-
-    public Empresa(String nombre, String NIT, String telefono, String direccion, List<Empresa> usuario, MovimientoDinero movimientoDinero, Date createdAt, Date updatedAt) {
+    public Empresa(String nombre, String NIT, String telefono, String direccion/*, List<Empresa> usuario, List<MovimientoDinero> movimientosDinero Date createdAt, Date updatedAt*/) {
         this.nombre = nombre;
         this.NIT = NIT;
         this.telefono = telefono;
         this.direccion = direccion;
-        this.usuario = usuario;
-        this.movimientoDinero = movimientoDinero;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+        //this.usuario = usuario;
+        //this.movimientosDinero = movimientosDinero;
+        //this.createdAt = createdAt;
+        //this.updatedAt = updatedAt;
     }
 
     // getters & setters
-
-
     public long getId() {
         return id;
     }
@@ -92,7 +89,7 @@ public class Empresa {
         this.direccion = direccion;
     }
 
-    public List<Empresa> getUsuario() {
+    /*public List<Empresa> getUsuario() {
         return usuario;
     }
 
@@ -100,12 +97,12 @@ public class Empresa {
         this.usuario = usuario;
     }
 
-    public MovimientoDinero getMovimientoDinero() {
-        return movimientoDinero;
+    public List<MovimientoDinero> getMovimientosDinero() {
+        return movimientosDinero;
     }
 
-    public void setMovimientoDinero(MovimientoDinero movimientoDinero) {
-        this.movimientoDinero = movimientoDinero;
+    public void setMovimientosDinero(List<MovimientoDinero> movimientosDinero) {
+        this.movimientosDinero = movimientosDinero;
     }
 
     public Date getCreatedAt() {
@@ -122,5 +119,5 @@ public class Empresa {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
-    }
+    } */
 }

@@ -17,8 +17,8 @@ public class Profile {
 
     private String telefono;
 
-    @OneToOne
-    private List<Empresa> usuario =  new ArrayList<>(); // el profe anderson sugiere en el min 47 que es mejor manejar al = q empresa solo q Usuarios usuarios[]
+    //@OneToOne
+    //private List<Empresa> usuario =  new ArrayList<>(); // el profe anderson sugiere en el min 47 que es mejor manejar al = q empresa solo q Usuarios usuarios[]
 
     private Date createdAt;
 
@@ -31,10 +31,10 @@ public class Profile {
     }
 
     // constructor lleno
-    public Profile(String imagen, String telefono, List<Empresa> usuario, Date createdAt, Date updateAt) {
+    public Profile(String imagen, String telefono, /*List<Empresa> usuario,*/ Date createdAt, Date updateAt) {
         this.imagen = imagen;
         this.telefono = telefono;
-        this.usuario = usuario;
+        //this.usuario = usuario;
         this.createdAt = createdAt;
         this.updateAt = updateAt;
     }
@@ -65,13 +65,13 @@ public class Profile {
         this.telefono = telefono;
     }
 
-    public List<Empresa> getUsuario() {
+    /*public List<Empresa> getUsuario() {
         return usuario;
     }
 
     public void setUsuario(List<Empresa> usuario) {
         this.usuario = usuario;
-    }
+    }*/
 
     public Date getCreatedAt() {
         return createdAt;

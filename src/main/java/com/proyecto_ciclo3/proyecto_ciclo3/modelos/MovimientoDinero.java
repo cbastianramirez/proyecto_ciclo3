@@ -14,15 +14,15 @@ public class MovimientoDinero {
     private String concepto;
     private float monto;
 
-    @ManyToOne
-    private Empleado usuario;
+    //@ManyToOne
+    //private Empleado usuario;
+    private String usuario;
+    //@ManyToOne
+    //private Empresa empresa;
+    private String empresa;
+    //private Date createdAt;
 
-    @ManyToOne
-    private Empresa empresa;
-
-    private Date createdAt;
-
-    private Date updatedAt;
+    //private Date updatedAt;
 
 
     // constructor vacío porque debe usar entity
@@ -30,14 +30,13 @@ public class MovimientoDinero {
     }
 
     // constructor lleno
-
-    public MovimientoDinero(String concepto, float monto, Empleado usuario, Empresa empresa, Date createdAt, Date updatedAt) {
+    public MovimientoDinero(String concepto, float monto, /*Empleado usuario, Empresa empresa,*/ String usuario,String empresa /*, Date createdAt, Date updatedAt*/) {
         this.concepto = concepto;
         this.monto = monto;
         this.usuario = usuario;
         this.empresa = empresa;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+        //this.createdAt = createdAt;
+        //this.updatedAt = updatedAt;
     }
 
     // setters & getters
@@ -66,23 +65,23 @@ public class MovimientoDinero {
         this.monto = monto;
     }
 
-    public Empleado getUsuario() {
+    public String getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Empleado usuario) {
+    public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
 
-    public Empresa getEmpresa() {
+    public String getEmpresa() {
         return empresa;
     }
 
-    public void setEmpresa(Empresa empresa) {
+    public void setEmpresa(String empresa) {
         this.empresa = empresa;
     }
 
-    public Date getCreatedAt() {
+    /*public Date getCreatedAt() {
         return createdAt;
     }
 
@@ -96,5 +95,5 @@ public class MovimientoDinero {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
-    }
+    }*/
 }
