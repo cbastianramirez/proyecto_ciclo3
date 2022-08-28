@@ -11,7 +11,8 @@ public class ProyectoCiclo3Application {
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoCiclo3Application.class, args);
 
-		System.out.println("--------------------------------------------------------------");
+		System.out.println("");
+		System.out.println("----------------------------Enterprise/Empresa----------------------------------");
 
 		Enterprise enterprise1 = new Enterprise(1234567, "Makro", "3005005050", "Calle 4 # 45-34");
 		Enterprise enterprise2 = new Enterprise(8585953, "Flamingo", "55555555", "Carrera 8 # 4-54");
@@ -22,7 +23,7 @@ public class ProyectoCiclo3Application {
 		enterprise1.setId(83748585);
 		System.out.println(enterprise1);
 
-		System.out.println("-------------------------------------------------------------");
+		System.out.println("--------------------------Employee/Empleado------------------------------------");
 
 		Employee employee1 = new Employee(123456, "Pepe Perez", "email@email.com", Enum_RoleName.ADMIN, enterprise1);
 		Employee employee2 = new Employee(785845, "Margarot Ramirez", "email@microsoft.com", Enum_RoleName.OPERARIO, enterprise1);
@@ -33,7 +34,7 @@ public class ProyectoCiclo3Application {
 		employee1.setRole(Enum_RoleName.OPERARIO);
 		System.out.println(employee1);
 
-		System.out.println("-------------------------------------------------------------");
+		System.out.println("-------------------Transaction/MovimientoDinero---------------------------------");
 
 		Transaction transaction1 = new Transaction("Ventas Abril", 150000, employee1);
 		System.out.println(transaction1);
