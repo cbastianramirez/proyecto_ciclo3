@@ -1,7 +1,9 @@
 package com.proyecto_ciclo3.proyecto_ciclo3.modelos;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "Empresa")
@@ -21,7 +23,7 @@ public class Empresa {
     private String direccion;
 
     @OneToMany
-    private Empresa[] usuario;
+    private List<Empresa> usuario = new ArrayList<>();
 
     @OneToMany
     private MovimientoDinero movimientoDinero;
@@ -35,7 +37,8 @@ public class Empresa {
     }
 
     // constructor lleno
-    public Empresa(String nombre, String NIT, String telefono, String direccion, Empresa[] usuario, MovimientoDinero movimientoDinero, Date createdAt, Date updatedAt) {
+
+    public Empresa(String nombre, String NIT, String telefono, String direccion, List<Empresa> usuario, MovimientoDinero movimientoDinero, Date createdAt, Date updatedAt) {
         this.nombre = nombre;
         this.NIT = NIT;
         this.telefono = telefono;
@@ -47,6 +50,7 @@ public class Empresa {
     }
 
     // getters & setters
+
 
     public long getId() {
         return id;
@@ -88,11 +92,11 @@ public class Empresa {
         this.direccion = direccion;
     }
 
-    public Empresa[] getUsuario() {
+    public List<Empresa> getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Empresa[] usuario) {
+    public void setUsuario(List<Empresa> usuario) {
         this.usuario = usuario;
     }
 

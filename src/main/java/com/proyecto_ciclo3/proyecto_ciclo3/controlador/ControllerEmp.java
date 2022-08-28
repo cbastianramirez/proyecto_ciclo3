@@ -87,25 +87,25 @@ public class ControllerEmp {
     // leer y modificar el rol del empleado (administrador, operativo)
     @GetMapping("/sprint2cashMonto")
     public String sprint2cashMonto(){
-        MovimientoDinero movimientoDinero = new movimientoDinero("bueno",4000600,"Contorles online", 2009/12/10, 2022/10/31);
+        MovimientoDinero movimientoDinero = new MovimientoDinero("bueno",4000600,"Contorles online", 2009/12/10, 2022/10/31);
         movimientoDinero.setMonto(-80000);
-        return movimientoDinero.getMonto();
+        return MovimientoDinero.getMonto();
     }
 
     // leer y modificar el rol del empleado (administrador, operativo)
     @GetMapping("/sprint2cashConcepto")
     public String sprint2cashConcepto(){
-        MovimientoDinero movimientoDinero = new movimientoDinero("bueno",4000600,"Contorles online", 2009/12/10, 2022/10/31);
+        MovimientoDinero movimientoDinero = new MovimientoDinero("bueno",4000600,"Contorles online", 2009/12/10, 2022/10/31);
         movimientoDinero.setConcepto("Mlo");
-        return movimientoDinero.getConcepto();
+        return MovimientoDinero.getConcepto();
     }
 
     // posible definir qué usuario fue encargado de registrar el movimiento
     @GetMapping("/sprint2cashUsuario")
     public String sprint2cashUsuario(){
-        MovimientoDinero movimientoDinero = new movimientoDinero("bueno",4000600,"Contorles online", 2009/12/10, 2022/10/31);
+        MovimientoDinero movimientoDinero = new MovimientoDinero("bueno",4000600,"Contorles online", 2009/12/10, 2022/10/31);
         movimientoDinero.setUsuario("Ana");
-        return movimientoDinero.getUsuario();
+        return MovimientoDinero.getUsuario();
     }
 
 

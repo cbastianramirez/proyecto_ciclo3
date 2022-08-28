@@ -1,7 +1,9 @@
 package com.proyecto_ciclo3.proyecto_ciclo3.modelos;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "Empleado")
@@ -26,7 +28,7 @@ public class Empleado {
     private Empresa empresa;
 
     @OneToMany
-    private MovimientoDinero[] movimientosDinero;
+    private List <MovimientoDinero> movimientosDinero =  new ArrayList<>();
 
     private Date updateAt;
 
@@ -41,8 +43,7 @@ public class Empleado {
 
     // constructor lleno
 
-
-    public Empleado(String nombre, String correo, Profile profile, Enum_RoleName enum_roleName, Empresa empresa, MovimientoDinero[] movimientosDinero, Date updateAt, Date createdAt) {
+    public Empleado(String nombre, String correo, Profile profile, Enum_RoleName enum_roleName, Empresa empresa, List<MovimientoDinero> movimientosDinero, Date updateAt, Date createdAt) {
         this.nombre = nombre;
         this.correo = correo;
         this.profile = profile;
@@ -53,7 +54,15 @@ public class Empleado {
         this.createdAt = createdAt;
     }
 
+
     // setters & getters
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getNombre() {
         return nombre;
@@ -95,11 +104,11 @@ public class Empleado {
         this.empresa = empresa;
     }
 
-    public MovimientoDinero[] getMovimientosDinero() {
+    public List<MovimientoDinero> getMovimientosDinero() {
         return movimientosDinero;
     }
 
-    public void setMovimientosDinero(MovimientoDinero[] movimientosDinero) {
+    public void setMovimientosDinero(List<MovimientoDinero> movimientosDinero) {
         this.movimientosDinero = movimientosDinero;
     }
 
