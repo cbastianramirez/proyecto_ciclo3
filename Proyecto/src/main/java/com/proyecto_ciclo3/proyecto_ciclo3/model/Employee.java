@@ -1,7 +1,7 @@
 package com.proyecto_ciclo3.proyecto_ciclo3.model;
 
 import javax.persistence.*;
-import java.util.Date;
+//import java.util.Date;
 
 @Entity
 public class Employee {
@@ -9,28 +9,25 @@ public class Employee {
      @Id
      private long id;
 
+     private String name;
      @Column(name = "email", unique = true)
      private String email;
-     private Profile profile;
+
      private Enum_RoleName role;
      private Enterprise enterprise;
-     private Transaction[] transactions;
-     private Date updatedAt;
-     private Date createdAt;
+
 
     public Employee() {
     }
 
-    public Employee(long id, String email, Profile profile, Enum_RoleName role, Enterprise enterprise, Transaction[] transactions, Date updatedAt, Date createdAt) {
+    public Employee(long id, String name, String email, Enum_RoleName role, Enterprise enterprise) {
         this.setId(id);
+        this.setName(name);
         this.setEmail(email);
-        this.setProfile(profile);
         this.setRole(role);
         this.setEnterprise(enterprise);
-        this.setTransactions(transactions);
-        this.setUpdatedAt(updatedAt);
-        this.setCreatedAt(createdAt);
     }
+
 
     public long getId() {
         return id;
@@ -40,20 +37,20 @@ public class Employee {
         this.id = id;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public Profile getProfile() {
-        return profile;
-    }
-
-    public void setProfile(Profile profile) {
-        this.profile = profile;
     }
 
     public Enum_RoleName getRole() {
@@ -72,27 +69,14 @@ public class Employee {
         this.enterprise = enterprise;
     }
 
-    public Transaction[] getTransactions() {
-        return transactions;
-    }
-
-    public void setTransactions(Transaction[] transactions) {
-        this.transactions = transactions;
-    }
-
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", role=" + role +
+                ", enterprise=" + enterprise +
+                '}';
     }
 }
