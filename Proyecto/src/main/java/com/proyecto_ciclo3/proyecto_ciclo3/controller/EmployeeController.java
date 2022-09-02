@@ -34,4 +34,17 @@ public class EmployeeController {
 
     }
 
+//    OTRA FORMA PARA INSTANCIAR EL OBJETO EmployeeList
+//    @GetMapping("/users/{id}")
+//    public ResponseEntity<Object> getUsers(@PathVariable long id){
+//
+//        try{
+//            Employee employees = new EmployeeList().getEmployee(id);
+//            return new ResponseEntity<>(employees, HttpStatus.OK);
+//        }catch (Exception e){
+//            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//
+//    }
+
 }
