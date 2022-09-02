@@ -27,7 +27,12 @@ public class EmployeeList {
 
         }
 
-        public Employee getEmployees(long id) throws Exception {
+
+        public ArrayList<Employee> getAllEmployees(){
+            return this.employees;
+        }
+
+        public Employee getEmployee(long id) throws Exception {
             for (Employee employees: this.employees) {
                 if (employees.getId() == id){
                     return employees;
