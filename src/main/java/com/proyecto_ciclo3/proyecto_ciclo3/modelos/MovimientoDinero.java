@@ -5,20 +5,27 @@ import java.util.Date;
 import java.lang.String;
 
 @Entity
-@Table(name = "Movimiento Dinero")
+@Table(name = "movimiento dinero")
 public class MovimientoDinero {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Column
     private String concepto;
+
+    @Column
     private float monto;
 
     //@ManyToOne
     //private Empleado usuario;
+
+    @Column
     private String usuario;
     //@ManyToOne
     //private Empresa empresa;
+
+    @Column
     private String empresa;
     //private Date createdAt;
 

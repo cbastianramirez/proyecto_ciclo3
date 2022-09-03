@@ -4,24 +4,26 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "Empleado")
+@Table(name = "empleado")
 public class Empleado {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Column
     private String nombre;
 
     @Column(unique = true)
     private String correo;
 
     // lo creo pero sin getters setters
-    //@OneToOne
+    //@OneToOne                 // este no va aquí según explico el profe porq el empleado no contiene fk del profile es al contrario(mappedBy = "empleado")
     //private Profile profile;
     @OneToMany
     private Enum_RoleName enum_roleName;
 
+    @Column
     private String empresa;
     /*@ManyToOne
     private Empresa empresa;

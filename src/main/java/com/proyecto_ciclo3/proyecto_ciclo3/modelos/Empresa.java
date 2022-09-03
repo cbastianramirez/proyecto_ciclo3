@@ -6,10 +6,10 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "Empresa")
+@Table(name = "empresa")
 public class Empresa {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(unique = true)
@@ -18,8 +18,10 @@ public class Empresa {
     @Column(unique = true)
     private String NIT;  // documento empresa
 
+    @Column
     private String telefono;
 
+    @Column
     private String direccion;
 
     /*@OneToMany

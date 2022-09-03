@@ -6,22 +6,26 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "Profile")
+@Table(name = "profile")
 public class Profile {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
+    @Column
     private String imagen;
 
+    @Column
     private String telefono;
 
-    //@OneToOne
-    //private List<Empresa> usuario =  new ArrayList<>(); // el profe anderson sugiere en el min 47 que es mejor manejar al = q empresa solo q Usuarios usuarios[]
+    //@OneToOne (mappedBy = "usuario")
+    //private List<Empresa> usuario =  new ArrayList<>();
 
+    @Column
     private Date createdAt;
 
+    @Column
     private Date updateAt;
 
 
