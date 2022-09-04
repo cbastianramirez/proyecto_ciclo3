@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class EmployeeController {
 
-    @GetMapping("/users")
+    @GetMapping("/employees")
     public EmployeeList Employee(){
         EmployeeList allEmployees = new EmployeeList();
         return allEmployees;
     }
 
-    @GetMapping("/users/{id}")
+    @GetMapping("/employee/{id}")
     public ResponseEntity<Object> getUsers(@PathVariable long id){
 
         try{

@@ -5,6 +5,7 @@ import javax.persistence.*;
 @Entity
 public class Transaction {
 
+    private long id;
     private String concept;
     private float amount;
     private Employee user;
@@ -13,13 +14,21 @@ public class Transaction {
     public Transaction() {
     }
 
-    public Transaction(String concept, float amount, Employee user) {
+    public Transaction(long id, String concept, float amount, Employee user) {
+        this.setId(id);
         this.setConcept(concept);
         this.setAmount(amount);
         this.setUser(user);
     }
 
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getConcept() {
         return concept;
@@ -48,9 +57,11 @@ public class Transaction {
     @Override
     public String toString() {
         return "Transaction{" +
-                "concept='" + concept + '\'' +
+                "id=" + id +
+                ", concept='" + concept + '\'' +
                 ", amount=" + amount +
                 ", user=" + user +
                 '}';
     }
 }
+

@@ -38,7 +38,7 @@ public class ProyectoCiclo3Application {
 //
 //		System.out.println("-------------------Transaction/MovimientoDinero---------------------------------");
 //
-//		Transaction transaction1 = new Transaction("Ventas Abril", 150000, employee1);
+//		Transaction transaction1 = new Transaction(1234567, "Ventas Abril", 150000, employee1);
 //		System.out.println(transaction1);
 //		transaction1.setAmount(450800);
 //		System.out.println(transaction1);
