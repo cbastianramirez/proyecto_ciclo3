@@ -1,6 +1,7 @@
 package com.proyecto_ciclo3.proyecto_ciclo3.modelos;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,10 +24,10 @@ public class Profile {
     //private List<Empresa> usuario =  new ArrayList<>();
 
     @Column
-    private Date createdAt;
+    private LocalDateTime createdAt;
 
     @Column
-    private Date updateAt;
+    private LocalDateTime updateAt;
 
 
 
@@ -35,7 +36,7 @@ public class Profile {
     }
 
     // constructor lleno
-    public Profile(String imagen, String telefono, /*List<Empresa> usuario,*/ Date createdAt, Date updateAt) {
+    public Profile(String imagen, String telefono, /*List<Empresa> usuario,*/ LocalDateTime createdAt, LocalDateTime updateAt) {
         this.imagen = imagen;
         this.telefono = telefono;
         //this.usuario = usuario;
@@ -77,19 +78,19 @@ public class Profile {
         this.usuario = usuario;
     }*/
 
-    public Date getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Date getUpdateAt() {
+    public LocalDateTime getUpdateAt() {
         return updateAt;
     }
 
-    public void setUpdateAt(Date updateAt) {
+    public void setUpdateAt(LocalDateTime updateAt) {
         this.updateAt = updateAt;
     }
 }

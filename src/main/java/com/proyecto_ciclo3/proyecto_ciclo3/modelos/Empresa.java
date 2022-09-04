@@ -1,6 +1,7 @@
 package com.proyecto_ciclo3.proyecto_ciclo3.modelos;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -30,24 +31,24 @@ public class Empresa {
     //@OneToMany
     private List <MovimientoDinero> movimientosDinero =  new ArrayList<>();*/
 
-    //private Date createdAt;
+    private LocalDateTime createdAt;
 
-    //private Date updatedAt;
+    private LocalDateTime updatedAt;
 
     // constructor vacío porque debe usar entity
     public Empresa() {
     }
 
     // constructor lleno
-    public Empresa(String nombre, String NIT, String telefono, String direccion/*, List<Empresa> usuario, List<MovimientoDinero> movimientosDinero Date createdAt, Date updatedAt*/) {
+    public Empresa(String nombre, String NIT, String telefono, String direccion/*, List<Empresa> usuario, List<MovimientoDinero> movimientosDinero */, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.nombre = nombre;
         this.NIT = NIT;
         this.telefono = telefono;
         this.direccion = direccion;
         //this.usuario = usuario;
         //this.movimientosDinero = movimientosDinero;
-        //this.createdAt = createdAt;
-        //this.updatedAt = updatedAt;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     // getters & setters
@@ -106,20 +107,20 @@ public class Empresa {
     public void setMovimientosDinero(List<MovimientoDinero> movimientosDinero) {
         this.movimientosDinero = movimientosDinero;
     }
-
-    public Date getCreatedAt() {
+    */
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Date getUpdatedAt() {
+    public LocalDateTime getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
+    public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
-    } */
+    }
 }

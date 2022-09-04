@@ -1,6 +1,7 @@
 package com.proyecto_ciclo3.proyecto_ciclo3.modelos;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -35,7 +36,9 @@ public class Empleado {
 
     private Date createdAt;
     */
+    private LocalDateTime updateAt;
 
+    private LocalDateTime createdAt;
 
     // constructor vacío porque debe usar entity
 
@@ -51,8 +54,8 @@ public class Empleado {
         this.enum_roleName = enum_roleName;
         this.empresa = empresa;
         //this.movimientosDinero = movimientosDinero;
-        //this.updateAt = updateAt;
-        //this.createdAt = createdAt;
+        this.updateAt = updateAt;
+        this.createdAt = createdAt;
     }
 
 
@@ -121,19 +124,21 @@ public class Empleado {
         this.movimientosDinero = movimientosDinero;
     }
 
-    public Date getUpdateAt() {
+
+     */
+    public LocalDateTime getUpdateAt() {
         return updateAt;
     }
 
-    public void setUpdateAt(Date updateAt) {
+    public void setUpdateAt(LocalDateTime updateAt) {
         this.updateAt = updateAt;
     }
 
-    public Date getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
-    } */
+    }
 }

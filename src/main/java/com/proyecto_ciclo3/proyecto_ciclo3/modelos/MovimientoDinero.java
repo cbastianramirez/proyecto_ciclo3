@@ -1,6 +1,7 @@
 package com.proyecto_ciclo3.proyecto_ciclo3.modelos;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.lang.String;
 
@@ -27,9 +28,10 @@ public class MovimientoDinero {
 
     @Column
     private String empresa;
-    //private Date createdAt;
 
-    //private Date updatedAt;
+    private LocalDateTime createdAt;
+
+    private LocalDateTime updatedAt;
 
 
     // constructor vacío porque debe usar entity
@@ -37,13 +39,13 @@ public class MovimientoDinero {
     }
 
     // constructor lleno
-    public MovimientoDinero(String concepto, float monto, /*Empleado usuario, Empresa empresa,*/ String usuario,String empresa /*, Date createdAt, Date updatedAt*/) {
+    public MovimientoDinero(String concepto, float monto, /*Empleado usuario, Empresa empresa,*/ String usuario,String empresa, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.concepto = concepto;
         this.monto = monto;
         this.usuario = usuario;
         this.empresa = empresa;
-        //this.createdAt = createdAt;
-        //this.updatedAt = updatedAt;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     // setters & getters
@@ -88,19 +90,19 @@ public class MovimientoDinero {
         this.empresa = empresa;
     }
 
-    /*public Date getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Date getUpdatedAt() {
+    public LocalDateTime getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
+    public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
-    }*/
+    }
 }

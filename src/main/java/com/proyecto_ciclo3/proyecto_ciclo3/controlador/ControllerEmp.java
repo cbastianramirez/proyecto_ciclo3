@@ -7,13 +7,15 @@ import com.proyecto_ciclo3.proyecto_ciclo3.modelos.MovimientoDinero;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
+
 @RestController
 public class ControllerEmp {
 
     // Es posible leer y modificar el nombre de la empresa
     @GetMapping("/sprint2nombre")
     public String sprint2nombre(){
-        Empresa empresa = new Empresa("Dafiti","830049737432","32138834843","calle 26 av el dorado");
+        Empresa empresa = new Empresa("Dafiti","830049737432","32138834843","calle 26 av el dorado","","");
         empresa.setNombre("Soluciones empresariales SAS");
         return empresa.getNombre();
     }
