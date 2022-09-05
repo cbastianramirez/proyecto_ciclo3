@@ -29,6 +29,7 @@ public class MovimientoDinero {
     @Column
     private String empresa;
 
+    /*
     @Column(name = "createdAt")
     private LocalDateTime createdAt;
 
@@ -36,18 +37,20 @@ public class MovimientoDinero {
     private LocalDateTime updatedAt;
 
 
+     */
+
     // constructor vacío porque debe usar entity
     public MovimientoDinero() {
     }
 
     // constructor lleno
-    public MovimientoDinero(String concepto, float monto, /*Empleado usuario, Empresa empresa,*/ String usuario,String empresa, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public MovimientoDinero(String concepto, float monto, /*Empleado usuario, Empresa empresa,*/ String usuario,String empresa  /*, LocalDateTime createdAt, LocalDateTime updatedAt*/) {
         this.concepto = concepto;
         this.monto = monto;
         this.usuario = usuario;
         this.empresa = empresa;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+        //this.createdAt = createdAt;
+        //this.updatedAt = updatedAt;
     }
 
     // setters & getters
@@ -92,6 +95,7 @@ public class MovimientoDinero {
         this.empresa = empresa;
     }
 
+    /*
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
@@ -106,5 +110,5 @@ public class MovimientoDinero {
 
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
-    }
+    } */
 }
