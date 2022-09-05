@@ -3,18 +3,21 @@ package com.proyecto_ciclo3.proyecto_ciclo3.service;
 import com.proyecto_ciclo3.proyecto_ciclo3.modelos.Empleado;
 import com.proyecto_ciclo3.proyecto_ciclo3.modelos.Empresa;
 import com.proyecto_ciclo3.proyecto_ciclo3.modelos.Enum_RoleName;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
-public class ListaEmpleado {
+@Service
+public class ListaEmpleado{
     private ArrayList<Empleado> empleados;
+
 
     public ListaEmpleado(){
 
         this.empleados = new ArrayList<>();
 
-        Empresa enterprise1 = new Empresa("Karen", "84540390", "3005005050", "Calle 4 # 45-34","","");
-        Empresa enterprise2 = new Empresa("Andrés", "59801230231", "55555555", "Carrera 8 # 4-54","","");
+        //Empresa enterprise1 = new Empresa("Karen", "84540390", "3005005050", "Calle 4 # 45-34", new LocalDateTime() , new LocalDateTime());
+        //Empresa enterprise2 = new Empresa("Andrés", "59801230231", "55555555", "Carrera 8 # 4-54","","");
 
         Empleado employee1 = new Empleado("Pepe Perez", "email@email.com",Enum_RoleName.Admin,"Alfagres");
         Empleado employee2 = new Empleado("Margarot Ramirez", "email@microsoft.com", Enum_RoleName.Operario, "Corona");
@@ -25,6 +28,7 @@ public class ListaEmpleado {
     }
 
     public ArrayList<Empleado> getAllEmpleados(){
+
         return this.empleados;
     }
 
@@ -47,7 +51,7 @@ public class ListaEmpleado {
         throw new Exception("Usuario Existe");
     }
 
-    // path
+    // patch
         public Empleado updateEmpleado(Empleado updateEmpleado) throws Exception {
         try {
             Empleado bdEmpleado = getEmpleado(updateEmpleado.getId());
@@ -61,6 +65,9 @@ public class ListaEmpleado {
             if(updateEmpleado.getEmpresa() != null && !updateEmpleado.getEmpresa().equals("")) {
                 bdEmpleado.setEmpresa(updateEmpleado.getEmpresa());
             }
+            /*if(updateEmpleado.getProfile() != null && !updateEmpleado.getProfile().equals("")) {
+                bdEmpleado.setProfile(updateEmpleado.getProfile());
+            }*/
             return bdEmpleado;
         } catch (Exception e) {
             throw new Exception("Empleado NO existe, imposible actualizar datos");

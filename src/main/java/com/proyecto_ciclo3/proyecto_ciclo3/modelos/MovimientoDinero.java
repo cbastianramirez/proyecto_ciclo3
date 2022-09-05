@@ -29,8 +29,10 @@ public class MovimientoDinero {
     @Column
     private String empresa;
 
+    @Column(name = "createdAt")
     private LocalDateTime createdAt;
 
+    @Column(name = "updatedAt")
     private LocalDateTime updatedAt;
 
 

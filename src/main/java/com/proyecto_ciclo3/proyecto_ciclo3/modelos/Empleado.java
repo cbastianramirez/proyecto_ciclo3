@@ -36,9 +36,13 @@ public class Empleado {
 
     private Date createdAt;
     */
+    @Column(name = "createdAt")
+    private LocalDateTime createdAt;
+
+    @Column(name = "updatedAt")
     private LocalDateTime updateAt;
 
-    private LocalDateTime createdAt;
+
 
     // constructor vacío porque debe usar entity
 

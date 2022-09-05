@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class ControladorEmpleado {
 
-    // Get empleado
-    @GetMapping("empleado/empleados")
+    // Get empresa
+    @GetMapping("empleados")
     public ListaEmpleado listaEmpleados(){
         ListaEmpleado allEmpleados = new ListaEmpleado();
         return allEmpleados;
     }
 
-    // Get empleado por id
-    @GetMapping("/empleado/{id}")
-    public ResponseEntity<Object> getEmpleado(@RequestParam long id){
+    // Get empresa por id
+    @GetMapping("/empleado/{id}") // asocia una url a una función q es getEmpleado()
+    public ResponseEntity<Object> getEmpleado(@PathVariable long id){
         try{
             //ListaEmpleado listaEmpleado = new ListaEmpleado().getEmpleado(id);
             Empleado empleado = new ListaEmpleado().getEmpleado(id);
@@ -31,17 +31,16 @@ public class ControladorEmpleado {
         }
 
     }
-
-    @GetMapping("/empleado")
+    /* @GetMapping("/empleado/{id}") // dice q requiere id
     public ResponseEntity<Object> getEmpleadoPath(@PathVariable long id) {
         return new ResponseEntity<>(id, HttpStatus.OK);
-    }
+    }*/
 
     // post
-    @PostMapping("/empleado")
-    public ResponseEntity<Object> postEmpleado(@RequestBody Empleado empleadoPost){
+    @PostMapping("/empleado") // debe requerir el id cambie de Object por String
+    public ResponseEntity<String> postEmpleado(@RequestBody Empleado empleadoPost){
         try {
-            Object info = listaEmpleados().setEmpleado(empleadoPost);
+            String info = listaEmpleados().setEmpleado(empleadoPost);
             return new ResponseEntity<>(info, HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
@@ -50,7 +49,7 @@ public class ControladorEmpleado {
 
     //update
     @PutMapping("/empleado/{id}")
-    public ResponseEntity<ObjetoRespuesta> putEmpleado(@RequestBody Empleado updateEmpleado, @PathVariable long id){ // objetorespuesta me ayuda atrapar el error
+    public ResponseEntity<ObjetoRespuesta> putEmpleado(@RequestBody Empleado updateEmpleado, @PathVariable("id") long id){ // objetorespuesta me ayuda atrapar el error, coloq el id en ""
         try {
             Empleado bdEmpleado = listaEmpleados().updateEmpleado(updateEmpleado); /* revisar aquí profe clase antes 29 de agosto */
             return new ResponseEntity<>(new ObjetoRespuesta("Confirmado, resgistro empleado", bdEmpleado), HttpStatus.OK);

@@ -23,10 +23,10 @@ public class Profile {
     //@OneToOne (mappedBy = "usuario")
     //private List<Empresa> usuario =  new ArrayList<>();
 
-    @Column
+    @Column(name = "createdAt")
     private LocalDateTime createdAt;
 
-    @Column
+    @Column(name = "updatedAt")
     private LocalDateTime updateAt;
 
 

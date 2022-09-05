@@ -6,17 +6,14 @@ public class ObjetoRespuesta {
 
 
     // constructor vacío
-
     public ObjetoRespuesta() {
     }
-
 
     // constructor lleno
     public ObjetoRespuesta(String mensaje, Object objeto) {
         this.mensaje = mensaje;
         this.objeto = objeto;
     }
-
 
     // getters & setters
     public String getMensaje() {

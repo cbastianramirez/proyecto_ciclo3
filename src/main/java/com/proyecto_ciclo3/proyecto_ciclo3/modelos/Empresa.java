@@ -31,24 +31,27 @@ public class Empresa {
     //@OneToMany
     private List <MovimientoDinero> movimientosDinero =  new ArrayList<>();*/
 
+    /*
+    @Column(name = "createdAt")
     private LocalDateTime createdAt;
 
+    @Column(name = "updatedAt")
     private LocalDateTime updatedAt;
-
+*/
     // constructor vacío porque debe usar entity
     public Empresa() {
     }
 
     // constructor lleno
-    public Empresa(String nombre, String NIT, String telefono, String direccion/*, List<Empresa> usuario, List<MovimientoDinero> movimientosDinero */, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public Empresa(String nombre, String NIT, String telefono, String direccion/*, List<Empresa> usuario, List<MovimientoDinero> movimientosDinero , LocalDateTime createdAt, LocalDateTime updatedAt*/) {
         this.nombre = nombre;
         this.NIT = NIT;
         this.telefono = telefono;
         this.direccion = direccion;
         //this.usuario = usuario;
         //this.movimientosDinero = movimientosDinero;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+        //this.createdAt = createdAt;
+        //this.updatedAt = updatedAt;
     }
 
     // getters & setters
@@ -107,7 +110,7 @@ public class Empresa {
     public void setMovimientosDinero(List<MovimientoDinero> movimientosDinero) {
         this.movimientosDinero = movimientosDinero;
     }
-    */
+
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
@@ -122,5 +125,5 @@ public class Empresa {
 
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
-    }
+    }*/
 }

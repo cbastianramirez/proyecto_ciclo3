@@ -1,3 +1,4 @@
+/*
 package com.proyecto_ciclo3.proyecto_ciclo3.controlador;
 
 import com.proyecto_ciclo3.proyecto_ciclo3.modelos.Empleado;
@@ -15,9 +16,10 @@ public class ControllerEmp {
     // Es posible leer y modificar el nombre de la empresa
     @GetMapping("/sprint2nombre")
     public String sprint2nombre(){
-        Empresa empresa = new Empresa("Dafiti","830049737432","32138834843","calle 26 av el dorado","","");
+        Empresa empresa = new Empresa("Dafiti","830049737432","32138834843","calle 26 av el dorado", new LocalDateTime(), new LocalDateTime());
         empresa.setNombre("Soluciones empresariales SAS");
         return empresa.getNombre();
+        //return empresa.toString()  para q pueda verse el array con cambios
     }
 
     // Es posible leer y modificar la dirección de la empresa
@@ -113,3 +115,4 @@ public class ControllerEmp {
 
 
 }
+*/
