@@ -7,29 +7,22 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
-@Service
+
 public class ListaEmpleado{
     private ArrayList<Empleado> empleados;
 
 
-    public ListaEmpleado(){
+    public ListaEmpleado(){ // esta es la lista q aparece en controladorempleado en set
 
         this.empleados = new ArrayList<>();
 
-        //Empresa enterprise1 = new Empresa("Karen", "84540390", "3005005050", "Calle 4 # 45-34", new LocalDateTime() , new LocalDateTime());
-        //Empresa enterprise2 = new Empresa("Andrés", "59801230231", "55555555", "Carrera 8 # 4-54","","");
-
-        Empleado employee1 = new Empleado("Pepe Perez", "email@email.com",Enum_RoleName.Admin,"Alfagres");
-        Empleado employee2 = new Empleado("Margarot Ramirez", "email@microsoft.com", Enum_RoleName.Operario, "Corona");
-
-        this.empleados.add(employee1);
-        this.empleados.add(employee2);
+        this.empleados.add(new Empleado(1,"Pepe Perez", "email@email.com",Enum_RoleName.Admin,"Alfagres"));
+        this.empleados.add(new Empleado(2,"Margarot Ramirez", "email@microsoft.com", Enum_RoleName.Operario, "Corona"));
 
     }
 
     public ArrayList<Empleado> getAllEmpleados(){
-
-        return this.empleados;
+        return empleados;
     }
 
     public Empleado getEmpleado(long id) throws Exception {
@@ -41,7 +34,7 @@ public class ListaEmpleado{
         throw new Exception("Empleado no encontrado");
     }
 
-    public String setEmpleado(Empleado empleadoPost) throws Exception {
+    public String setEmpleado(Empleado empleadoPost) throws Exception { // devuelve un string entonces debe ser string
         try {
             getEmpleado(empleadoPost.getId());
         } catch (Exception e){
@@ -54,7 +47,7 @@ public class ListaEmpleado{
     // patch
         public Empleado updateEmpleado(Empleado updateEmpleado) throws Exception {
         try {
-            Empleado bdEmpleado = getEmpleado(updateEmpleado.getId());
+            Empleado bdEmpleado = getEmpleado(updateEmpleado.getId()); // este si porq es el q no cambia id
 
             if(updateEmpleado.getNombre() != null && !updateEmpleado.getNombre().equals("")){
                 bdEmpleado.setNombre(updateEmpleado.getNombre());

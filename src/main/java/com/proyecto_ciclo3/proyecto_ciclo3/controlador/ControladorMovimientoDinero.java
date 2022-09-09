@@ -32,7 +32,7 @@ public class ControladorMovimientoDinero {
     }
 
     // post
-    @PostMapping("/movimiento") // debe requerir el id cambie de Object por String
+    @PostMapping("/movimiento") // SÍ ES STRING porq le envíamos un mensaje
     public ResponseEntity<String> postMovimiento(@RequestBody MovimientoDinero movimientoPost){
         try {
             String info = listaMovimientoDinero().setMovimientos(movimientoPost);

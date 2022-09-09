@@ -51,7 +51,8 @@ public class Empleado {
 
     // constructor lleno
 
-    public Empleado(String nombre, String correo, /*Profile profile,*/ Enum_RoleName enum_roleName, String empresa /*, Empresa empresa , List<MovimientoDinero> movimientosDinero,  Date updateAt, Date createdAt */) {
+    public Empleado(long id, String nombre, String correo, /*Profile profile,*/ Enum_RoleName enum_roleName, String empresa /*, Empresa empresa , List<MovimientoDinero> movimientosDinero,  Date updateAt, Date createdAt */) {
+        this.id = id;
         this.nombre = nombre;
         this.correo = correo;
         //this.profile = profile;

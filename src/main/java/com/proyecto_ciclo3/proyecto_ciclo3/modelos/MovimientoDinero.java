@@ -44,7 +44,8 @@ public class MovimientoDinero {
     }
 
     // constructor lleno
-    public MovimientoDinero(String concepto, float monto, /*Empleado usuario, Empresa empresa,*/ String usuario,String empresa  /*, LocalDateTime createdAt, LocalDateTime updatedAt*/) {
+    public MovimientoDinero(long id, String concepto, float monto, /*Empleado usuario, Empresa empresa,*/ String usuario,String empresa  /*, LocalDateTime createdAt, LocalDateTime updatedAt*/) {
+        this.id = id;
         this.concepto = concepto;
         this.monto = monto;
         this.usuario = usuario;

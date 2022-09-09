@@ -10,14 +10,16 @@ import java.util.List;
 @Table(name = "empresa")
 public class Empresa {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @Column(unique = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)  //private long id; lo tenía con el id pero es nit
+    private long Id;
+
 
     @Column(unique = true)
     private String nombre;
 
     @Column(unique = true)
-    private String NIT;  // documento empresa
+    private String documento;
 
     @Column
     private String telefono;
@@ -43,9 +45,11 @@ public class Empresa {
     }
 
     // constructor lleno
-    public Empresa(String nombre, String NIT, String telefono, String direccion/*, List<Empresa> usuario, List<MovimientoDinero> movimientosDinero , LocalDateTime createdAt, LocalDateTime updatedAt*/) {
+
+    public Empresa(long id, String nombre, String documento, String telefono, String direccion) {
+        Id = id;
         this.nombre = nombre;
-        this.NIT = NIT;
+        this.documento = documento;
         this.telefono = telefono;
         this.direccion = direccion;
         //this.usuario = usuario;
@@ -54,13 +58,12 @@ public class Empresa {
         //this.updatedAt = updatedAt;
     }
 
-    // getters & setters
     public long getId() {
-        return id;
+        return Id;
     }
 
     public void setId(long id) {
-        this.id = id;
+        Id = id;
     }
 
     public String getNombre() {
@@ -71,12 +74,12 @@ public class Empresa {
         this.nombre = nombre;
     }
 
-    public String getNIT() {
-        return NIT;
+    public String getDocumento() {
+        return documento;
     }
 
-    public void setNIT(String NIT) {
-        this.NIT = NIT;
+    public void setDocumento(String documento) {
+        this.documento = documento;
     }
 
     public String getTelefono() {
@@ -94,6 +97,7 @@ public class Empresa {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
+
 
     /*public List<Empresa> getUsuario() {
         return usuario;

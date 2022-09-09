@@ -7,15 +7,30 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 public class ControladorEmpleado {
 
-    // Get empresa
-    @GetMapping("empleados")
+    private ControladorEmpleado controladorEmpleado = new ControladorEmpleado();
+
+    //Get empresa
+    /*@GetMapping("empleados")   // falta llamado al array para q guarde vídeo 25/08/2022 a del postman apunta a este método del arrayList usuarios
     public ListaEmpleado listaEmpleados(){
         ListaEmpleado allEmpleados = new ListaEmpleado();
         return allEmpleados;
+    }*/
+
+    @GetMapping("/empleados")
+    public ResponseEntity<ArrayList<Empleado>> listaEmpleados(){
+        return new ResponseEntity<>(controladorEmpleado.listaEmpleados(),HttpStatus.OK);
     }
+
+    /* @GetMapping("/empleados") // dice q requiere id
+    public ResponseEntity<ArrayList<Empleado>> getEmpleados() {
+        return new ResponseEntity<>(controladorEmpleado.getEmpleados(), HttpStatus.OK);
+    }*/
 
     // Get empresa por id
     @GetMapping("/empleado/{id}") // asocia una url a una función q es getEmpleado()
@@ -31,14 +46,11 @@ public class ControladorEmpleado {
         }
 
     }
-    /* @GetMapping("/empleado/{id}") // dice q requiere id
-    public ResponseEntity<Object> getEmpleadoPath(@PathVariable long id) {
-        return new ResponseEntity<>(id, HttpStatus.OK);
-    }*/
 
     // post
-    @PostMapping("/empleado") // debe requerir el id cambie de Object por String
-    public ResponseEntity<String> postEmpleado(@RequestBody Empleado empleadoPost){
+
+    @PostMapping("/empleado")
+    public ResponseEntity<String> postEmpleado(@RequestBody Empleado empleadoPost){  // SÍ ES STRING porq le envíamos un mensaje
         try {
             String info = listaEmpleados().setEmpleado(empleadoPost);
             return new ResponseEntity<>(info, HttpStatus.OK);

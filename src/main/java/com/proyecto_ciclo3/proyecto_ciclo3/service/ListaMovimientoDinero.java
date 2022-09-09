@@ -18,8 +18,8 @@ public class ListaMovimientoDinero {
 
         this.movimientos = new ArrayList<>();
 
-        MovimientoDinero transaction1 = new MovimientoDinero("Debe", -60000, "Juan", "chcocolat cali"/*, "new LocalDateTime()" , "new LocalDateTime()"*/);
-        MovimientoDinero transaction2 = new MovimientoDinero("realizada", 5000000, "Andrés", "Buga la grande" /*, "new LocalDateTime()","new LocalDateTime()"*/);
+        MovimientoDinero transaction1 = new MovimientoDinero(1,"Debe", -60000, "Juan", "chcocolat cali"/*, "new LocalDateTime()" , "new LocalDateTime()"*/);
+        MovimientoDinero transaction2 = new MovimientoDinero(2,"realizada", 5000000, "Andrés", "Buga la grande" /*, "new LocalDateTime()","new LocalDateTime()"*/);
 
 
         this.movimientos.add(transaction1);

@@ -9,19 +9,18 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+
+
 @RestController
 public class ControladorEmpresa {
 
-    @GetMapping("/empresas")
-    public ListaEmpresa listaEmpresa(){
-        ListaEmpresa allEmpresas = new ListaEmpresa();
-        return allEmpresas;
-    }
+    private ControladorEmpresa controladorEmpresa = new ControladorEmpresa();
 
-    /*@GetMapping("empresa") // q no funciona requiere id
-    public ResponseEntity<Object> getEmpresaPath(@PathVariable long id) {
-        return new ResponseEntity<>(id, HttpStatus.OK);
-    }*/
+    @GetMapping("/empresas")
+    public ResponseEntity<ArrayList<Empresa>> getAllEmpresas(){
+        return new ResponseEntity<>(controladorEmpresa.getAllEmpresas(),HttpStatus.ACCEPTED);
+    }
 
     // Get empresa por id
     @GetMapping("/empresa/{id}")
@@ -34,7 +33,7 @@ public class ControladorEmpresa {
             return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @PostMapping("/empresa")  //debe requerir el id cambie de Object por String
+    @PostMapping("/empresa")  // SÍ ES STRING porq le envíamos un mensaje
     public ResponseEntity<String> postEmpresa(@RequestBody Empresa empresaPost){
         try {
             String info = listaEmpresa().setEmpresa(empresaPost);
@@ -44,7 +43,7 @@ public class ControladorEmpresa {
         }
     }
     //update
-    @PutMapping("empresa/{id}")
+    @PatchMapping("empresa/{id}")
     public ResponseEntity<ObjetoRespuesta> putEmpresa(@RequestBody Empresa updateEmpresa, @PathVariable("id") long id){ // objetorespuesta me ayuda atrapar el error, coloq el id en ""
         try {
             Empresa bdEmpresa = listaEmpresa().updateEmpresa(updateEmpresa);
