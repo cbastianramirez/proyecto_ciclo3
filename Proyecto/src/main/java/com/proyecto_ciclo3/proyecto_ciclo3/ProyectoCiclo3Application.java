@@ -1,6 +1,7 @@
 package com.proyecto_ciclo3.proyecto_ciclo3;
 
 import com.proyecto_ciclo3.proyecto_ciclo3.model.*;
+import com.proyecto_ciclo3.proyecto_ciclo3.service.EnterpriseList;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
