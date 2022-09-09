@@ -15,22 +15,11 @@ public class ControladorEmpleado {
 
     private ControladorEmpleado controladorEmpleado = new ControladorEmpleado();
 
-    //Get empresa
-    /*@GetMapping("empleados")   // falta llamado al array para q guarde vídeo 25/08/2022 a del postman apunta a este método del arrayList usuarios
-    public ListaEmpleado listaEmpleados(){
-        ListaEmpleado allEmpleados = new ListaEmpleado();
-        return allEmpleados;
-    }*/
 
     @GetMapping("/empleados")
-    public ResponseEntity<ArrayList<Empleado>> listaEmpleados(){
-        return new ResponseEntity<>(controladorEmpleado.listaEmpleados(),HttpStatus.OK);
+    public ResponseEntity<ArrayList<Empleado>> getEmpleados(){
+        return new ResponseEntity<>(controladorEmpleado.getAllEmpleados(),HttpStatus.ACCEPTED);
     }
-
-    /* @GetMapping("/empleados") // dice q requiere id
-    public ResponseEntity<ArrayList<Empleado>> getEmpleados() {
-        return new ResponseEntity<>(controladorEmpleado.getEmpleados(), HttpStatus.OK);
-    }*/
 
     // Get empresa por id
     @GetMapping("/empleado/{id}") // asocia una url a una función q es getEmpleado()
@@ -68,6 +57,19 @@ public class ControladorEmpleado {
         } catch (Exception e){
             return new ResponseEntity<>(new ObjetoRespuesta(e.getMessage(),null),HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @DeleteMapping("/empleados/{id}")
+    public ResponseEntity<ObjetoRespuesta> deleteEmpleado(@PathVariable Long id){
+
+        try {
+            String info = listaEmpleados().deleteEmpleado(id);
+
+            return new ResponseEntity<>(new ObjetoRespuesta(info,null),HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(new ObjetoRespuesta(e.getMessage(),null),HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
     }
 
 

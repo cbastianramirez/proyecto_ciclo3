@@ -6,10 +6,12 @@ import com.proyecto_ciclo3.proyecto_ciclo3.modelos.MovimientoDinero;
 import com.proyecto_ciclo3.proyecto_ciclo3.modelos.ObjetoRespuesta;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
+@Service
 public class ListaMovimientoDinero {
     private ArrayList<MovimientoDinero> movimientos;
 
@@ -18,20 +20,17 @@ public class ListaMovimientoDinero {
 
         this.movimientos = new ArrayList<>();
 
-        MovimientoDinero transaction1 = new MovimientoDinero(1,"Debe", -60000, "Juan", "chcocolat cali"/*, "new LocalDateTime()" , "new LocalDateTime()"*/);
-        MovimientoDinero transaction2 = new MovimientoDinero(2,"realizada", 5000000, "Andrés", "Buga la grande" /*, "new LocalDateTime()","new LocalDateTime()"*/);
-
-
-        this.movimientos.add(transaction1);
-        this.movimientos.add(transaction2);
+        this.movimientos.add(new MovimientoDinero(1,"Debe", -60000, "Juan", "chcocolat cali"/*, "new LocalDateTime()" , "new LocalDateTime()"*/));
+        this.movimientos.add(new MovimientoDinero(2,"realizada", 5000000, "Andrés", "Buga la grande" /*, "new LocalDateTime()","new LocalDateTime()"*/));
 
     }
 
     public ArrayList<MovimientoDinero> getAllMovimientos(){
-        return this.movimientos;
+
+        return movimientos;
     }
 
-    public MovimientoDinero getMovimientos(long id) throws Exception {
+    public MovimientoDinero getMovimiento(long id) throws Exception {
         for(MovimientoDinero movimientos: this.movimientos){
             if(movimientos.getId() == id){
                 return movimientos;
@@ -40,9 +39,9 @@ public class ListaMovimientoDinero {
         throw new Exception("movimiento no encontrado");
     }
 
-    public String setMovimientos(MovimientoDinero movimientoPost) throws Exception {
+    public String setMovimiento(MovimientoDinero movimientoPost) throws Exception {
         try {
-            getMovimientos(movimientoPost.getId());
+            getMovimiento(movimientoPost.getId());
         } catch (Exception e){
             this.movimientos.add(movimientoPost);
             return"Transacción exitosa";
@@ -83,6 +82,7 @@ public class ListaMovimientoDinero {
 
     // getters & setters
     public ArrayList<MovimientoDinero> getMovimientos() {
+
         return movimientos;
     }
 

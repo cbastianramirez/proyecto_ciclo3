@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
-
+@Service
 public class ListaEmpleado{
     private ArrayList<Empleado> empleados;
 
@@ -74,12 +74,25 @@ public class ListaEmpleado{
 
 
 
-    //constructor lleno
+    public String deletEmpleado(Long id) throws Exception {
+        try {
+            Empleado empleado = getEmpleado(id);
+
+            this.empleados.remove(empleado);
+
+            return "Eliminado con éxito";
+        } catch (Exception e) {
+            throw new Exception("El empleado NO Existe para ser eliminado");
+        }
+    }
+
+
+    // constructor lleno
     public ListaEmpleado(ArrayList<Empleado> empleados) {
         this.empleados = empleados;
     }
 
-    // getters & setters
+    //getters & setters
     public ArrayList<Empleado> getEmpleados() {
         return empleados;
     }

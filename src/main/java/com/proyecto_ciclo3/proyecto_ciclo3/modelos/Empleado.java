@@ -31,6 +31,7 @@ public class Empleado {
 
     @OneToMany
     private List <MovimientoDinero> movimientosDinero =  new ArrayList<>();
+    private List <MovimientoDinero> movimientosDinero;
 
     private Date updateAt;
 

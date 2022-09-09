@@ -1,6 +1,5 @@
 package com.proyecto_ciclo3.proyecto_ciclo3.service;
 
-import com.proyecto_ciclo3.proyecto_ciclo3.modelos.Empleado;
 import com.proyecto_ciclo3.proyecto_ciclo3.modelos.Empresa;
 import com.proyecto_ciclo3.proyecto_ciclo3.modelos.Enum_RoleName;
 import org.springframework.stereotype.Service;
@@ -68,20 +67,23 @@ public class ListaEmpresa {
         }
     }
 
-    //constructor lleno
 
+
+
+
+
+
+    // constructor lleno
     public ListaEmpresa(ArrayList<Empresa> empresas) {
         this.empresas = empresas;
     }
 
-
     // getters & setters
-
-    public ArrayList<Empresa> getEmpresa() {
+    public ArrayList<Empresa> getEmpresas() {
         return empresas;
     }
 
-    public void setEmpresa(ArrayList<Empresa> empresas) {
+    public void setEmpresas(ArrayList<Empresa> empresas) {
         this.empresas = empresas;
     }
 }

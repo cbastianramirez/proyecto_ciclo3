@@ -1,9 +1,8 @@
 package com.proyecto_ciclo3.proyecto_ciclo3.controlador;
 
-import com.proyecto_ciclo3.proyecto_ciclo3.modelos.Empleado;
 import com.proyecto_ciclo3.proyecto_ciclo3.modelos.Empresa;
 import com.proyecto_ciclo3.proyecto_ciclo3.modelos.ObjetoRespuesta;
-import com.proyecto_ciclo3.proyecto_ciclo3.service.ListaEmpleado;
+
 import com.proyecto_ciclo3.proyecto_ciclo3.service.ListaEmpresa;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,10 +14,11 @@ import java.util.ArrayList;
 @RestController
 public class ControladorEmpresa {
 
+
     private ControladorEmpresa controladorEmpresa = new ControladorEmpresa();
 
     @GetMapping("/empresas")
-    public ResponseEntity<ArrayList<Empresa>> getAllEmpresas(){
+    public ResponseEntity<ArrayList<Empresa>> getEmpresas(){
         return new ResponseEntity<>(controladorEmpresa.getAllEmpresas(),HttpStatus.ACCEPTED);
     }
 
@@ -52,5 +52,7 @@ public class ControladorEmpresa {
             return new ResponseEntity<>(new ObjetoRespuesta(e.getMessage(),null),HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
 
 }

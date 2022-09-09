@@ -3,7 +3,6 @@ package com.proyecto_ciclo3.proyecto_ciclo3.modelos;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -29,9 +28,11 @@ public class Empresa {
 
     /*@OneToMany
     //private List<Empresa> usuario = new ArrayList<>();
+    private List<Empresa> usuario;
 
     //@OneToMany
-    private List <MovimientoDinero> movimientosDinero =  new ArrayList<>();*/
+    private List <MovimientoDinero> movimientosDinero =  new ArrayList<>();
+    private List<MovimientoDinero> movimientosDinero; */
 
     /*
     @Column(name = "createdAt")
@@ -39,6 +40,7 @@ public class Empresa {
 
     @Column(name = "updatedAt")
     private LocalDateTime updatedAt;
+
 */
     // constructor vacío porque debe usar entity
     public Empresa() {
