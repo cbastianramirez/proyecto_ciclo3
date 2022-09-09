@@ -20,16 +20,18 @@ public class ListaMovimientoDinero {
 
         this.movimientos = new ArrayList<>();
 
-        this.movimientos.add(new MovimientoDinero(1,"Debe", -60000, "Juan", "chcocolat cali"/*, "new LocalDateTime()" , "new LocalDateTime()"*/));
-        this.movimientos.add(new MovimientoDinero(2,"realizada", 5000000, "Andrés", "Buga la grande" /*, "new LocalDateTime()","new LocalDateTime()"*/));
+        this.movimientos.add(new MovimientoDinero(1,"Debe", -60000, "Juan", "chcocolat Cali"/*, "new LocalDateTime()" , "new LocalDateTime()"*/));
+        this.movimientos.add(new MovimientoDinero(2,"Deposito", 5000000, "Andrés", "Buga la grande" /*, "new LocalDateTime()","new LocalDateTime()"*/));
+        this.movimientos.add(new MovimientoDinero(3,"Deposito", 120000, "Brad Pitt", "Villavicencio" /*, "new LocalDateTime()","new LocalDateTime()"*/));
 
     }
 
+    //Todas los movimientos
     public ArrayList<MovimientoDinero> getAllMovimientos(){
-
         return movimientos;
     }
 
+    //Movimientos por id
     public MovimientoDinero getMovimiento(long id) throws Exception {
         for(MovimientoDinero movimientos: this.movimientos){
             if(movimientos.getId() == id){
@@ -39,6 +41,7 @@ public class ListaMovimientoDinero {
         throw new Exception("movimiento no encontrado");
     }
 
+    //Creación de movimientos
     public String setMovimiento(MovimientoDinero movimientoPost) throws Exception {
         try {
             getMovimiento(movimientoPost.getId());
@@ -49,10 +52,11 @@ public class ListaMovimientoDinero {
         throw new Exception("La transacción ya fue realizada");
     }
 
-    // patch
-    public MovimientoDinero updateMovimientos(MovimientoDinero updateMovimientos) throws Exception {
+    // patch actualización de forma específica
+    public MovimientoDinero updateMovimiento(MovimientoDinero updateMovimientos,long id) throws Exception {
         try {
-            MovimientoDinero bdMovimiento = getMovimientos(updateMovimientos.getId());
+            //MovimientoDinero bdMovimiento = getMovimiento(updateMovimientos.getId());
+            MovimientoDinero bdMovimiento = getMovimiento(id);
 
             if(updateMovimientos.getUsuario() != null && !updateMovimientos.getUsuario().equals("")){
                 bdMovimiento.setUsuario(updateMovimientos.getUsuario());
@@ -72,17 +76,24 @@ public class ListaMovimientoDinero {
         }
     }
 
+    //Delete | eliminación por id
+    public String deleteMovimientoDinero(long id) throws Exception {
+        try {
+            MovimientoDinero movimientoDinero = getMovimiento(id);
+            this.movimientos.remove(movimientoDinero);
+            return "Eliminado con éxito";
+        } catch (Exception e) {
+            throw new Exception("El empleado NO Existe para ser eliminado");
+        }
+    }
 
     // constructor lleno
-
     public ListaMovimientoDinero(ArrayList<MovimientoDinero> movimientos) {
         this.movimientos = movimientos;
     }
 
-
     // getters & setters
     public ArrayList<MovimientoDinero> getMovimientos() {
-
         return movimientos;
     }
 

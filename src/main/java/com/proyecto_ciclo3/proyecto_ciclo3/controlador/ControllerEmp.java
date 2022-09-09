@@ -102,7 +102,6 @@ public class ControllerEmp {
         return movimientoDinero.getUsuario();
     }
 
-    // ingreso egreso con vídeo Anderson enum 1:55:00
 
 
 

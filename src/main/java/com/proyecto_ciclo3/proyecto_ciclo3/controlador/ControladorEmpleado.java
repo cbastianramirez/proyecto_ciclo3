@@ -13,12 +13,12 @@ import java.util.List;
 @RestController
 public class ControladorEmpleado {
 
-    private ControladorEmpleado controladorEmpleado = new ControladorEmpleado();
+    private ListaEmpleado listaEmpleado = new ListaEmpleado();
 
 
     @GetMapping("/empleados")
     public ResponseEntity<ArrayList<Empleado>> getEmpleados(){
-        return new ResponseEntity<>(controladorEmpleado.getAllEmpleados(),HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(listaEmpleado.getAllEmpleados(),HttpStatus.ACCEPTED);
     }
 
     // Get empresa por id
@@ -33,7 +33,6 @@ public class ControladorEmpleado {
         }catch (Exception e){
             return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
     }
 
     // post
@@ -41,7 +40,7 @@ public class ControladorEmpleado {
     @PostMapping("/empleado")
     public ResponseEntity<String> postEmpleado(@RequestBody Empleado empleadoPost){  // SÍ ES STRING porq le envíamos un mensaje
         try {
-            String info = listaEmpleados().setEmpleado(empleadoPost);
+            String info = listaEmpleado.setEmpleado(empleadoPost);
             return new ResponseEntity<>(info, HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
@@ -49,10 +48,10 @@ public class ControladorEmpleado {
     }
 
     //update
-    @PutMapping("/empleado/{id}")
-    public ResponseEntity<ObjetoRespuesta> putEmpleado(@RequestBody Empleado updateEmpleado, @PathVariable("id") long id){ // objetorespuesta me ayuda atrapar el error, coloq el id en ""
+    @PatchMapping("/empleado/{id}")
+    public ResponseEntity<ObjetoRespuesta> putEmpleado(@RequestBody Empleado updateEmpleado, @PathVariable long id){ // objetorespuesta me ayuda atrapar el error, coloq el id en ""
         try {
-            Empleado bdEmpleado = listaEmpleados().updateEmpleado(updateEmpleado); /* revisar aquí profe clase antes 29 de agosto */
+            Empleado bdEmpleado = listaEmpleado.updateEmpleado(updateEmpleado, id); /* revisar aquí profe clase antes 29 de agosto */
             return new ResponseEntity<>(new ObjetoRespuesta("Confirmado, resgistro empleado", bdEmpleado), HttpStatus.OK);
         } catch (Exception e){
             return new ResponseEntity<>(new ObjetoRespuesta(e.getMessage(),null),HttpStatus.INTERNAL_SERVER_ERROR);
@@ -60,17 +59,12 @@ public class ControladorEmpleado {
     }
 
     @DeleteMapping("/empleados/{id}")
-    public ResponseEntity<ObjetoRespuesta> deleteEmpleado(@PathVariable Long id){
-
+    public ResponseEntity<ObjetoRespuesta> deleteEmpleado(@PathVariable long id){
         try {
-            String info = listaEmpleados().deleteEmpleado(id);
-
+            String info = listaEmpleado.deleteEmpleado(id);
             return new ResponseEntity<>(new ObjetoRespuesta(info,null),HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(new ObjetoRespuesta(e.getMessage(),null),HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
     }
-
-
 }

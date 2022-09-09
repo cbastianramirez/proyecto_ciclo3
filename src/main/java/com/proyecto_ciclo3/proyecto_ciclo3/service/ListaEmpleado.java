@@ -3,6 +3,7 @@ package com.proyecto_ciclo3.proyecto_ciclo3.service;
 import com.proyecto_ciclo3.proyecto_ciclo3.modelos.Empleado;
 import com.proyecto_ciclo3.proyecto_ciclo3.modelos.Empresa;
 import com.proyecto_ciclo3.proyecto_ciclo3.modelos.Enum_RoleName;
+import com.proyecto_ciclo3.proyecto_ciclo3.modelos.MovimientoDinero;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -18,13 +19,16 @@ public class ListaEmpleado{
 
         this.empleados.add(new Empleado(1,"Pepe Perez", "email@email.com",Enum_RoleName.Admin,"Alfagres"));
         this.empleados.add(new Empleado(2,"Margarot Ramirez", "email@microsoft.com", Enum_RoleName.Operario, "Corona"));
+        this.empleados.add(new Empleado(3,"William Levy", "williamlevy@microsoft.com", Enum_RoleName.Admin, "Oma"));
 
     }
 
+    //Todos los empleados
     public ArrayList<Empleado> getAllEmpleados(){
         return empleados;
     }
 
+    //Empleado por id
     public Empleado getEmpleado(long id) throws Exception {
         for(Empleado empleados: this.empleados){
             if(empleados.getId() == id){
@@ -34,6 +38,7 @@ public class ListaEmpleado{
         throw new Exception("Empleado no encontrado");
     }
 
+    //Creación empleado
     public String setEmpleado(Empleado empleadoPost) throws Exception { // devuelve un string entonces debe ser string
         try {
             getEmpleado(empleadoPost.getId());
@@ -44,10 +49,10 @@ public class ListaEmpleado{
         throw new Exception("Usuario Existe");
     }
 
-    // patch
-        public Empleado updateEmpleado(Empleado updateEmpleado) throws Exception {
+    // patch edición atributos de forma específica
+    public Empleado updateEmpleado(Empleado updateEmpleado, long id) throws Exception {
         try {
-            Empleado bdEmpleado = getEmpleado(updateEmpleado.getId()); // este si porq es el q no cambia id
+            Empleado bdEmpleado = getEmpleado(id);
 
             if(updateEmpleado.getNombre() != null && !updateEmpleado.getNombre().equals("")){
                 bdEmpleado.setNombre(updateEmpleado.getNombre());
@@ -72,20 +77,16 @@ public class ListaEmpleado{
         bdEmpleado.setCorreo(updateEmpleado.getCorreo());
         bdEmpleado.setEmpresa(updateEmpleado.getEmpresa());*/
 
-
-
-    public String deletEmpleado(Long id) throws Exception {
+    //Delete | eliminación por id
+    public String deleteEmpleado(long id) throws Exception {
         try {
             Empleado empleado = getEmpleado(id);
-
             this.empleados.remove(empleado);
-
             return "Eliminado con éxito";
         } catch (Exception e) {
             throw new Exception("El empleado NO Existe para ser eliminado");
         }
     }
-
 
     // constructor lleno
     public ListaEmpleado(ArrayList<Empleado> empleados) {

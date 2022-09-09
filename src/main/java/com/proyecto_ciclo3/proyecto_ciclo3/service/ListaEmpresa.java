@@ -1,7 +1,9 @@
 package com.proyecto_ciclo3.proyecto_ciclo3.service;
 
+import com.proyecto_ciclo3.proyecto_ciclo3.modelos.Empleado;
 import com.proyecto_ciclo3.proyecto_ciclo3.modelos.Empresa;
 import com.proyecto_ciclo3.proyecto_ciclo3.modelos.Enum_RoleName;
+import com.proyecto_ciclo3.proyecto_ciclo3.modelos.MovimientoDinero;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -15,16 +17,19 @@ public class ListaEmpresa {
 
         this.empresas = new ArrayList<>();
 
-        this.empresas.add(new Empresa(1,"KAren","63863","Enum_RoleName.Admin","calle 25 con 4"));
-        this.empresas.add(new Empresa(3,"sol","54321","Enum_RoleName.Operario","calle 25 con 4"));
-        this.empresas.add(new Empresa(2,"andrés","98765","Enum_RoleName.Admin","calle 25 con 4"));
+        this.empresas.add(new Empresa(1,"Emma Borbón","63863","Enum_RoleName.Admin","calle 25 con 4"));
+        this.empresas.add(new Empresa(3,"Karen Ducatti","54321","Enum_RoleName.Operario","calle 25 con 4"));
+        this.empresas.add(new Empresa(2,"George Clone","98765","Enum_RoleName.Admin","Av. el Dorado calle 26 con 68"));
 
     }
 
+    //Todas las empresas
     public ArrayList<Empresa> getAllEmpresas(){
+
         return empresas;
     }
 
+    //Empresa por id
     public Empresa getEmpresa(long id) throws Exception {
         for(Empresa empresa: this.empresas){
             if(empresa.getId() == id){
@@ -34,6 +39,7 @@ public class ListaEmpresa {
         throw new Exception("Empresa no encontrada");
     }
 
+    //Creación empresa
     public String setEmpresa(Empresa empresaPost) throws Exception {
         try {
             getEmpresa(empresaPost.getId());
@@ -44,10 +50,10 @@ public class ListaEmpresa {
         throw new Exception("La empresa ya Existe");
     }
 
-    // patch
-    public Empresa updateEmpresa(Empresa updateEmpresa) throws Exception {
+    // patch actualización atributos de forma específica
+    public Empresa updateEmpresa(Empresa updateEmpresa, long id) throws Exception {
         try {
-            Empresa bdEmpresa = getEmpresa(updateEmpresa.getId());
+            Empresa bdEmpresa = getEmpresa(id);
 
             if(updateEmpresa.getNombre() != null && !updateEmpresa.getNombre().equals("")){
                 bdEmpresa.setNombre(updateEmpresa.getNombre());
@@ -67,10 +73,16 @@ public class ListaEmpresa {
         }
     }
 
-
-
-
-
+    //Delete| eliminación por id
+    public String deleteEmpresa(long id) throws Exception {
+        try {
+            Empresa empresa = getEmpresa(id);
+            this.empresas.remove(empresa);
+            return "Eliminado con éxito";
+        } catch (Exception e) {
+            throw new Exception("El empleado NO Existe para ser eliminado");
+        }
+    }
 
 
     // constructor lleno

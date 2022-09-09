@@ -13,13 +13,12 @@ import java.util.ArrayList;
 @RestController
 public class ControladorMovimientoDinero {
 
-    private ControladorMovimientoDinero controladorMovimientoDinero = new ControladorMovimientoDinero();
+    private ListaMovimientoDinero  listaMovimientoDinero = new ListaMovimientoDinero ();
 
     @GetMapping("/movimientos")
-    public ResponseEntity<ArrayList<MovimientoDinero>> getMovimientos(){
-        return new ResponseEntity<>(controladorMovimientoDinero.getAllMovimientos(),HttpStatus.ACCEPTED);
+    public ResponseEntity<ArrayList<MovimientoDinero>> getMovimiento(){
+        return new ResponseEntity<>(listaMovimientoDinero.getAllMovimientos(),HttpStatus.ACCEPTED);
     }
-
 
     // Get movimientos por id
 
@@ -41,7 +40,7 @@ public class ControladorMovimientoDinero {
     @PostMapping("/movimiento") // SÍ ES STRING porq le envíamos un mensaje
     public ResponseEntity<String> postMovimiento(@RequestBody MovimientoDinero movimientoPost){
         try {
-            String info = listaMovimientoDinero().setMovimiento(movimientoPost);
+            String info = listaMovimientoDinero.setMovimiento(movimientoPost);
             return new ResponseEntity<>(info, HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
@@ -50,12 +49,25 @@ public class ControladorMovimientoDinero {
 
     //update
     @PutMapping("/movimiento/{id}")
-    public ResponseEntity<ObjetoRespuesta> putMovimientos(@RequestBody MovimientoDinero updateMovimiento, @PathVariable("id") long id){ // objetorespuesta me ayuda atrapar el error, coloq el id en ""
+    public ResponseEntity<ObjetoRespuesta> putMovimientos(@RequestBody MovimientoDinero updateMovimientos, @PathVariable long id){ // objetorespuesta me ayuda atrapar el error, coloq el id en ""
         try {
-            MovimientoDinero bdMovimiento = listaMovimientoDinero().updateMovimientos(updateMovimiento); /* revisar aquí profe clase antes 29 de agosto */
+            MovimientoDinero bdMovimiento = listaMovimientoDinero.updateMovimiento(updateMovimientos, id); /* revisar aquí profe clase antes 29 de agosto */
             return new ResponseEntity<>(new ObjetoRespuesta("Confirmado, movimiento", bdMovimiento), HttpStatus.OK);
         } catch (Exception e){
             return new ResponseEntity<>(new ObjetoRespuesta(e.getMessage(),null),HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    //Delete
+    @DeleteMapping("/movimientos/{id}")
+    public ResponseEntity<ObjetoRespuesta> deleteEmpleado(@PathVariable long id){
+        try {
+            String info = listaMovimientoDinero.deleteMovimientoDinero(id);
+            return new ResponseEntity<>(new ObjetoRespuesta(info,null),HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(new ObjetoRespuesta(e.getMessage(),null),HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
 }
