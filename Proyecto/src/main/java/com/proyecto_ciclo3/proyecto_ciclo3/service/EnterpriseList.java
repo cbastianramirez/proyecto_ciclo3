@@ -22,21 +22,21 @@ public class EnterpriseList {
 
         this.enterprises = new ArrayList<>();
 
-//        Enterprise enterprise1 = new Enterprise(1234567, "Makro", "3005005050", "Calle 4 # 45-34");
-//        Enterprise enterprise2 = new Enterprise(8585953, "Flamingo", "55555555", "Carrera 8 # 4-54");
+        Enterprise enterprise1 = new Enterprise(1234567, "Makro", "3005005050", "Calle 4 # 45-34");
+        Enterprise enterprise2 = new Enterprise(8585953, "Flamingo", "55555555", "Carrera 8 # 4-54");
 
-        this.enterprises.add(new Enterprise(123456, "Makro", "3005005050", "Calle 4 # 45-34"));
-        this.enterprises.add(new Enterprise(8585953, "Flamingo", "55555555", "Carrera 8 # 4-54"));
+        this.enterprises.add(enterprise1);
+        this.enterprises.add(enterprise2);
 
     }
 
 
-//    Brings all the enterprises
+    //GET ALL ENTERPRISES
     public ArrayList<Enterprise> getAllEnterprises(){
         return enterprises;
     }
 
-//    Brings enterprise by id
+    //GET ENTERPRISE BY ID
     public Enterprise getEnterprise(long id) throws Exception {
         for (Enterprise enterprises: this.enterprises) {
             if (enterprises.getId() == id){
@@ -46,7 +46,7 @@ public class EnterpriseList {
         throw new Exception("Enterprise not found");
     }
 
-//    Creates a new enterprise
+    //CREATE NEW ENTERPRISE
     public String setEnterprise(Enterprise enterprise) throws Exception {
         try {
             getEnterprise(enterprise.getId());
@@ -57,11 +57,10 @@ public class EnterpriseList {
         throw new Exception("Enterprise already exists");
     }
 
-    //update
-
+    //UPDATE ENTERPRISE
      public Enterprise updateEnterprise(Enterprise update_Enterprise, long id) throws Exception {
          try {
-//             Enterprise db_enterprise = getEnterprise(update_Enterprise.getId());
+
              Enterprise db_enterprise = getEnterprise(id);
 
              if (update_Enterprise.getName() != null && !update_Enterprise.getName().equals("")) {
@@ -81,8 +80,7 @@ public class EnterpriseList {
          }
      }
 
-//--------DELETE-------------------
-
+    //DELETE ENTERPRISE BY ID
     public String deleteEnterprise(long id) throws Exception {
         try {
             Enterprise enterprise = getEnterprise(id);

@@ -17,11 +17,13 @@ public class EnterpriseController {
 
     private EnterpriseList enterpriseList = new EnterpriseList();
 
+    //GET ALL ENTERPRISES
     @GetMapping("/enterprises")
     public ResponseEntity<ArrayList<Enterprise>> getEnterprises(){
         return new ResponseEntity<>(enterpriseList.getAllEnterprises(), HttpStatus.OK);
     }
 
+    //GET ENTERPRISE BY ID
     @GetMapping("/enterprise/{id}")
     public ResponseEntity<Object> getEnterprise(@PathVariable long id){
 
@@ -34,7 +36,8 @@ public class EnterpriseController {
         }
     }
 
-    @PostMapping("/new_enterprise")
+    //CREATE NEW ENTERPRISE
+    @PostMapping("/enterprises")
     public ResponseEntity<String> postEnterprise(@RequestBody Enterprise enterprisePost){
         try {
             String message = enterpriseList.setEnterprise(enterprisePost);
@@ -44,7 +47,8 @@ public class EnterpriseController {
         }
     }
 
-    @PutMapping("/update_enterprise/{id}")
+    //UPDATE ENTERPRISE
+    @PatchMapping("/enterprise/{id}")
     public ResponseEntity<ObjectResponse> putEnterprise(@RequestBody Enterprise updateEnterprise, @PathVariable long id){
         try {
             Enterprise enterprise = enterpriseList.updateEnterprise(updateEnterprise, id);
@@ -55,7 +59,7 @@ public class EnterpriseController {
 
     }
 
-    //DELETE
+    //DELETE ENTERPRISE BY ID
     @DeleteMapping("/enterprise/{id}")
     public ResponseEntity<ObjectResponse> deleteEnterprise(@PathVariable long id){
         try {

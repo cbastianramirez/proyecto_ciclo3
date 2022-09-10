@@ -12,6 +12,7 @@ public class ProyectoCiclo3Application {
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoCiclo3Application.class, args);
 
+
 //		Salida en consola-------------------->
 
 //		System.out.println("");
