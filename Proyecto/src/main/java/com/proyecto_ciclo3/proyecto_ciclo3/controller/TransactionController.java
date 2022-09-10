@@ -17,7 +17,7 @@ public class TransactionController {
 
     private TransactionList transactionList = new TransactionList();
 
-    //GET ALL EMPLOYESS
+    //GET ALL TRANSACTIONS
     @GetMapping("/enterprises/transactions")
     public ResponseEntity<ArrayList<Transaction>> getTransactions(){
         return new ResponseEntity<>(transactionList.getAllTransactions(), HttpStatus.OK);
