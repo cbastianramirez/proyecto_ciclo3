@@ -12,19 +12,20 @@ public class Empleado {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column
+    @Column(name = "nombre")
     private String nombre;
 
-    @Column(unique = true)
+    @Column(name = "correo",unique = true)
     private String correo;
 
     // lo creo pero sin getters setters
     //@OneToOne                 // este no va aquí según explico el profe porq el empleado no contiene fk del profile es al contrario(mappedBy = "empleado")
     //private Profile profile;
     @OneToMany
+    @Column(name = "enum_roleName")
     private Enum_RoleName enum_roleName;
 
-    @Column
+    @Column (name = "empresa")
     private String empresa;
     /*@ManyToOne
     private Empresa empresa;
@@ -70,9 +71,7 @@ public class Empleado {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
+    //public void setId(long id) { this.id = id;     }
 
     public String getNombre() {
         return nombre;

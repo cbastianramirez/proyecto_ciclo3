@@ -12,21 +12,21 @@ public class MovimientoDinero {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column
+    @Column(name = "concepto")
     private String concepto;
 
-    @Column
+    @Column(name = "monto")
     private float monto;
 
     //@ManyToOne
     //private Empleado usuario;
 
-    @Column
+    @Column(name = "usuario")
     private String usuario;
     //@ManyToOne
     //private Empresa empresa;
 
-    @Column
+    @Column(name = "empresa")
     private String empresa;
 
     /*
@@ -60,7 +60,7 @@ public class MovimientoDinero {
         return id;
     }
 
-    public void setId(long id) {
+    //public void setId(long id) {
         this.id = id;
     }
 

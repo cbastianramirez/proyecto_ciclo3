@@ -13,17 +13,17 @@ public class Empresa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)  //private long id; lo tenía con el id pero es nit
     private long Id;
 
-
     @Column(unique = true)
     private String nombre;
 
     @Column(unique = true)
     private String documento;
 
-    @Column
+    @Column(name = "telefono")
     private String telefono;
 
-    @Column
+
+    @Column(name = "direccion")
     private String direccion;
 
     /*@OneToMany
@@ -64,9 +64,7 @@ public class Empresa {
         return Id;
     }
 
-    public void setId(long id) {
-        Id = id;
-    }
+    //public void setId(long id) { Id = id;    }
 
     public String getNombre() {
         return nombre;

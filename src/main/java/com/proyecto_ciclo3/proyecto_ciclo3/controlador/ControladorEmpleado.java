@@ -18,7 +18,7 @@ public class ControladorEmpleado {
 
     @GetMapping("/empleados")
     public ResponseEntity<ArrayList<Empleado>> getEmpleados(){
-        return new ResponseEntity<>(listaEmpleado.getAllEmpleados(),HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(listaEmpleado.getAllEmpleados(),HttpStatus.OK);
     }
 
     // Get empresa por id

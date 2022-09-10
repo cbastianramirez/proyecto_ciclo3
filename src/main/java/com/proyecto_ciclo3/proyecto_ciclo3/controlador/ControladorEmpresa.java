@@ -19,7 +19,7 @@ public class ControladorEmpresa {
 
     @GetMapping("/empresas")
     public ResponseEntity<ArrayList<Empresa>> getEmpresas(){
-        return new ResponseEntity<>(listaEmpresa.getAllEmpresas(),HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(listaEmpresa.getAllEmpresas(),HttpStatus.OK);
     }
 
     // Get empresa por id

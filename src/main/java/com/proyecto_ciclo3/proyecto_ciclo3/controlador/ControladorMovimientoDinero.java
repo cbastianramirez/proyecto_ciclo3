@@ -17,16 +17,16 @@ public class ControladorMovimientoDinero {
 
     @GetMapping("/movimientos")
     public ResponseEntity<ArrayList<MovimientoDinero>> getMovimiento(){
-        return new ResponseEntity<>(listaMovimientoDinero.getAllMovimientos(),HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(listaMovimientoDinero.getAllMovimientos(),HttpStatus.OK);
     }
 
     // Get movimientos por id
 
-    @GetMapping("/movimiento/{id}") // asocia una url a una función q es getMovimiento()
+    @GetMapping("/movimiento/{id}")
     public ResponseEntity<Object> getMovimiento(@PathVariable long id){
         try{
             //ListaMovimientoDinero listaMovimientoDinero = new ListaMovimientoDinero().getMovimiento(id);
-            MovimientoDinero movimiento = new ListaMovimientoDinero().getMovimiento(id);  // me pidio migrar ya no de ResponseEntity<Object>
+            MovimientoDinero movimiento = new ListaMovimientoDinero().getMovimiento(id);
             //MovimientoDinero movimiento = listaMovimientoDinero.getMovimiento(id);
 
             return new ResponseEntity<>(movimiento, HttpStatus.OK);

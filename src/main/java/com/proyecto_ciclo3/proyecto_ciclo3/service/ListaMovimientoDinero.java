@@ -45,9 +45,10 @@ public class ListaMovimientoDinero {
     public String setMovimiento(MovimientoDinero movimientoPost) throws Exception {
         try {
             getMovimiento(movimientoPost.getId());
+
         } catch (Exception e){
             this.movimientos.add(movimientoPost);
-            return"Transacción exitosa";
+            return "Creación de movimiento éxitosa";
         }
         throw new Exception("La transacción ya fue realizada");
     }

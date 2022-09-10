@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0842b631-dfab-4dba-a391-762f52967446" name="Changes" comment="revisar patch">
+    <list default="true" id="0842b631-dfab-4dba-a391-762f52967446" name="Changes" comment="revisar getall">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/controlador/ControladorEmpleado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/controlador/ControladorEmpleado.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/controlador/ControladorEmpresa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/controlador/ControladorEmpresa.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/controlador/ControladorMovimientoDinero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/controlador/ControladorMovimientoDinero.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/modelos/Empleado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/modelos/Empleado.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/modelos/Empresa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/modelos/Empresa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/modelos/MovimientoDinero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/modelos/MovimientoDinero.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/service/ListaMovimientoDinero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/service/ListaMovimientoDinero.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -201,7 +205,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662749036849</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="revisar getall">
+      <created>1662811310321</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1662811310321</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -230,6 +241,7 @@
     <MESSAGE value="problemas con en responseEntty y no aparecen las peticiones" />
     <MESSAGE value="no encuentralas peticiones envíadas" />
     <MESSAGE value="revisar patch" />
-    <option name="LAST_COMMIT_MESSAGE" value="revisar patch" />
+    <MESSAGE value="revisar getall" />
+    <option name="LAST_COMMIT_MESSAGE" value="revisar getall" />
   </component>
 </project>
