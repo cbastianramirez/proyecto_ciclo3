@@ -24,15 +24,26 @@ public class EmployeeController {
     }
 
     //GET EMPLOYEE BY ID
-    @GetMapping("/employee/{id}")
-    public ResponseEntity<Object> getUsers(@PathVariable long id){
+//    @GetMapping("/employee/{id}")
+//    public ResponseEntity<Object> getUsers(@PathVariable long id){
+//        try{
+//            EmployeeList employeeList = new EmployeeList();
+//            Employee employees = employeeList.getEmployee(id);
+//            return new ResponseEntity<>(employees, HttpStatus.OK);
+//        }catch (Exception e){
+//            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//
+//    }
 
+    @GetMapping("/employee/{id}")
+    public ResponseEntity<ObjectResponse> getUsers(@PathVariable long id){
         try{
             EmployeeList employeeList = new EmployeeList();
             Employee employees = employeeList.getEmployee(id);
-            return new ResponseEntity<>(employees, HttpStatus.OK);
+            return new ResponseEntity<>(new ObjectResponse("Found! Details below:", employees), HttpStatus.OK);
         }catch (Exception e){
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(new ObjectResponse(e.getMessage(),null), HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
     }

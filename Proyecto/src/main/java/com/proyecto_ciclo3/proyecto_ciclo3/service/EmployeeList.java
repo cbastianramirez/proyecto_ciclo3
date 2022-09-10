@@ -12,6 +12,7 @@ public class EmployeeList {
 
         private ArrayList<Employee> employees;
 
+
         public EmployeeList(){
 
             this.employees = new ArrayList<>();
@@ -34,9 +35,9 @@ public class EmployeeList {
 
         //GET EMPLOYEE BY ID
         public Employee getEmployee(long id) throws Exception {
-            for (Employee employees_find: employees) {
-                if (employees_find.getId() == id){
-                    return employees_find;
+            for (Employee find_employee: employees) {
+                if (find_employee.getId() == id){
+                    return find_employee;
                 }
             }
             throw new Exception("Employee not found");
