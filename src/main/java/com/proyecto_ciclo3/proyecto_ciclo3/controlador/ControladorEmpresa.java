@@ -53,7 +53,6 @@ public class ControladorEmpresa {
         }
     }
 
-
     //Delete
     @DeleteMapping("/empresas/{id}")
     public ResponseEntity<ObjetoRespuesta> deleteEmpleado(@PathVariable long id){

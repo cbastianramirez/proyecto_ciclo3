@@ -58,6 +58,12 @@ public class ListaMovimientoDinero {
             //MovimientoDinero bdMovimiento = getMovimiento(updateMovimientos.getId());
             MovimientoDinero bdMovimiento = getMovimiento(id);
 
+            if(updateMovimientos.getMonto() == 0 ){
+                bdMovimiento.setMonto(updateMovimientos.getMonto());
+            }
+            if(updateMovimientos.getMonto() == updateMovimientos.getMonto()){
+                bdMovimiento.setMonto(updateMovimientos.getMonto());
+            }
             if(updateMovimientos.getUsuario() != null && !updateMovimientos.getUsuario().equals("")){
                 bdMovimiento.setUsuario(updateMovimientos.getUsuario());
             }
@@ -67,9 +73,7 @@ public class ListaMovimientoDinero {
             if(updateMovimientos.getEmpresa() != null && !updateMovimientos.getEmpresa().equals("")) {
                 bdMovimiento.setEmpresa(updateMovimientos.getEmpresa());
             }
-            /*if(updateEmpresa.getDireccion() != null && !updateEmpresa.getDireccion().equals("")) {
-                bdEmpresa.setDireccion(updateEmpresa.getDireccion());
-            }   que se hace con el monto sería ==  */
+
             return bdMovimiento;
         } catch (Exception e) {
             throw new Exception("Empresa NO existe, imposible actualizar datos");

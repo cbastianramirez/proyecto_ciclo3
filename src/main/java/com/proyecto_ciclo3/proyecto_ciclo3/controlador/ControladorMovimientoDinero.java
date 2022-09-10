@@ -48,7 +48,7 @@ public class ControladorMovimientoDinero {
     }
 
     //update
-    @PutMapping("/movimiento/{id}")
+    @PatchMapping("/movimiento/{id}")
     public ResponseEntity<ObjetoRespuesta> putMovimientos(@RequestBody MovimientoDinero updateMovimientos, @PathVariable long id){ // objetorespuesta me ayuda atrapar el error, coloq el id en ""
         try {
             MovimientoDinero bdMovimiento = listaMovimientoDinero.updateMovimiento(updateMovimientos, id); /* revisar aquí profe clase antes 29 de agosto */
