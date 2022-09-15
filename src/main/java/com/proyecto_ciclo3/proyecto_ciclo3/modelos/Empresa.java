@@ -8,27 +8,27 @@ import java.util.List;
 @Table(name = "empresa")
 public class Empresa {
     @Id
-    @Column(unique = true)
+    @Column(name = "id", nullable = false, unique = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)  //private long id; lo tenía con el id pero es nit
     private long Id;
 
-    @Column(unique = true)
+    @Column(name = "nombre", nullable = false, unique = true)
     private String nombre;
 
-    @Column(unique = true)
+    @Column(name = "documento", nullable = false, unique = true)
     private String documento;
 
     @Column(name = "telefono")
     private String telefono;
 
 
-    @Column(name = "direccion")
+    @Column(name = "direccion", nullable = false)
     private String direccion;
 
-    @OneToMany
+    @OneToMany(mappedBy = "empresa")
     private List<Empresa> usuario;
 
-    @ManyToOne
+    @OneToMany(mappedBy = "empresa")
     //private List <MovimientoDinero> movimientosDinero =  new ArrayList<>();
     private List<MovimientoDinero> movimientosDinero;
 

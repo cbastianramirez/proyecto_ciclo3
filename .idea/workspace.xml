@@ -4,22 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0842b631-dfab-4dba-a391-762f52967446" name="Changes" comment="solución 202">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/repo/EmpleadoRespository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/repo/EmpresaRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/repo/MovimientoDineroRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/service/EmpleadoInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/lo.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/lo.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/login.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/login.html" afterDir="false" />
+    <list default="true" id="0842b631-dfab-4dba-a391-762f52967446" name="Changes" comment="control empleado-interfaces-mapeo">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/service/EmpresaInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/service/MovimientoDineroInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/controlador/ControladorEmpleado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/controlador/ControladorEmpleado.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/controlador/ControladorEmpresa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/controlador/ControladorEmpresa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/controlador/ControladorMovimientoDinero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/controlador/ControladorMovimientoDinero.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/modelos/Empleado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/modelos/Empleado.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/modelos/Empresa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/modelos/Empresa.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/modelos/Enum_RoleName.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/modelos/Enum_RoleName.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/modelos/MovimientoDinero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/modelos/MovimientoDinero.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/modelos/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/modelos/Profile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/repo/EmpleadoRespository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/repo/EmpleadoRespository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/repo/EmpresaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/repo/EmpresaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/service/EmpleadoInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/service/EmpleadoInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/service/ListaEmpleado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/service/ListaEmpleado.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/service/ListaEmpresa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/service/ListaEmpresa.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/service/ListaMovimientoDinero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/service/ListaMovimientoDinero.java" afterDir="false" />
@@ -110,6 +108,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ProyectoCiclo3Application" />
         <item itemvalue="Application.ProyectoCiclo3Application" />
         <item itemvalue="Application.ProyectoCiclo3Application" />
       </list>

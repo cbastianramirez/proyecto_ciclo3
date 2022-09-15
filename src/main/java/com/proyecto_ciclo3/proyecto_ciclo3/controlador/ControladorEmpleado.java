@@ -3,13 +3,11 @@ package com.proyecto_ciclo3.proyecto_ciclo3.controlador;
 import com.proyecto_ciclo3.proyecto_ciclo3.modelos.Empleado;
 import com.proyecto_ciclo3.proyecto_ciclo3.modelos.ObjetoRespuesta;
 import com.proyecto_ciclo3.proyecto_ciclo3.service.EmpleadoInterface;
-import com.proyecto_ciclo3.proyecto_ciclo3.service.ListaEmpleado;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -21,7 +19,7 @@ public class ControladorEmpleado {
 
     @GetMapping("/empleado/empleados") // "empleados"
     public ResponseEntity<List<Empleado>> getAllEmpleados(){
-        return new ResponseEntity<>(empleadoInterface.getEmpleados(),HttpStatus.OK);
+        return new ResponseEntity<>(empleadoInterface.getAllEmpleados(),HttpStatus.OK);
     }
 
     /*@GetMapping("/empleado")
@@ -37,17 +35,18 @@ public class ControladorEmpleado {
     // Get empresa por id
     @GetMapping("/empleado/{id}")
     public ResponseEntity<Object> getEmpleado(@PathVariable long id) {
+
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
 
     // post
     @PostMapping("/empleado")
-    public ResponseEntity<Object> postEmpleado(@RequestBody Empleado empleadoPost){ //requerimiento cuerpo tipo Usuario llamado usuario
+    public ResponseEntity<String> postEmpleado(@RequestBody Empleado empleadoPost){
         try {
-            String mensaje = empleadoInterface.setEmpleado(empleadoPost); // si se ejecuta bien es q creo el ususario
-            return new ResponseEntity<>(mensaje, HttpStatus.OK); // si ejecu es q esta bien
+            String mensaje = empleadoInterface.setEmpleado(empleadoPost);
+            return new ResponseEntity<>(mensaje, HttpStatus.OK);
         }catch (Exception e){
-            return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR); // muestra y retorna el error si existe inconsistencias y lo contesto con un mensjae y quito el .toString que estaba despues del .getMessage porq este devuelve un string y no es necesario colocarle
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -67,8 +66,8 @@ public class ControladorEmpleado {
 
     //updateAll
     // actualizar tod la info del usuario con update -- put
-    @PutMapping("/usuario/{id}")
-    public ResponseEntity<ObjetoRespuesta> putEmpleado(@RequestBody Empleado updateAllEmpleado, @PathVariable long id){ // EL PUT CAMBIA TOD el OBJ, PORQ LLEGA TODA LA INFORMACIÓN. buenas practicas objetoRe, debo 1 atributos a actualizar q los los tiene Usuario.java con JSON por medio @RequestBody Usuario usuario
+    @PutMapping("/empleado/{id}")
+    public ResponseEntity<ObjetoRespuesta> putEmpleado(@RequestBody Empleado updateAllEmpleado, @PathVariable long id){
         try {
             Empleado bdEmpleado = empleadoInterface.updateAllEmpleado(updateAllEmpleado, id);
             return new ResponseEntity<>(new ObjetoRespuesta("Actualización realizada", bdEmpleado), HttpStatus.OK);
@@ -76,7 +75,6 @@ public class ControladorEmpleado {
             return new ResponseEntity<>(new ObjetoRespuesta(e.getMessage(),null),HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
 
     //Delete
     @DeleteMapping("/empleados/{id}")

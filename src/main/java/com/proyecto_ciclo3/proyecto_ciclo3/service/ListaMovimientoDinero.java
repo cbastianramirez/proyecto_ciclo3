@@ -1,55 +1,51 @@
 package com.proyecto_ciclo3.proyecto_ciclo3.service;
 
-import com.proyecto_ciclo3.proyecto_ciclo3.modelos.Empleado;
 import com.proyecto_ciclo3.proyecto_ciclo3.modelos.Empresa;
 import com.proyecto_ciclo3.proyecto_ciclo3.modelos.MovimientoDinero;
-import com.proyecto_ciclo3.proyecto_ciclo3.modelos.ObjetoRespuesta;
-import com.proyecto_ciclo3.proyecto_ciclo3.repo.EmpleadoRespository;
+
 import com.proyecto_ciclo3.proyecto_ciclo3.repo.MovimientoDineroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.*;
 
+
+import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Service
-public class ListaMovimientoDinero {
+public class ListaMovimientoDinero implements MovimientoDineroInterface{
+
     @Autowired
     private MovimientoDineroRepository movimientoDineroRepository;
 
     //Todas los movimientos
-    public ArrayList<MovimientoDinero> getAllMovimientos(){
-        return movimientos;
+    @Override
+    public List<MovimientoDinero> getAllMovimientos(){
+
+        return movimientoDineroRepository.findAll();
     }
 
     //Movimientos por id
+    @Override
     public MovimientoDinero getMovimiento(long id) throws Exception {
-        for(MovimientoDinero movimientos: this.movimientos){
-            if(movimientos.getId() == id){
-                return movimientos;
-            }
+        Optional<MovimientoDinero> bdMovimiento = movimientoDineroRepository.findById(id);
+        if (bdMovimiento.isPresent()){
+            return bdMovimiento.get();
         }
-        throw new Exception("movimiento no encontrado");
+        throw new Exception("Movimiento de dinero no encontrado");
     }
 
     //Creación de movimientos
-    public String setMovimiento(MovimientoDinero movimientoPost) throws Exception {
-        try {
-            getMovimiento(movimientoPost.getId());
-
-        } catch (Exception e){
-            this.movimientos.add(movimientoPost);
-            return "Creación de movimiento éxitosa";
-        }
-        throw new Exception("La transacción ya fue realizada");
+    @Override
+    public String setMovimiento(MovimientoDinero movimientoPost){
+        movimientoDineroRepository.save(movimientoPost);
+        return "Movimiento dinero creado";
     }
 
     // patch actualización de forma específica
+    @Override
     public MovimientoDinero updateMovimiento(MovimientoDinero updateMovimientos,long id) throws Exception {
-        try {
-            //MovimientoDinero bdMovimiento = getMovimiento(updateMovimientos.getId());
             MovimientoDinero bdMovimiento = getMovimiento(id);
 
             if(updateMovimientos.getMonto() == 0 ){
@@ -68,34 +64,21 @@ public class ListaMovimientoDinero {
                 bdMovimiento.setEmpresa(updateMovimientos.getEmpresa());
             }
 
-            return bdMovimiento;
-        } catch (Exception e) {
-            throw new Exception("Empresa NO existe, imposible actualizar datos");
-        }
+            return movimientoDineroRepository.save(bdMovimiento);
+    }
+
+    // put
+    @Transactional
+    @Override
+    public Empresa updateAllMovimientosDinero(MovimientoDinero updateAllMovimiento, long id) throws Exception{
+        movimientoDineroRepository.update(id, updateAllMovimiento.getConcepto(),
+                updateAllMovimiento.getMonto(), updateAllMovimiento.getUpdatedAt());// tendría q ponerse usuarios?
+        return getMovimiento(id);
     }
 
     //Delete | eliminación por id
-    public String deleteMovimientoDinero(long id) throws Exception {
-        try {
-            MovimientoDinero movimientoDinero = getMovimiento(id);
-            this.movimientos.remove(movimientoDinero);
-            return "Eliminado con éxito";
-        } catch (Exception e) {
-            throw new Exception("El empleado NO Existe para ser eliminado");
-        }
-    }
-
-    // constructor lleno
-    public ListaMovimientoDinero(ArrayList<MovimientoDinero> movimientos) {
-        this.movimientos = movimientos;
-    }
-
-    // getters & setters
-    public ArrayList<MovimientoDinero> getMovimientos() {
-        return movimientos;
-    }
-
-    public void setMovimientos(ArrayList<MovimientoDinero> movimientos) {
-        this.movimientos = movimientos;
+    public String deleteMovimientoDinero(long id){
+        movimientoDineroRepository.deleteById(id);
+        return "Movimiento Dinero eliminado con éxito";
     }
 }

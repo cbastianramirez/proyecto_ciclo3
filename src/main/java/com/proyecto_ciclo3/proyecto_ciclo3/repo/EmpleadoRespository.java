@@ -1,14 +1,18 @@
 package com.proyecto_ciclo3.proyecto_ciclo3.repo;
 
 import com.proyecto_ciclo3.proyecto_ciclo3.modelos.Empleado;
+import com.proyecto_ciclo3.proyecto_ciclo3.modelos.Empresa;
+import com.proyecto_ciclo3.proyecto_ciclo3.modelos.Enum_RoleName;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
+import java.time.LocalDateTime;
+
 public interface EmpleadoRespository extends JpaRepository<Empleado,Long> {
 
     @Modifying
-    @Query("UPDATE Usuario u SET u.nombre= :nombre, u.password= :password WHERE u.nombreUsuario= :id")//creación query ---> UPDATE + nombre tabla ese Usuario es el obj de java, variable u, debe estar = q esta en el obj con mayu y minu =  , con :+parametro cambia lo q uno desee para poder hacer el mapeo
+    @Query("UPDATE Usuario u SET u.nombre= :nombre, u.correo= :correo, u.enum_roleName = :enum_roleName, u.empresa = :empresa, u.updatedAt = :updatedAt WHERE u.id= :id")
 
-    public int update(String nombre, String password, String id);
+    public int update(long id, String nombre, String correo, Enum_RoleName rol, Empresa empresa, LocalDateTime updateAt);
 }

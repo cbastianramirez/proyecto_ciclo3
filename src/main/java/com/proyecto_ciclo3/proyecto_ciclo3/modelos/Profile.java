@@ -12,15 +12,16 @@ public class Profile {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false, unique = true)
     private String id;
 
-    @Column
+    @Column(name = "imagen")
     private String imagen;
 
-    @Column
+    @Column(name = "telefono")
     private String telefono;
 
-    @OneToOne (mappedBy = "usuario") // o (mappedBy = "empleado")
+    @OneToOne (mappedBy = "usuario") // o (mappedBy = "empleado") //@JoinColumn(name = "empleado_id")
     private List<Empresa> usuario;
 
     @Column(name = "createdAt")

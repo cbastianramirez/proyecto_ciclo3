@@ -10,9 +10,10 @@ public class Empleado {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false, unique = true)
     private long id;
 
-    @Column(name = "nombre")
+    @Column(name = "nombre", nullable = false)
     private String nombre;
 
     @Column(name = "correo",unique = true)
@@ -31,11 +32,11 @@ public class Empleado {
      */
 
     @ManyToOne
-    @Column (name = "empresa")
+    @Column (name = "empresa_id") //@JoinColumn
     private Empresa empresa;
 
-    @ManyToOne
-    //private List <MovimientoDinero> movimientosDinero =  new ArrayList<>();
+    @OneToMany(mappedBy = "empleado")  // el profe Juan @OneToMany
+    //private List <MovimientoDinero> movimientosDinero =  new ArrayList<>(); // yo no lo debo colocar en update atributo solo forkey
     private List<MovimientoDinero> movimientosDinero;
 
     @Column(name = "createdAt")
@@ -105,7 +106,7 @@ public class Empleado {
         return movimientosDinero;
     }
 
-    public void setMovimientosDinero(List<MovimientoDinero> movimientosDinero) {
+    public void setMovimientosDinero(List<MovimientoDinero> movimientosDinero) {  //creo q debe quitarse el set porq no puede cambiarse el movimientoDinero
         this.movimientosDinero = movimientosDinero;
     }
 

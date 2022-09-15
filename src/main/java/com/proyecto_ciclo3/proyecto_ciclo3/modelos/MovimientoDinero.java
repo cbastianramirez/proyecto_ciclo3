@@ -10,23 +10,24 @@ import java.util.List;
 public class MovimientoDinero {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false, unique = true)
     private long id;
 
-    @Column(name = "concepto")
+    @Column(name = "concepto", nullable = false)
     private String concepto;
 
-    @Column(name = "monto")
+    @Column(name = "monto", nullable = false)
     private float monto;
 
-    @OneToMany
-    @Column(name = "usuario")
+    @ManyToOne
+    @Column(name = "usuario") //@JoinColumn(name = "empleado_id")
     private List<Empleado> usuario;
 
     /*@Column(name = "usuario")
     private String usuario;*/
 
-    @OneToMany
-    @Column(name = "empresa")
+    @ManyToOne
+    @Column(name = "empresa")// @JoinColumn(name = "empresa_id")
     private Empresa empresa;
 
     /*@Column(name = "empresa")

@@ -10,7 +10,7 @@ import java.util.Optional;
 
 
 @Service
-public class ListaEmpleado{
+public class ListaEmpleado implements EmpleadoInterface{
 
     @Autowired
     private EmpleadoRespository empleadoRespository;
@@ -39,12 +39,13 @@ public class ListaEmpleado{
         return "Creado empleado con éxito";
     }
 
-
     // put
     @Transactional
     @Override
     public Empleado updateAllEmpleado(Empleado updateAllEmpleado, long id) throws Exception{
-        empleadoRespository.update(updateAllEmpleado.getNombre(), updateAllEmpleado.getCorreo(), updateAllEmpleado.getEnum_roleName(),updateAllEmpleado.getEmpresa(), updateAllEmpleado.getMovimientosDinero(),id);
+        empleadoRespository.update(id, updateAllEmpleado.getNombre(),
+                updateAllEmpleado.getCorreo(), updateAllEmpleado.getEnum_roleName(),
+                updateAllEmpleado.getEmpresa(), updateAllEmpleado.getUpdateAt());
         return getEmpleado(id);
     }
 
