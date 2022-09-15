@@ -2,8 +2,8 @@ package com.proyecto_ciclo3.proyecto_ciclo3.modelos;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.lang.String;
+import java.util.List;
 
 @Entity
 @Table(name = "movimiento dinero")
@@ -18,18 +18,20 @@ public class MovimientoDinero {
     @Column(name = "monto")
     private float monto;
 
-    //@ManyToOne
-    //private Empleado usuario;
-
+    @OneToMany
     @Column(name = "usuario")
-    private String usuario;
-    //@ManyToOne
-    //private Empresa empresa;
+    private List<Empleado> usuario;
 
+    /*@Column(name = "usuario")
+    private String usuario;*/
+
+    @OneToMany
     @Column(name = "empresa")
-    private String empresa;
+    private Empresa empresa;
 
-    /*
+    /*@Column(name = "empresa")
+    private String empresa;*/
+
     @Column(name = "createdAt")
     private LocalDateTime createdAt;
 
@@ -37,31 +39,26 @@ public class MovimientoDinero {
     private LocalDateTime updatedAt;
 
 
-     */
-
     // constructor vacío porque debe usar entity
     public MovimientoDinero() {
     }
 
     // constructor lleno
-    public MovimientoDinero(long id, String concepto, float monto, /*Empleado usuario, Empresa empresa,*/ String usuario,String empresa  /*, LocalDateTime createdAt, LocalDateTime updatedAt*/) {
+
+    public MovimientoDinero(long id, String concepto, float monto, List<Empleado> usuario, Empresa empresa, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.concepto = concepto;
         this.monto = monto;
         this.usuario = usuario;
         this.empresa = empresa;
-        //this.createdAt = createdAt;
-        //this.updatedAt = updatedAt;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     // setters & getters
 
     public long getId() {
         return id;
-    }
-
-    //public void setId(long id) {
-        this.id = id;
     }
 
     public String getConcepto() {
@@ -80,23 +77,22 @@ public class MovimientoDinero {
         this.monto = monto;
     }
 
-    public String getUsuario() {
+    public List<Empleado> getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(String usuario) {
+    public void setUsuario(List<Empleado> usuario) {
         this.usuario = usuario;
     }
 
-    public String getEmpresa() {
+    public Empresa getEmpresa() {
         return empresa;
     }
 
-    public void setEmpresa(String empresa) {
+    public void setEmpresa(Empresa empresa) {
         this.empresa = empresa;
     }
 
-    /*
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
@@ -111,5 +107,5 @@ public class MovimientoDinero {
 
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
-    } */
+    }
 }

@@ -2,7 +2,6 @@ package com.proyecto_ciclo3.proyecto_ciclo3.modelos;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -26,38 +25,35 @@ public class Empresa {
     @Column(name = "direccion")
     private String direccion;
 
-    /*@OneToMany
-    //private List<Empresa> usuario = new ArrayList<>();
+    @OneToMany
     private List<Empresa> usuario;
 
-    //@OneToMany
-    private List <MovimientoDinero> movimientosDinero =  new ArrayList<>();
-    private List<MovimientoDinero> movimientosDinero; */
+    @ManyToOne
+    //private List <MovimientoDinero> movimientosDinero =  new ArrayList<>();
+    private List<MovimientoDinero> movimientosDinero;
 
-    /*
     @Column(name = "createdAt")
     private LocalDateTime createdAt;
 
     @Column(name = "updatedAt")
     private LocalDateTime updatedAt;
 
-*/
     // constructor vacío porque debe usar entity
     public Empresa() {
     }
 
     // constructor lleno
 
-    public Empresa(long id, String nombre, String documento, String telefono, String direccion) {
+    public Empresa(long id, String nombre, String documento, String telefono, String direccion, List<Empresa> usuario, List<MovimientoDinero> movimientosDinero, LocalDateTime createdAt, LocalDateTime updatedAt) {
         Id = id;
         this.nombre = nombre;
         this.documento = documento;
         this.telefono = telefono;
         this.direccion = direccion;
-        //this.usuario = usuario;
-        //this.movimientosDinero = movimientosDinero;
-        //this.createdAt = createdAt;
-        //this.updatedAt = updatedAt;
+        this.usuario = usuario;
+        this.movimientosDinero = movimientosDinero;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public long getId() {
@@ -99,7 +95,7 @@ public class Empresa {
     }
 
 
-    /*public List<Empresa> getUsuario() {
+    public List<Empresa> getUsuario() {
         return usuario;
     }
 
@@ -129,5 +125,5 @@ public class Empresa {
 
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
-    }*/
+    }
 }

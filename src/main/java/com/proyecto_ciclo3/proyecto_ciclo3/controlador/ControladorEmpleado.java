@@ -2,7 +2,9 @@ package com.proyecto_ciclo3.proyecto_ciclo3.controlador;
 
 import com.proyecto_ciclo3.proyecto_ciclo3.modelos.Empleado;
 import com.proyecto_ciclo3.proyecto_ciclo3.modelos.ObjetoRespuesta;
+import com.proyecto_ciclo3.proyecto_ciclo3.service.EmpleadoInterface;
 import com.proyecto_ciclo3.proyecto_ciclo3.service.ListaEmpleado;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,58 +15,78 @@ import java.util.List;
 @RestController
 public class ControladorEmpleado {
 
-    private ListaEmpleado listaEmpleado = new ListaEmpleado();
+    @Autowired
+    //@GetMapping("/empleado")
+    private EmpleadoInterface empleadoInterface;
 
-
-    @GetMapping("/empleados")
-    public ResponseEntity<ArrayList<Empleado>> getEmpleados(){
-        return new ResponseEntity<>(listaEmpleado.getAllEmpleados(),HttpStatus.OK);
+    @GetMapping("/empleado/empleados") // "empleados"
+    public ResponseEntity<List<Empleado>> getAllEmpleados(){
+        return new ResponseEntity<>(empleadoInterface.getEmpleados(),HttpStatus.OK);
     }
 
-    // Get empresa por id
-    @GetMapping("/empleado/{id}") // asocia una url a una función q es getEmpleado()
-    public ResponseEntity<Object> getEmpleado(@PathVariable long id){
+    /*@GetMapping("/empleado")
+    public ResponseEntity<Object> getEmpleado(@RequestParam long id){
         try{
-            //ListaEmpleado listaEmpleado = new ListaEmpleado().getEmpleado(id);
-            Empleado empleado = new ListaEmpleado().getEmpleado(id);
-            //Empleado empleados = listaEmpleado.getEmpleado(id);
-
+            Empleado empleado = empleadoInterface.getEmpleado(id);
             return new ResponseEntity<>(empleado, HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }*/
+
+    // Get empresa por id
+    @GetMapping("/empleado/{id}")
+    public ResponseEntity<Object> getEmpleado(@PathVariable long id) {
+        return new ResponseEntity<>(id, HttpStatus.OK);
     }
 
     // post
-
     @PostMapping("/empleado")
-    public ResponseEntity<String> postEmpleado(@RequestBody Empleado empleadoPost){  // SÍ ES STRING porq le envíamos un mensaje
+    public ResponseEntity<Object> postEmpleado(@RequestBody Empleado empleadoPost){ //requerimiento cuerpo tipo Usuario llamado usuario
         try {
-            String info = listaEmpleado.setEmpleado(empleadoPost);
-            return new ResponseEntity<>(info, HttpStatus.OK);
+            String mensaje = empleadoInterface.setEmpleado(empleadoPost); // si se ejecuta bien es q creo el ususario
+            return new ResponseEntity<>(mensaje, HttpStatus.OK); // si ejecu es q esta bien
         }catch (Exception e){
-            return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR); // muestra y retorna el error si existe inconsistencias y lo contesto con un mensjae y quito el .toString que estaba despues del .getMessage porq este devuelve un string y no es necesario colocarle
         }
     }
 
+
     //update
     @PatchMapping("/empleado/{id}")
-    public ResponseEntity<ObjetoRespuesta> putEmpleado(@RequestBody Empleado updateEmpleado, @PathVariable long id){ // objetorespuesta me ayuda atrapar el error, coloq el id en ""
+    public ResponseEntity<ObjetoRespuesta> patchEmpleado(@RequestBody Empleado updateEmpleado, @PathVariable long id){
         try {
-            Empleado bdEmpleado = listaEmpleado.updateEmpleado(updateEmpleado, id); /* revisar aquí profe clase antes 29 de agosto */
-            return new ResponseEntity<>(new ObjetoRespuesta("Confirmado, resgistro empleado", bdEmpleado), HttpStatus.OK);
+            Empleado bdEmpleado = empleadoInterface.updateEmpleado(updateEmpleado, id);
+            return new ResponseEntity<>(new ObjetoRespuesta("Actualización éxitosa", bdEmpleado), HttpStatus.OK);
+        } catch (Exception e){
+            e.printStackTrace();// muestra el error
+            return new ResponseEntity<>(new ObjetoRespuesta(e.getMessage(),null),HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
+    //updateAll
+    // actualizar tod la info del usuario con update -- put
+    @PutMapping("/usuario/{id}")
+    public ResponseEntity<ObjetoRespuesta> putEmpleado(@RequestBody Empleado updateAllEmpleado, @PathVariable long id){ // EL PUT CAMBIA TOD el OBJ, PORQ LLEGA TODA LA INFORMACIÓN. buenas practicas objetoRe, debo 1 atributos a actualizar q los los tiene Usuario.java con JSON por medio @RequestBody Usuario usuario
+        try {
+            Empleado bdEmpleado = empleadoInterface.updateAllEmpleado(updateAllEmpleado, id);
+            return new ResponseEntity<>(new ObjetoRespuesta("Actualización realizada", bdEmpleado), HttpStatus.OK);
         } catch (Exception e){
             return new ResponseEntity<>(new ObjetoRespuesta(e.getMessage(),null),HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
+
+    //Delete
     @DeleteMapping("/empleados/{id}")
-    public ResponseEntity<ObjetoRespuesta> deleteEmpleado(@PathVariable long id){
+    public ResponseEntity<ObjetoRespuesta> deleteEmpleado(@PathVariable long id) {
         try {
-            String info = listaEmpleado.deleteEmpleado(id);
-            return new ResponseEntity<>(new ObjetoRespuesta(info,null),HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(new ObjetoRespuesta(e.getMessage(),null),HttpStatus.INTERNAL_SERVER_ERROR);
+            String mensaje = empleadoInterface.deleteEmpleado(id);
+
+            return new ResponseEntity<>(new ObjetoRespuesta(mensaje, null), HttpStatus.OK);// se responde con ObjetoRespuesta con mensaje q llega y objeto nulo porq no existe obje porq no hay info
+        } catch (Exception e){
+            return new ResponseEntity<>(new ObjetoRespuesta(e.getMessage(),null),HttpStatus.INTERNAL_SERVER_ERROR);// en caso de error se sabe q no existe el usuario
         }
     }
 }

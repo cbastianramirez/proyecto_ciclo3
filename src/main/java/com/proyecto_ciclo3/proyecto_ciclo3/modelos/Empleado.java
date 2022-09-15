@@ -2,7 +2,7 @@ package com.proyecto_ciclo3.proyecto_ciclo3.modelos;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "empleado")
@@ -21,29 +21,28 @@ public class Empleado {
     // lo creo pero sin getters setters
     //@OneToOne                 // este no va aquí según explico el profe porq el empleado no contiene fk del profile es al contrario(mappedBy = "empleado")
     //private Profile profile;
-    @OneToMany
+    @ManyToOne
     @Column(name = "enum_roleName")
     private Enum_RoleName enum_roleName;
 
+    /*
     @Column (name = "empresa")
     private String empresa;
-    /*@ManyToOne
+     */
+
+    @ManyToOne
+    @Column (name = "empresa")
     private Empresa empresa;
 
-    @OneToMany
-    private List <MovimientoDinero> movimientosDinero =  new ArrayList<>();
-    private List <MovimientoDinero> movimientosDinero;
+    @ManyToOne
+    //private List <MovimientoDinero> movimientosDinero =  new ArrayList<>();
+    private List<MovimientoDinero> movimientosDinero;
 
-    private Date updateAt;
-
-    private Date createdAt;
-    */
     @Column(name = "createdAt")
     private LocalDateTime createdAt;
 
     @Column(name = "updatedAt")
     private LocalDateTime updateAt;
-
 
 
     // constructor vacío porque debe usar entity
@@ -53,25 +52,21 @@ public class Empleado {
 
     // constructor lleno
 
-    public Empleado(long id, String nombre, String correo, /*Profile profile,*/ Enum_RoleName enum_roleName, String empresa /*, Empresa empresa , List<MovimientoDinero> movimientosDinero,  Date updateAt, Date createdAt */) {
+    public Empleado(long id, String nombre, String correo, Enum_RoleName enum_roleName, Empresa empresa, List<MovimientoDinero> movimientosDinero, LocalDateTime createdAt, LocalDateTime updateAt) {
         this.id = id;
         this.nombre = nombre;
         this.correo = correo;
-        //this.profile = profile;
         this.enum_roleName = enum_roleName;
         this.empresa = empresa;
-        //this.movimientosDinero = movimientosDinero;
-        this.updateAt = updateAt;
+        this.movimientosDinero = movimientosDinero;
         this.createdAt = createdAt;
+        this.updateAt = updateAt;
     }
-
 
     // setters & getters
     public long getId() {
         return id;
     }
-
-    //public void setId(long id) { this.id = id;     }
 
     public String getNombre() {
         return nombre;
@@ -89,13 +84,6 @@ public class Empleado {
         this.correo = correo;
     }
 
-    /*public Profile getProfile() {
-        return profile;
-    }
-
-    public void setProfile(Profile profile) {
-        this.profile = profile;
-    }*/
 
     public Enum_RoleName getEnum_roleName() {
         return enum_roleName;
@@ -105,19 +93,11 @@ public class Empleado {
         this.enum_roleName = enum_roleName;
     }
 
-    public String getEmpresa() {
+    public Empresa getEmpresa() {
         return empresa;
     }
 
-    public void setEmpresa(String empresa) {
-        this.empresa = empresa;
-    }
-
-    /*public Empresa getEmpresa() {
-        return empresa;
-    }
-
-    public void setEmpresa(String empresa) {
+    public void setEmpresa(Empresa empresa) {
         this.empresa = empresa;
     }
 
@@ -129,8 +109,6 @@ public class Empleado {
         this.movimientosDinero = movimientosDinero;
     }
 
-
-     */
     public LocalDateTime getUpdateAt() {
         return updateAt;
     }

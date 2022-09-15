@@ -4,6 +4,9 @@ import com.proyecto_ciclo3.proyecto_ciclo3.modelos.Empleado;
 import com.proyecto_ciclo3.proyecto_ciclo3.modelos.Empresa;
 import com.proyecto_ciclo3.proyecto_ciclo3.modelos.Enum_RoleName;
 import com.proyecto_ciclo3.proyecto_ciclo3.modelos.MovimientoDinero;
+import com.proyecto_ciclo3.proyecto_ciclo3.repo.EmpleadoRespository;
+import com.proyecto_ciclo3.proyecto_ciclo3.repo.EmpresaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -11,17 +14,9 @@ import java.util.ArrayList;
 
 @Service
 public class ListaEmpresa {
-    private ArrayList<Empresa> empresas;
 
-    public ListaEmpresa(){
-
-        this.empresas = new ArrayList<>();
-
-        this.empresas.add(new Empresa(1,"Emma Borbón","63863","Enum_RoleName.Admin","calle 25 con 4"));
-        this.empresas.add(new Empresa(3,"Karen Ducatti","54321","Enum_RoleName.Operario","calle 25 con 4"));
-        this.empresas.add(new Empresa(2,"George Clone","98765","Enum_RoleName.Admin","Av. el Dorado calle 26 con 68"));
-
-    }
+    @Autowired
+    private EmpresaRepository empresaRepository;
 
     //Todas las empresas
     public ArrayList<Empresa> getAllEmpresas(){

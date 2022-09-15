@@ -20,8 +20,8 @@ public class Profile {
     @Column
     private String telefono;
 
-    //@OneToOne (mappedBy = "usuario")
-    //private List<Empresa> usuario =  new ArrayList<>();
+    @OneToOne (mappedBy = "usuario") // o (mappedBy = "empleado")
+    private List<Empresa> usuario;
 
     @Column(name = "createdAt")
     private LocalDateTime createdAt;
@@ -70,13 +70,13 @@ public class Profile {
         this.telefono = telefono;
     }
 
-    /*public List<Empresa> getUsuario() {
+    public List<Empresa> getUsuario() {
         return usuario;
     }
 
     public void setUsuario(List<Empresa> usuario) {
         this.usuario = usuario;
-    }*/
+    }
 
     public LocalDateTime getCreatedAt() {
         return createdAt;

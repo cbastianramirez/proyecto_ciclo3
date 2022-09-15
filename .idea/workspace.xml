@@ -4,14 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0842b631-dfab-4dba-a391-762f52967446" name="Changes" comment="revisar getall">
+    <list default="true" id="0842b631-dfab-4dba-a391-762f52967446" name="Changes" comment="solución 202">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/repo/EmpleadoRespository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/repo/EmpresaRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/repo/MovimientoDineroRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/service/EmpleadoInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/lo.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/lo.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/login.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/controlador/ControladorEmpleado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/controlador/ControladorEmpleado.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/controlador/ControladorEmpresa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/controlador/ControladorEmpresa.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/controlador/ControladorMovimientoDinero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/controlador/ControladorMovimientoDinero.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/modelos/Empleado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/modelos/Empleado.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/modelos/Empresa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/modelos/Empresa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/modelos/Enum_RoleName.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/modelos/Enum_RoleName.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/modelos/MovimientoDinero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/modelos/MovimientoDinero.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/modelos/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/modelos/Profile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/service/ListaEmpleado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/service/ListaEmpleado.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/service/ListaEmpresa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/service/ListaEmpresa.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/service/ListaMovimientoDinero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/service/ListaMovimientoDinero.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -24,6 +34,7 @@
       <list>
         <option value="Enum" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -43,7 +54,7 @@
     </favorite-branches>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="develop_KarenRestC" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -67,17 +78,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/solan_000/IdeaProjects/proyecto_ciclo3&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/solan_000/IdeaProjects/Ciclo3UdeaOscar",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="com.proyecto_ciclo3.proyecto_ciclo3.service" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="ProyectoCiclo3Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.proyecto_ciclo3.proyecto_ciclo3.ProyectoCiclo3Application" />
@@ -94,6 +110,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ProyectoCiclo3Application" />
         <item itemvalue="Application.ProyectoCiclo3Application" />
       </list>
     </recent_temporary>
@@ -212,7 +229,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662811310321</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="solución 202">
+      <created>1662836271774</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1662836271774</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -242,6 +266,7 @@
     <MESSAGE value="no encuentralas peticiones envíadas" />
     <MESSAGE value="revisar patch" />
     <MESSAGE value="revisar getall" />
-    <option name="LAST_COMMIT_MESSAGE" value="revisar getall" />
+    <MESSAGE value="solución 202" />
+    <option name="LAST_COMMIT_MESSAGE" value="solución 202" />
   </component>
 </project>

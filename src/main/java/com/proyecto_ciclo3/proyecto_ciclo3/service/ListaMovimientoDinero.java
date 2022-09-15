@@ -4,6 +4,9 @@ import com.proyecto_ciclo3.proyecto_ciclo3.modelos.Empleado;
 import com.proyecto_ciclo3.proyecto_ciclo3.modelos.Empresa;
 import com.proyecto_ciclo3.proyecto_ciclo3.modelos.MovimientoDinero;
 import com.proyecto_ciclo3.proyecto_ciclo3.modelos.ObjetoRespuesta;
+import com.proyecto_ciclo3.proyecto_ciclo3.repo.EmpleadoRespository;
+import com.proyecto_ciclo3.proyecto_ciclo3.repo.MovimientoDineroRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -13,18 +16,8 @@ import java.util.ArrayList;
 
 @Service
 public class ListaMovimientoDinero {
-    private ArrayList<MovimientoDinero> movimientos;
-
-
-    public ListaMovimientoDinero(){
-
-        this.movimientos = new ArrayList<>();
-
-        this.movimientos.add(new MovimientoDinero(1,"Debe", -60000, "Juan", "chcocolat Cali"/*, "new LocalDateTime()" , "new LocalDateTime()"*/));
-        this.movimientos.add(new MovimientoDinero(2,"Deposito", 5000000, "Andrés", "Buga la grande" /*, "new LocalDateTime()","new LocalDateTime()"*/));
-        this.movimientos.add(new MovimientoDinero(3,"Deposito", 120000, "Brad Pitt", "Villavicencio" /*, "new LocalDateTime()","new LocalDateTime()"*/));
-
-    }
+    @Autowired
+    private MovimientoDineroRepository movimientoDineroRepository;
 
     //Todas los movimientos
     public ArrayList<MovimientoDinero> getAllMovimientos(){

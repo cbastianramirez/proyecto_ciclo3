@@ -1,104 +1,78 @@
 package com.proyecto_ciclo3.proyecto_ciclo3.service;
 
 import com.proyecto_ciclo3.proyecto_ciclo3.modelos.Empleado;
-import com.proyecto_ciclo3.proyecto_ciclo3.modelos.Empresa;
-import com.proyecto_ciclo3.proyecto_ciclo3.modelos.Enum_RoleName;
-import com.proyecto_ciclo3.proyecto_ciclo3.modelos.MovimientoDinero;
+import com.proyecto_ciclo3.proyecto_ciclo3.repo.EmpleadoRespository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import javax.transaction.Transactional;
+import java.util.List;
+import java.util.Optional;
 
-import java.util.ArrayList;
 
 @Service
 public class ListaEmpleado{
-    private ArrayList<Empleado> empleados;
 
+    @Autowired
+    private EmpleadoRespository empleadoRespository;
 
-    public ListaEmpleado(){ // esta es la lista q aparece en controladorempleado en set
-
-        this.empleados = new ArrayList<>();
-
-        this.empleados.add(new Empleado(1,"Pepe Perez", "email@email.com",Enum_RoleName.Admin,"Alfagres"));
-        this.empleados.add(new Empleado(2,"Margarot Ramirez", "email@microsoft.com", Enum_RoleName.Operario, "Corona"));
-        this.empleados.add(new Empleado(3,"William Levy", "williamlevy@microsoft.com", Enum_RoleName.Admin, "Oma"));
-
-    }
 
     //Todos los empleados
-    public ArrayList<Empleado> getAllEmpleados(){
-        return empleados;
+    @Override
+    public List<Empleado> getAllEmpleados(){
+        return empleadoRespository.findAll();
     }
 
     //Empleado por id
-    public Empleado getEmpleado(long id) throws Exception {
-        for(Empleado empleados: this.empleados){
-            if(empleados.getId() == id){
-                return empleados;
-            }
+    @Override
+    public Empleado getEmpleado(long id) throws Exception{
+        Optional<Empleado> bdEmpleado = empleadoRespository.findById(id);
+        if (bdEmpleado.isPresent()){
+            return bdEmpleado.get();
         }
-        throw new Exception("Empleado no encontrado");
+        throw new Exception("Empleado No existe");
     }
 
     //Creación empleado
-    public String setEmpleado(Empleado empleadoPost) throws Exception { // devuelve un string entonces debe ser string
-        try {
-            getEmpleado(empleadoPost.getId());
-        } catch (Exception e){
-            this.empleados.add(empleadoPost);
-            return"creacion del usuario exitosa";
-        }
-        throw new Exception("Usuario Existe");
+    @Override
+    public String setEmpleado(Empleado empleadoPost) {
+        empleadoRespository.save(empleadoPost);
+        return "Creado empleado con éxito";
+    }
+
+
+    // put
+    @Transactional
+    @Override
+    public Empleado updateAllEmpleado(Empleado updateAllEmpleado, long id) throws Exception{
+        empleadoRespository.update(updateAllEmpleado.getNombre(), updateAllEmpleado.getCorreo(), updateAllEmpleado.getEnum_roleName(),updateAllEmpleado.getEmpresa(), updateAllEmpleado.getMovimientosDinero(),id);
+        return getEmpleado(id);
     }
 
     // patch edición atributos de forma específica
-    public Empleado updateEmpleado(Empleado updateEmpleado, long id) throws Exception {
-        try {
-            Empleado bdEmpleado = getEmpleado(id);
-
-            if(updateEmpleado.getNombre() != null && !updateEmpleado.getNombre().equals("")){
-                bdEmpleado.setNombre(updateEmpleado.getNombre());
-            }
-            if(updateEmpleado.getCorreo() != null && !updateEmpleado.getCorreo().equals("")) {
-                bdEmpleado.setCorreo(updateEmpleado.getCorreo());
-            }
-            if(updateEmpleado.getEmpresa() != null && !updateEmpleado.getEmpresa().equals("")) {
-                bdEmpleado.setEmpresa(updateEmpleado.getEmpresa());
-            }
-            /*if(updateEmpleado.getProfile() != null && !updateEmpleado.getProfile().equals("")) {
+    @Override
+    public Empleado updateEmpleado(Empleado updateEmpleado, long id) throws Exception{
+        Empleado bdEmpleado = getEmpleado(id);
+        if(updateEmpleado.getNombre() != null && !updateEmpleado.getNombre().equals("")){
+            bdEmpleado.setNombre(updateEmpleado.getNombre());
+        }
+        if(updateEmpleado.getCorreo() != null && !updateEmpleado.getCorreo().equals("")) {
+            bdEmpleado.setCorreo(updateEmpleado.getCorreo());
+        }
+        if(updateEmpleado.getEmpresa() != null && !updateEmpleado.getEmpresa().equals("")) { //Aquí la empresa es objeto q recibe empresas
+            bdEmpleado.setEmpresa(updateEmpleado.getEmpresa());
+        }
+            /*if(updateEmpleado.getProfile() != null && !updateEmpleado.getProfile().equals("")) { // este debe ir en profile?
                 bdEmpleado.setProfile(updateEmpleado.getProfile());
             }*/
-            return bdEmpleado;
-        } catch (Exception e) {
-            throw new Exception("Empleado NO existe, imposible actualizar datos");
-        }
-    }
+        return empleadoRespository.save(bdEmpleado);
 
-    //put
-        /*bdEmpleado.setNombre(updateEmpleado.getNombre());
-        bdEmpleado.setCorreo(updateEmpleado.getCorreo());
-        bdEmpleado.setEmpresa(updateEmpleado.getEmpresa());*/
+    }
 
     //Delete | eliminación por id
-    public String deleteEmpleado(long id) throws Exception {
-        try {
-            Empleado empleado = getEmpleado(id);
-            this.empleados.remove(empleado);
-            return "Eliminado con éxito";
-        } catch (Exception e) {
-            throw new Exception("El empleado NO Existe para ser eliminado");
-        }
+    @Override
+    public String deleteEmpleado(long id){
+        empleadoRespository.deleteById(id);
+        return "Empleado fue eliminado con éxito";
     }
 
-    // constructor lleno
-    public ListaEmpleado(ArrayList<Empleado> empleados) {
-        this.empleados = empleados;
-    }
-
-    //getters & setters
-    public ArrayList<Empleado> getEmpleados() {
-        return empleados;
-    }
-
-    public void setEmpleados(ArrayList<Empleado> empleados) {
-        this.empleados = empleados;
-    }
 }
