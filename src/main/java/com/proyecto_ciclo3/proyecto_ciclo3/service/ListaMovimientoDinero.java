@@ -1,15 +1,10 @@
 package com.proyecto_ciclo3.proyecto_ciclo3.service;
 
-import com.proyecto_ciclo3.proyecto_ciclo3.modelos.Empresa;
 import com.proyecto_ciclo3.proyecto_ciclo3.modelos.MovimientoDinero;
-
 import com.proyecto_ciclo3.proyecto_ciclo3.repo.MovimientoDineroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -70,9 +65,9 @@ public class ListaMovimientoDinero implements MovimientoDineroInterface{
     // put
     @Transactional
     @Override
-    public Empresa updateAllMovimientosDinero(MovimientoDinero updateAllMovimiento, long id) throws Exception{
+    public MovimientoDinero updateAllMovimientos(MovimientoDinero updateAllMovimiento, long id) throws Exception{
         movimientoDineroRepository.update(id, updateAllMovimiento.getConcepto(),
-                updateAllMovimiento.getMonto(), updateAllMovimiento.getUpdatedAt());// tendría q ponerse usuarios?
+                updateAllMovimiento.getMonto(), updateAllMovimiento.getUpdatedAt());
         return getMovimiento(id);
     }
 

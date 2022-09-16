@@ -28,7 +28,7 @@ public class Empresa {
     @OneToMany(mappedBy = "empresa")
     private List<Empresa> usuario;
 
-    @OneToMany(mappedBy = "empresa")
+    @OneToMany(mappedBy = "empresa_id")
     //private List <MovimientoDinero> movimientosDinero =  new ArrayList<>();
     private List<MovimientoDinero> movimientosDinero;
 

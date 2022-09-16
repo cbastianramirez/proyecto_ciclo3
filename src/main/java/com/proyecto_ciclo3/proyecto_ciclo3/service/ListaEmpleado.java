@@ -1,7 +1,7 @@
 package com.proyecto_ciclo3.proyecto_ciclo3.service;
 
 import com.proyecto_ciclo3.proyecto_ciclo3.modelos.Empleado;
-import com.proyecto_ciclo3.proyecto_ciclo3.repo.EmpleadoRespository;
+import com.proyecto_ciclo3.proyecto_ciclo3.repo.EmpleadoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
@@ -13,19 +13,19 @@ import java.util.Optional;
 public class ListaEmpleado implements EmpleadoInterface{
 
     @Autowired
-    private EmpleadoRespository empleadoRespository;
+    private EmpleadoRepository empleadoRepository;
 
 
     //Todos los empleados
     @Override
     public List<Empleado> getAllEmpleados(){
-        return empleadoRespository.findAll();
+        return empleadoRepository.findAll();
     }
 
     //Empleado por id
     @Override
     public Empleado getEmpleado(long id) throws Exception{
-        Optional<Empleado> bdEmpleado = empleadoRespository.findById(id);
+        Optional<Empleado> bdEmpleado = empleadoRepository.findById(id);
         if (bdEmpleado.isPresent()){
             return bdEmpleado.get();
         }
@@ -35,7 +35,7 @@ public class ListaEmpleado implements EmpleadoInterface{
     //Creación empleado
     @Override
     public String setEmpleado(Empleado empleadoPost) {
-        empleadoRespository.save(empleadoPost);
+        empleadoRepository.save(empleadoPost);
         return "Creado empleado con éxito";
     }
 
@@ -43,7 +43,7 @@ public class ListaEmpleado implements EmpleadoInterface{
     @Transactional
     @Override
     public Empleado updateAllEmpleado(Empleado updateAllEmpleado, long id) throws Exception{
-        empleadoRespository.update(id, updateAllEmpleado.getNombre(),
+        empleadoRepository.update(id, updateAllEmpleado.getNombre(),
                 updateAllEmpleado.getCorreo(), updateAllEmpleado.getEnum_roleName(),
                 updateAllEmpleado.getEmpresa(), updateAllEmpleado.getUpdateAt());
         return getEmpleado(id);
@@ -65,14 +65,14 @@ public class ListaEmpleado implements EmpleadoInterface{
             /*if(updateEmpleado.getProfile() != null && !updateEmpleado.getProfile().equals("")) { // este debe ir en profile?
                 bdEmpleado.setProfile(updateEmpleado.getProfile());
             }*/
-        return empleadoRespository.save(bdEmpleado);
+        return empleadoRepository.save(bdEmpleado);
 
     }
 
     //Delete | eliminación por id
     @Override
     public String deleteEmpleado(long id){
-        empleadoRespository.deleteById(id);
+        empleadoRepository.deleteById(id);
         return "Empleado fue eliminado con éxito";
     }
 

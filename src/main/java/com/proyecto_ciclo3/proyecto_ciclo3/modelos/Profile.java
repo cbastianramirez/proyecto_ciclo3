@@ -2,8 +2,6 @@ package com.proyecto_ciclo3.proyecto_ciclo3.modelos;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -21,7 +19,7 @@ public class Profile {
     @Column(name = "telefono")
     private String telefono;
 
-    @OneToOne (mappedBy = "usuario") // o (mappedBy = "empleado") //@JoinColumn(name = "empleado_id")
+    @OneToOne (mappedBy = "usuario") // o (mappedBy = "empleado") //@JoinColumn(name = "empleado_id") // joincolumn es para llaves foraneas
     private List<Empresa> usuario;
 
     @Column(name = "createdAt")

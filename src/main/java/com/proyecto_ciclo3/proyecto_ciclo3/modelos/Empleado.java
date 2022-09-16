@@ -32,7 +32,7 @@ public class Empleado {
      */
 
     @ManyToOne
-    @Column (name = "empresa_id") //@JoinColumn
+    @JoinColumn (name = "empresa_id")
     private Empresa empresa;
 
     @OneToMany(mappedBy = "empleado")  // el profe Juan @OneToMany

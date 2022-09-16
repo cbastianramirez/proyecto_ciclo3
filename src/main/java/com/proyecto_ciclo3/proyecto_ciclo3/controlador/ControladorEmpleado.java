@@ -15,17 +15,17 @@ public class ControladorEmpleado {
 
     @Autowired
     //@GetMapping("/empleado")
-    private EmpleadoInterface empleadoInterface;
+    private EmpleadoInterface listaEmpleado;
 
     @GetMapping("/empleado/empleados") // "empleados"
     public ResponseEntity<List<Empleado>> getAllEmpleados(){
-        return new ResponseEntity<>(empleadoInterface.getAllEmpleados(),HttpStatus.OK);
+        return new ResponseEntity<>(listaEmpleado.getAllEmpleados(),HttpStatus.OK);
     }
 
     /*@GetMapping("/empleado")
     public ResponseEntity<Object> getEmpleado(@RequestParam long id){
         try{
-            Empleado empleado = empleadoInterface.getEmpleado(id);
+            Empleado empleado = listaEmpleado.getEmpleado(id);
             return new ResponseEntity<>(empleado, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -43,7 +43,7 @@ public class ControladorEmpleado {
     @PostMapping("/empleado")
     public ResponseEntity<String> postEmpleado(@RequestBody Empleado empleadoPost){
         try {
-            String mensaje = empleadoInterface.setEmpleado(empleadoPost);
+            String mensaje = listaEmpleado.setEmpleado(empleadoPost);
             return new ResponseEntity<>(mensaje, HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
@@ -55,7 +55,7 @@ public class ControladorEmpleado {
     @PatchMapping("/empleado/{id}")
     public ResponseEntity<ObjetoRespuesta> patchEmpleado(@RequestBody Empleado updateEmpleado, @PathVariable long id){
         try {
-            Empleado bdEmpleado = empleadoInterface.updateEmpleado(updateEmpleado, id);
+            Empleado bdEmpleado = listaEmpleado.updateEmpleado(updateEmpleado, id);
             return new ResponseEntity<>(new ObjetoRespuesta("Actualización éxitosa", bdEmpleado), HttpStatus.OK);
         } catch (Exception e){
             e.printStackTrace();// muestra el error
@@ -69,7 +69,7 @@ public class ControladorEmpleado {
     @PutMapping("/empleado/{id}")
     public ResponseEntity<ObjetoRespuesta> putEmpleado(@RequestBody Empleado updateAllEmpleado, @PathVariable long id){
         try {
-            Empleado bdEmpleado = empleadoInterface.updateAllEmpleado(updateAllEmpleado, id);
+            Empleado bdEmpleado = listaEmpleado.updateAllEmpleado(updateAllEmpleado, id);
             return new ResponseEntity<>(new ObjetoRespuesta("Actualización realizada", bdEmpleado), HttpStatus.OK);
         } catch (Exception e){
             return new ResponseEntity<>(new ObjetoRespuesta(e.getMessage(),null),HttpStatus.INTERNAL_SERVER_ERROR);
@@ -80,7 +80,7 @@ public class ControladorEmpleado {
     @DeleteMapping("/empleados/{id}")
     public ResponseEntity<ObjetoRespuesta> deleteEmpleado(@PathVariable long id) {
         try {
-            String mensaje = empleadoInterface.deleteEmpleado(id);
+            String mensaje = listaEmpleado.deleteEmpleado(id);
 
             return new ResponseEntity<>(new ObjetoRespuesta(mensaje, null), HttpStatus.OK);// se responde con ObjetoRespuesta con mensaje q llega y objeto nulo porq no existe obje porq no hay info
         } catch (Exception e){

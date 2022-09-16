@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 public interface EmpresaRepository extends JpaRepository<Empresa,Long> {
 
     @Modifying
-    @Query("UPDATE Usuario u SET u.nombre= :nombre, u.documento= :documento, u.telefono = :telefono, u.direccion = :direccion, u.updatedAt = :updatedAt WHERE u.id= :id")
+    @Query("UPDATE Empresa u SET u.nombre= :nombre, u.documento= :documento, u.telefono = :telefono, u.direccion = :direccion, u.updatedAt = :updatedAt WHERE u.id= :id")
 
-    public int update(long id, String nombre, String documento, String telefono, String direccion, LocalDateTime updateAt);
+    public int update(long id, String nombre, String documento, String telefono, String direccion, LocalDateTime updateAt); // será un long en public
 }

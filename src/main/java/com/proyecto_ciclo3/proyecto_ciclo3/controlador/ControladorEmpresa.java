@@ -16,11 +16,11 @@ import java.util.List;
 public class ControladorEmpresa {
 
     @Autowired
-    private EmpresaInterface empresaInterface;
+    private EmpresaInterface listaEmpresa;
 
     @GetMapping("/empresa/empresas")
     public ResponseEntity<List<Empresa>> getAllEmpresas(){
-        return new ResponseEntity<>(empresaInterface.getAllEmpresas(),HttpStatus.OK);
+        return new ResponseEntity<>(listaEmpresa.getAllEmpresas(),HttpStatus.OK);
     }
 
     // Get empresa por id
@@ -32,7 +32,7 @@ public class ControladorEmpresa {
     @PostMapping("/empresa")  // SÍ ES STRING porq le envíamos un mensaje
     public ResponseEntity<String> postEmpresa(@RequestBody Empresa empresaPost){
         try {
-            String info = empresaInterface.setEmpresa(empresaPost);
+            String info = listaEmpresa.setEmpresa(empresaPost);
             return new ResponseEntity<>(info, HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
@@ -42,7 +42,7 @@ public class ControladorEmpresa {
     @PatchMapping("empresa/{id}")
     public ResponseEntity<ObjetoRespuesta>patchEmpresa(@RequestBody Empresa updateEmpresa, @PathVariable long id){
         try {
-            Empresa bdEmpresa = empresaInterface.updateEmpresa(updateEmpresa,id);
+            Empresa bdEmpresa = listaEmpresa.updateEmpresa(updateEmpresa,id);
             return new ResponseEntity<>(new ObjetoRespuesta("Confirmado, resgistro empresa", bdEmpresa), HttpStatus.OK);
         } catch (Exception e){
             e.printStackTrace(); // muestra el error si llega a existir
@@ -55,7 +55,7 @@ public class ControladorEmpresa {
     @PutMapping("/empresa/{id}")
     public ResponseEntity<ObjetoRespuesta> putEmpresa(@RequestBody Empresa updateAllEmpresa, @PathVariable long id){
         try {
-            Empresa bdEmpresa = empresaInterface.updateAllEmpresa(updateAllEmpresa, id);
+            Empresa bdEmpresa = listaEmpresa.updateAllEmpresa(updateAllEmpresa, id);
             return new ResponseEntity<>(new ObjetoRespuesta("Actualización realizada", bdEmpresa), HttpStatus.OK);
         } catch (Exception e){
             return new ResponseEntity<>(new ObjetoRespuesta(e.getMessage(),null),HttpStatus.INTERNAL_SERVER_ERROR);
@@ -66,7 +66,7 @@ public class ControladorEmpresa {
     @DeleteMapping("/empresas/{id}")
     public ResponseEntity<ObjetoRespuesta> deleteEmpleado(@PathVariable long id){
         try {
-            String info = empresaInterface.deleteEmpresa(id);
+            String info = listaEmpresa.deleteEmpresa(id);
             return new ResponseEntity<>(new ObjetoRespuesta(info,null),HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(new ObjetoRespuesta(e.getMessage(),null),HttpStatus.INTERNAL_SERVER_ERROR);
