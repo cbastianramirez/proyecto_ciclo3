@@ -4,10 +4,9 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Enum_RoleName")
-@OneToOne
-@Column(name = "enum_RoleName")
+//@OneToMany (mappedBy = "enum_RoleName")
 public enum Enum_RoleName{
 
     Admin,
-    Operario;s
+    Operario;
 }

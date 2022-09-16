@@ -20,18 +20,12 @@ public class MovimientoDinero {
     private float monto;
 
     @ManyToOne
-    @Column(name = "usuario") //@JoinColumn(name = "empleado_id")
+    @JoinColumn(name = "empleado_id")
     private List<Empleado> usuario;
 
-    /*@Column(name = "usuario")
-    private String usuario;*/
-
     @ManyToOne
-    @JoinColumn(name = "empresa_id")
+    @JoinColumn(name = "empresa_id") // joincolumn es para llaves foraneas
     private Empresa empresa;
-
-    /*@Column(name = "empresa")
-    private String empresa;*/
 
     @Column(name = "createdAt")
     private LocalDateTime createdAt;

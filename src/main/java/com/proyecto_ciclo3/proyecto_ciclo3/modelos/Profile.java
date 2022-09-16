@@ -19,7 +19,7 @@ public class Profile {
     @Column(name = "telefono")
     private String telefono;
 
-    @OneToOne (mappedBy = "usuario") // o (mappedBy = "empleado") //@JoinColumn(name = "empleado_id") // joincolumn es para llaves foraneas
+    @OneToOne (mappedBy = "empleado_id")
     private List<Empresa> usuario;
 
     @Column(name = "createdAt")
@@ -27,7 +27,6 @@ public class Profile {
 
     @Column(name = "updatedAt")
     private LocalDateTime updateAt;
-
 
 
     // constructor vacío
@@ -42,7 +41,6 @@ public class Profile {
         this.createdAt = createdAt;
         this.updateAt = updateAt;
     }
-
 
     //setters  getters
     public String getId() {

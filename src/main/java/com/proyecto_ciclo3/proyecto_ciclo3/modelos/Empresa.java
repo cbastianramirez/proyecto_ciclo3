@@ -12,20 +12,20 @@ public class Empresa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)  //private long id; lo tenía con el id pero es nit
     private long Id;
 
-    @Column(name = "nombre", nullable = false, unique = true)
+    @Column(name = "nombre", nullable = false, unique = true, length = 50)
     private String nombre;
 
-    @Column(name = "documento", nullable = false, unique = true)
+    @Column(name = "documento", nullable = false, unique = true, length = 50)
     private String documento;
 
-    @Column(name = "telefono")
+    @Column(name = "telefono", length = 20)
     private String telefono;
 
 
-    @Column(name = "direccion", nullable = false)
+    @Column(name = "direccion", nullable = false, length = 50)
     private String direccion;
 
-    @OneToMany(mappedBy = "empresa")
+    @OneToMany(mappedBy = "empleado_id")
     private List<Empresa> usuario;
 
     @OneToMany(mappedBy = "empresa_id")

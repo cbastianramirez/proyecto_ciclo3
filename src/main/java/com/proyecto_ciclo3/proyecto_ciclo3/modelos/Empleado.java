@@ -13,23 +13,18 @@ public class Empleado {
     @Column(name = "id", nullable = false, unique = true)
     private long id;
 
-    @Column(name = "nombre", nullable = false)
+    @Column(name = "nombre", nullable = false, length = 50)
     private String nombre;
 
-    @Column(name = "correo",unique = true)
+    @Column(name = "correo",unique = true,  length = 50)
     private String correo;
 
     // lo creo pero sin getters setters
     //@OneToOne                 // este no va aquí según explico el profe porq el empleado no contiene fk del profile es al contrario(mappedBy = "empleado")
     //private Profile profile;
     @ManyToOne
-    @Column(name = "enum_roleName")
+    @JoinColumn(name = "enum_roleName")
     private Enum_RoleName enum_roleName;
-
-    /*
-    @Column (name = "empresa")
-    private String empresa;
-     */
 
     @ManyToOne
     @JoinColumn (name = "empresa_id")
