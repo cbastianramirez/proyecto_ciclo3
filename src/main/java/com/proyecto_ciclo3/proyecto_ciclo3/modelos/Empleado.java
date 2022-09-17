@@ -1,5 +1,8 @@
 package com.proyecto_ciclo3.proyecto_ciclo3.modelos;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -22,21 +25,27 @@ public class Empleado {
     // lo creo pero sin getters setters
     //@OneToOne                 // este no va aquí según explico el profe porq el empleado no contiene fk del profile es al contrario(mappedBy = "empleado")
     //private Profile profile;
-    @ManyToOne
-    @JoinColumn(name = "enum_roleName")
+
+    //@ManyToOne, por lo q ya no existe relación quito el @JoinColumn
+    @Enumerated(EnumType.STRING)
+    @Column(name = "enum_roleName", nullable = false)
     private Enum_RoleName enum_roleName;
 
     @ManyToOne
     @JoinColumn (name = "empresa_id")
     private Empresa empresa;
 
-    @OneToMany(mappedBy = "empleado")  // el profe Juan @OneToMany
+    @OneToMany(mappedBy = "empleado")  // el profe Juan @OneToMany // @OneToMany una empresa puede tener muchos usuarios por eso List aquí en esta relacións
     //private List <MovimientoDinero> movimientosDinero =  new ArrayList<>(); // yo no lo debo colocar en update atributo solo forkey
     private List<MovimientoDinero> movimientosDinero;
 
+
+    @CreationTimestamp // yo no agrego estos datos entran desde el inicio
     @Column(name = "createdAt")
     private LocalDateTime createdAt;
 
+
+    @UpdateTimestamp  // yo no agrego estos datos entran desde el inicio
     @Column(name = "updatedAt")
     private LocalDateTime updateAt;
 
@@ -62,6 +71,10 @@ public class Empleado {
     // setters & getters
     public long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -101,7 +114,7 @@ public class Empleado {
         return movimientosDinero;
     }
 
-    public void setMovimientosDinero(List<MovimientoDinero> movimientosDinero) {  //creo q debe quitarse el set porq no puede cambiarse el movimientoDinero
+    public void setMovimientosDinero(List<MovimientoDinero> movimientosDinero) {
         this.movimientosDinero = movimientosDinero;
     }
 

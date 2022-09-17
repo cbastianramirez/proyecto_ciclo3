@@ -45,7 +45,7 @@ public class ListaEmpleado implements EmpleadoInterface{
     public Empleado updateAllEmpleado(Empleado updateAllEmpleado, long id) throws Exception{
         empleadoRepository.update(id, updateAllEmpleado.getNombre(),
                 updateAllEmpleado.getCorreo(), updateAllEmpleado.getEnum_roleName(),
-                updateAllEmpleado.getEmpresa(), updateAllEmpleado.getUpdateAt());
+                updateAllEmpleado.getEmpresa());
         return getEmpleado(id);
     }
 
@@ -59,7 +59,7 @@ public class ListaEmpleado implements EmpleadoInterface{
         if(updateEmpleado.getCorreo() != null && !updateEmpleado.getCorreo().equals("")) {
             bdEmpleado.setCorreo(updateEmpleado.getCorreo());
         }
-        if(updateEmpleado.getEmpresa() != null && !updateEmpleado.getEmpresa().equals("")) { //Aquí la empresa es objeto q recibe empresas
+        if(updateEmpleado.getEmpresa() == updateEmpleado.getEmpresa()) { //Aquí la empresa es objeto q recibe empresas
             bdEmpleado.setEmpresa(updateEmpleado.getEmpresa());
         }
             /*if(updateEmpleado.getProfile() != null && !updateEmpleado.getProfile().equals("")) { // este debe ir en profile?

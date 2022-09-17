@@ -63,7 +63,7 @@ public class ListaEmpresa implements EmpresaInterface{
     public Empresa updateAllEmpresa(Empresa updateAllEmpresa, long id) throws Exception{
         empresaRepository.update(id, updateAllEmpresa.getNombre(),
                 updateAllEmpresa.getDocumento(), updateAllEmpresa.getTelefono(),
-                updateAllEmpresa.getDireccion(), updateAllEmpresa.getUpdatedAt());// tendría q ponerse usuarios?
+                updateAllEmpresa.getDireccion());// tendría q ponerse usuarios?
         return getEmpresa(id);
     }
 

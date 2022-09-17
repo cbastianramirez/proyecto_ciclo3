@@ -20,7 +20,7 @@ public class Profile {
     private String telefono;
 
     @OneToOne (mappedBy = "empleado_id")
-    private List<Empresa> usuario;
+    private Empresa usuario;    //List<Empresa> usuario;
 
     @Column(name = "createdAt")
     private LocalDateTime createdAt;
@@ -34,10 +34,10 @@ public class Profile {
     }
 
     // constructor lleno
-    public Profile(String imagen, String telefono, /*List<Empresa> usuario,*/ LocalDateTime createdAt, LocalDateTime updateAt) {
+    public Profile(String imagen, String telefono, Empresa usuario, LocalDateTime createdAt, LocalDateTime updateAt) {
         this.imagen = imagen;
         this.telefono = telefono;
-        //this.usuario = usuario;
+        this.usuario = usuario;
         this.createdAt = createdAt;
         this.updateAt = updateAt;
     }
@@ -67,11 +67,11 @@ public class Profile {
         this.telefono = telefono;
     }
 
-    public List<Empresa> getUsuario() {
+    public Empresa getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(List<Empresa> usuario) {
+    public void setUsuario(Empresa usuario) {
         this.usuario = usuario;
     }
 

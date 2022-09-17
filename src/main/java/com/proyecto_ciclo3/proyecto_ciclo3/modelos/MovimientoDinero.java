@@ -21,7 +21,7 @@ public class MovimientoDinero {
 
     @ManyToOne
     @JoinColumn(name = "empleado_id")
-    private List<Empleado> usuario;
+    private Empleado usuario;
 
     @ManyToOne
     @JoinColumn(name = "empresa_id") // joincolumn es para llaves foraneas
@@ -40,7 +40,7 @@ public class MovimientoDinero {
 
     // constructor lleno
 
-    public MovimientoDinero(long id, String concepto, float monto, List<Empleado> usuario, Empresa empresa, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public MovimientoDinero(long id, String concepto, float monto, Empleado usuario, Empresa empresa, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.concepto = concepto;
         this.monto = monto;
@@ -72,11 +72,11 @@ public class MovimientoDinero {
         this.monto = monto;
     }
 
-    public List<Empleado> getUsuario() {
+    public Empleado getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(List<Empleado> usuario) {
+    public void setUsuario(Empleado usuario) {
         this.usuario = usuario;
     }
 
