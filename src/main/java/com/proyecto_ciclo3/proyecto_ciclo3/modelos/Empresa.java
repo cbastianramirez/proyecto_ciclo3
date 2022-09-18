@@ -1,5 +1,8 @@
 package com.proyecto_ciclo3.proyecto_ciclo3.modelos;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -32,9 +35,11 @@ public class Empresa {
     //private List <MovimientoDinero> movimientosDinero =  new ArrayList<>();
     private List<MovimientoDinero> movimientosDinero;
 
+    @CreationTimestamp // yo no agrego estos datos entran desde el inicio
     @Column(name = "createdAt")
     private LocalDateTime createdAt;
 
+    @UpdateTimestamp  // yo no agrego estos datos entran desde el inicio
     @Column(name = "updatedAt")
     private LocalDateTime updatedAt;
 
@@ -60,7 +65,9 @@ public class Empresa {
         return Id;
     }
 
-    //public void setId(long id) { Id = id;    }
+    public void setId(long id) {
+        Id = id;
+    }
 
     public String getNombre() {
         return nombre;

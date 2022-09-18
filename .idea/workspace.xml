@@ -4,21 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0842b631-dfab-4dba-a391-762f52967446" name="Changes" comment="mapeo de todas las entidades">
+    <list default="true" id="0842b631-dfab-4dba-a391-762f52967446" name="Changes" comment="entidades, enum y localdatetime listas fusión con bd">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/modelos/Empleado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/modelos/Empleado.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/modelos/Empresa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/modelos/Empresa.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/modelos/Enum_RoleName.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/modelos/Enum_RoleName.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/modelos/MovimientoDinero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/modelos/MovimientoDinero.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/modelos/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/modelos/Profile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/repo/EmpleadoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/repo/EmpleadoRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/repo/EmpresaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/repo/EmpresaRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/repo/MovimientoDineroRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/repo/MovimientoDineroRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/service/ListaEmpleado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/service/ListaEmpleado.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/service/ListaEmpresa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/service/ListaEmpresa.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/service/ListaMovimientoDinero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/service/ListaMovimientoDinero.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -255,7 +250,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663342378086</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="entidades, enum y localdatetime listas fusión con bd">
+      <created>1663443744179</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1663443744179</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -290,6 +292,7 @@
     <MESSAGE value="analizar ER" />
     <MESSAGE value="mapeo con todas las entidades" />
     <MESSAGE value="mapeo de todas las entidades" />
-    <option name="LAST_COMMIT_MESSAGE" value="mapeo de todas las entidades" />
+    <MESSAGE value="entidades, enum y localdatetime listas fusión con bd" />
+    <option name="LAST_COMMIT_MESSAGE" value="entidades, enum y localdatetime listas fusión con bd" />
   </component>
 </project>

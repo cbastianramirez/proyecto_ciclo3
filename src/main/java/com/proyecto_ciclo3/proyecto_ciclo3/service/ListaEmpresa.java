@@ -61,9 +61,9 @@ public class ListaEmpresa implements EmpresaInterface{
     @Transactional
     @Override
     public Empresa updateAllEmpresa(Empresa updateAllEmpresa, long id) throws Exception{
-        empresaRepository.update(id, updateAllEmpresa.getNombre(),
+        empresaRepository.update(updateAllEmpresa.getNombre(),
                 updateAllEmpresa.getDocumento(), updateAllEmpresa.getTelefono(),
-                updateAllEmpresa.getDireccion());// tendría q ponerse usuarios?
+                updateAllEmpresa.getDireccion(), id);// tendría q ponerse usuarios?
         return getEmpresa(id);
     }
 

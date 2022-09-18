@@ -66,8 +66,8 @@ public class ListaMovimientoDinero implements MovimientoDineroInterface{
     @Transactional
     @Override
     public MovimientoDinero updateAllMovimientos(MovimientoDinero updateAllMovimiento, long id) throws Exception{
-        movimientoDineroRepository.update(id, updateAllMovimiento.getConcepto(),
-                updateAllMovimiento.getMonto());
+        movimientoDineroRepository.update(updateAllMovimiento.getConcepto(),
+                updateAllMovimiento.getMonto(),id);
         return getMovimiento(id);
     }
 

@@ -14,5 +14,5 @@ public interface EmpleadoRepository extends JpaRepository<Empleado,Long> {
     @Modifying
     @Query("UPDATE Empleado u SET u.nombre= :nombre, u.correo= :correo, u.enum_roleName = :enum_roleName, u.empresa = :empresa WHERE u.id= :id")
 
-    public int update(long id, String nombre, String correo, Enum_RoleName rol, Empresa empresa);
+    public long update(String nombre, String correo, Enum_RoleName rol, Empresa empresa,long id);
 }

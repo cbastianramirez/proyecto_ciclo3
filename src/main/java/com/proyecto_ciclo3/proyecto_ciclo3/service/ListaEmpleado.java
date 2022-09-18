@@ -43,9 +43,9 @@ public class ListaEmpleado implements EmpleadoInterface{
     @Transactional
     @Override
     public Empleado updateAllEmpleado(Empleado updateAllEmpleado, long id) throws Exception{
-        empleadoRepository.update(id, updateAllEmpleado.getNombre(),
+        empleadoRepository.update(updateAllEmpleado.getNombre(),
                 updateAllEmpleado.getCorreo(), updateAllEmpleado.getEnum_roleName(),
-                updateAllEmpleado.getEmpresa());
+                updateAllEmpleado.getEmpresa(),id);
         return getEmpleado(id);
     }
 

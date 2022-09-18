@@ -1,9 +1,10 @@
 package com.proyecto_ciclo3.proyecto_ciclo3.modelos;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.lang.String;
-import java.util.List;
 
 @Entity
 @Table(name = "movimiento dinero")
@@ -27,9 +28,12 @@ public class MovimientoDinero {
     @JoinColumn(name = "empresa_id") // joincolumn es para llaves foraneas
     private Empresa empresa;
 
+    @CreationTimestamp // yo no agrego estos datos entran desde el inicio
     @Column(name = "createdAt")
     private LocalDateTime createdAt;
 
+
+    @UpdateTimestamp  // yo no agrego estos datos entran desde el inicio
     @Column(name = "updatedAt")
     private LocalDateTime updatedAt;
 
@@ -54,6 +58,10 @@ public class MovimientoDinero {
 
     public long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getConcepto() {
