@@ -49,8 +49,8 @@ public class ListaMovimientoDinero implements MovimientoDineroInterface{
             if(updateMovimientos.getMonto() == updateMovimientos.getMonto()){
                 bdMovimiento.setMonto(updateMovimientos.getMonto());
             }
-            if(updateMovimientos.getUsuario() != null && !updateMovimientos.getUsuario().equals("")){
-                bdMovimiento.setUsuario(updateMovimientos.getUsuario());
+            if(updateMovimientos.getEmpleado() != null && !updateMovimientos.getEmpleado().equals("")){
+                bdMovimiento.setEmpleado(updateMovimientos.getEmpleado());
             }
             if(updateMovimientos.getConcepto() != null && !updateMovimientos.getConcepto().equals("")) {
                 bdMovimiento.setConcepto(updateMovimientos.getConcepto());
@@ -58,7 +58,6 @@ public class ListaMovimientoDinero implements MovimientoDineroInterface{
             if(updateMovimientos.getEmpresa() != null && !updateMovimientos.getEmpresa().equals("")) {
                 bdMovimiento.setEmpresa(updateMovimientos.getEmpresa());
             }
-
             return movimientoDineroRepository.save(bdMovimiento);
     }
 

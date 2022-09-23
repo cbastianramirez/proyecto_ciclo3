@@ -1,5 +1,9 @@
 package com.proyecto_ciclo3.proyecto_ciclo3.modelos;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -7,7 +11,8 @@ import java.util.List;
 @Entity
 @Table(name = "profile")
 public class Profile {
-    
+
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, unique = true)
@@ -16,15 +21,17 @@ public class Profile {
     @Column(name = "imagen")
     private String imagen;
 
-    @Column(name = "telefono")
+    @Column(name = "telefono", length = 20)
     private String telefono;
 
-    @OneToOne (mappedBy = "empleado_id")
-    private Empresa usuario;    //List<Empresa> usuario;
+    @OneToOne (mappedBy = "empleado")
+    private Empresa empleado;    //List<Empresa> usuario;
 
+    @CreationTimestamp
     @Column(name = "createdAt")
     private LocalDateTime createdAt;
 
+    @UpdateTimestamp
     @Column(name = "updatedAt")
     private LocalDateTime updateAt;
 
@@ -34,15 +41,18 @@ public class Profile {
     }
 
     // constructor lleno
-    public Profile(String imagen, String telefono, Empresa usuario, LocalDateTime createdAt, LocalDateTime updateAt) {
+
+    public Profile(String id, String imagen, String telefono, Empresa empleado, LocalDateTime createdAt, LocalDateTime updateAt) {
+        this.id = id;
         this.imagen = imagen;
         this.telefono = telefono;
-        this.usuario = usuario;
+        this.empleado = empleado;
         this.createdAt = createdAt;
         this.updateAt = updateAt;
     }
 
     //setters  getters
+
     public String getId() {
         return id;
     }
@@ -67,12 +77,12 @@ public class Profile {
         this.telefono = telefono;
     }
 
-    public Empresa getUsuario() {
-        return usuario;
+    public Empresa getEmpleado() {
+        return empleado;
     }
 
-    public void setUsuario(Empresa usuario) {
-        this.usuario = usuario;
+    public void setEmpleado(Empresa empleado) {
+        this.empleado = empleado;
     }
 
     public LocalDateTime getCreatedAt() {

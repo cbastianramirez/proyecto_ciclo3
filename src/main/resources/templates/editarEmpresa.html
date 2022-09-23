@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Empresa</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+<body>
+  <h1>Sistema de gestión de ingresos y gastos</h1>
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      Editar Empresa
+  </button>
+    <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5>Sistema de gestión de ingresos y gastos</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+        
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Nombre</label>
+            <input type="text" class="form-control" id="form-control" aria-describedby="emailHelp" placeholder="Nombre">
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInput1">Documento</label>
+            <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Documento">
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInput1">Teléfono</label>
+            <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Teléfono">
+          </div>
+                                
+          <div class="form-group">
+            <label for="exampleInput1">Dirección</label>
+            <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Dirección" >
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success" data-bs-dismiss="modal">Guardar</button>
+            <button type="button" class="btn btn-secondary">Eliminar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>  
+</div>      
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+</html>

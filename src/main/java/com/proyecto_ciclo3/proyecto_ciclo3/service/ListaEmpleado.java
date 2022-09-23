@@ -8,13 +8,10 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-
 @Service
 public class ListaEmpleado implements EmpleadoInterface{
-
     @Autowired
     private EmpleadoRepository empleadoRepository;
-
 
     //Todos los empleados
     @Override

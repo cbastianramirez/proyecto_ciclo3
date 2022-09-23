@@ -14,7 +14,7 @@ public interface MovimientoDineroRepository extends JpaRepository<MovimientoDine
     @Modifying
     @Query("UPDATE MovimientoDinero u SET u.concepto= :concepto, u.monto= :monto WHERE u.id= :id")
 
-    public long update( String concepto, float monto, long id);
+    public int update( String concepto, float monto, long id);
 
 
 }

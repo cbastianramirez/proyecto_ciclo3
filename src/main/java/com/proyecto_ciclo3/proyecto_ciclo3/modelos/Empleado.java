@@ -1,8 +1,9 @@
 package com.proyecto_ciclo3.proyecto_ciclo3.modelos;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
 @Table(name = "empleado")
 public class Empleado {
 
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, unique = true)
@@ -23,8 +25,8 @@ public class Empleado {
     private String correo;
 
     // lo creo pero sin getters setters
-    //@OneToOne                 // este no va aquí según explico el profe porq el empleado no contiene fk del profile es al contrario(mappedBy = "empleado")
-    //private Profile profile;
+    @OneToOne                 // este no va aquí según explico el profe porq el empleado no contiene fk del profile es al contrario(mappedBy = "empleado")
+    private Profile profile;
 
     //@ManyToOne, por lo q ya no existe relación quito el @JoinColumn
     @Enumerated(EnumType.STRING)
@@ -35,8 +37,9 @@ public class Empleado {
     @JoinColumn (name = "empresa_id")
     private Empresa empresa;
 
-    @OneToMany(mappedBy = "empleado")  // el profe Juan @OneToMany // @OneToMany una empresa puede tener muchos usuarios por eso List aquí en esta relacións
+    @OneToMany(mappedBy = "empleado_id", cascade = CascadeType.ALL, fetch = FetchType.EAGER)  // el profe Juan @OneToMany // @OneToMany una empresa puede tener muchos usuarios por eso List aquí en esta relacións
     //private List <MovimientoDinero> movimientosDinero =  new ArrayList<>(); // yo no lo debo colocar en update atributo solo forkey
+    @JsonManagedReference
     private List<MovimientoDinero> movimientosDinero;
 
 
@@ -51,12 +54,10 @@ public class Empleado {
 
 
     // constructor vacío porque debe usar entity
-
     public Empleado() {
     }
 
     // constructor lleno
-
     public Empleado(long id, String nombre, String correo, Enum_RoleName enum_roleName, Empresa empresa, List<MovimientoDinero> movimientosDinero, LocalDateTime createdAt, LocalDateTime updateAt) {
         this.id = id;
         this.nombre = nombre;

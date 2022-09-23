@@ -14,6 +14,6 @@ public interface EmpresaRepository extends JpaRepository<Empresa,Long> {
     @Modifying
     @Query("UPDATE Empresa u SET u.nombre= :nombre, u.documento= :documento, u.telefono = :telefono, u.direccion = :direccion WHERE u.id= :id")
 
-    public long update(String nombre, String documento, String telefono, String direccion, long id);
+    public int update(String nombre, String documento, String telefono, String direccion, long id);
 
 }

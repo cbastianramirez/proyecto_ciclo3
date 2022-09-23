@@ -1,5 +1,6 @@
 package com.proyecto_ciclo3.proyecto_ciclo3.modelos;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
@@ -9,6 +10,8 @@ import java.lang.String;
 @Entity
 @Table(name = "movimiento dinero")
 public class MovimientoDinero {
+
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, unique = true)
@@ -22,7 +25,7 @@ public class MovimientoDinero {
 
     @ManyToOne
     @JoinColumn(name = "empleado_id")
-    private Empleado usuario;
+    private Empleado empleado;
 
     @ManyToOne
     @JoinColumn(name = "empresa_id") // joincolumn es para llaves foraneas
@@ -44,18 +47,17 @@ public class MovimientoDinero {
 
     // constructor lleno
 
-    public MovimientoDinero(long id, String concepto, float monto, Empleado usuario, Empresa empresa, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public MovimientoDinero(long id, String concepto, float monto, Empleado empleado, Empresa empresa, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.concepto = concepto;
         this.monto = monto;
-        this.usuario = usuario;
+        this.empleado = empleado;
         this.empresa = empresa;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
 
     // setters & getters
-
     public long getId() {
         return id;
     }
@@ -80,12 +82,12 @@ public class MovimientoDinero {
         this.monto = monto;
     }
 
-    public Empleado getUsuario() {
-        return usuario;
+    public Empleado getEmpleado() {
+        return empleado;
     }
 
-    public void setUsuario(Empleado usuario) {
-        this.usuario = usuario;
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
     }
 
     public Empresa getEmpresa() {

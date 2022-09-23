@@ -22,16 +22,6 @@ public class ControladorEmpleado {
         return new ResponseEntity<>(listaEmpleado.getAllEmpleados(),HttpStatus.OK);
     }
 
-    /*@GetMapping("/empleado")
-    public ResponseEntity<Object> getEmpleado(@RequestParam long id){
-        try{
-            Empleado empleado = listaEmpleado.getEmpleado(id);
-            return new ResponseEntity<>(empleado, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }*/
-
     // Get empresa por id
     @GetMapping("/empleado/{id}")
     public ResponseEntity<Object> getEmpleado(@PathVariable long id) {
