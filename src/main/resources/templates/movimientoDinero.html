@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,7 +19,7 @@
           <span class="visually-hidden">Toggle Dropend</span>
         </button>
         <ul class="dropdown-menu">
-          <option>Id</option>
+          <option th:each="movimiento: ${Movimiento}" th:field=*{movimiento} th:text="${movimiento.id}" th:value="${movimiento.id}}>Id</option>
           <option>Nombre</option>
           <option>Dirección</option>
           <option>Teléfono</option>
