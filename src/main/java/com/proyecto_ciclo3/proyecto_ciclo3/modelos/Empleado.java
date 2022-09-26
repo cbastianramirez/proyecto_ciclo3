@@ -1,18 +1,18 @@
 package com.proyecto_ciclo3.proyecto_ciclo3.modelos;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "empleado")
+
 public class Empleado {
 
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+   @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, unique = true)
@@ -24,31 +24,30 @@ public class Empleado {
     @Column(name = "correo",unique = true,  length = 50)
     private String correo;
 
-    // lo creo pero sin getters setters
-    @OneToOne                 // este no va aquí según explico el profe porq el empleado no contiene fk del profile es al contrario(mappedBy = "empleado")
-    private Profile profile;
+    /*@JsonIgnore
+    @OneToOne
+    private Profile profile;*/
 
-    //@ManyToOne, por lo q ya no existe relación quito el @JoinColumn
     @Enumerated(EnumType.STRING)
-    @Column(name = "enum_roleName", nullable = false)
-    private Enum_RoleName enum_roleName;
+    @ElementCollection(targetClass = Enum_RoleName.class, fetch = FetchType.EAGER)
+    private List<Enum_RoleName> enum_roleName;
 
+    //@JsonIgnore
     @ManyToOne
-    @JoinColumn (name = "empresa_id")
+    @JoinColumn(name = "empresa_id") //NECESITO ESTE JOIN Q TRAE LOS DATOS DE UNA VEZ
     private Empresa empresa;
 
-    @OneToMany(mappedBy = "empleado_id", cascade = CascadeType.ALL, fetch = FetchType.EAGER)  // el profe Juan @OneToMany // @OneToMany una empresa puede tener muchos usuarios por eso List aquí en esta relacións
-    //private List <MovimientoDinero> movimientosDinero =  new ArrayList<>(); // yo no lo debo colocar en update atributo solo forkey
-    @JsonManagedReference
-    private List<MovimientoDinero> movimientosDinero;
+    /*@JsonIgnore
+    @OneToMany//(mappedBy = "empleado_id", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private MovimientoDinero movimientosDinero;*/
 
 
-    @CreationTimestamp // yo no agrego estos datos entran desde el inicio
+    @CreationTimestamp
     @Column(name = "createdAt")
     private LocalDateTime createdAt;
 
 
-    @UpdateTimestamp  // yo no agrego estos datos entran desde el inicio
+    @UpdateTimestamp
     @Column(name = "updatedAt")
     private LocalDateTime updateAt;
 
@@ -58,18 +57,21 @@ public class Empleado {
     }
 
     // constructor lleno
-    public Empleado(long id, String nombre, String correo, Enum_RoleName enum_roleName, Empresa empresa, List<MovimientoDinero> movimientosDinero, LocalDateTime createdAt, LocalDateTime updateAt) {
+
+
+    public Empleado(long id, String nombre, String correo, List<Enum_RoleName> enum_roleName, Empresa empresa,  LocalDateTime createdAt, LocalDateTime updateAt) {
         this.id = id;
         this.nombre = nombre;
         this.correo = correo;
         this.enum_roleName = enum_roleName;
         this.empresa = empresa;
-        this.movimientosDinero = movimientosDinero;
+
         this.createdAt = createdAt;
         this.updateAt = updateAt;
     }
 
     // setters & getters
+
     public long getId() {
         return id;
     }
@@ -94,12 +96,11 @@ public class Empleado {
         this.correo = correo;
     }
 
-
-    public Enum_RoleName getEnum_roleName() {
+    public List<Enum_RoleName> getEnum_roleName() {
         return enum_roleName;
     }
 
-    public void setEnum_roleName(Enum_RoleName enum_roleName) {
+    public void setEnum_roleName(List<Enum_RoleName> enum_roleName) {
         this.enum_roleName = enum_roleName;
     }
 
@@ -111,12 +112,12 @@ public class Empleado {
         this.empresa = empresa;
     }
 
-    public List<MovimientoDinero> getMovimientosDinero() {
-        return movimientosDinero;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
-    public void setMovimientosDinero(List<MovimientoDinero> movimientosDinero) {
-        this.movimientosDinero = movimientosDinero;
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
     public LocalDateTime getUpdateAt() {
@@ -125,13 +126,5 @@ public class Empleado {
 
     public void setUpdateAt(LocalDateTime updateAt) {
         this.updateAt = updateAt;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
     }
 }

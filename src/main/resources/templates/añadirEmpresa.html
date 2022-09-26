@@ -1,71 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nueva Empresa</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-</head>
-<body>
-  <h1>Sistema de gestión de ingresos y gastos</h1>
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-      Nueva Empresa
-  </button>
-    <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-              <div class="modal-header">
-                  <h5>Sistema de gestión de ingresos y gastos</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                  <form>
-                      <div class="form-group">
-                          <label for="exampleInput1">ID</label>
-                          <input type="number" class="form-control" aria-describedby="emailHelp" aria-placeholder="ID">
-                      </div>    
+  </head>
+  <body>
+    <h1>Sistema de gestión de ingresos y gastos</h1>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Nueva Empresa
+    </button>
+      <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+                <div class="modal-header">
+                    <h5>Sistema de gestión de ingresos y gastos</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form th:action="@{/GuardarEmpresa}" th:object="${emp}" method="post">
+                        <div class="form-group">
+                            <label for="exampleInput1">ID</label>
+                            <input type="number" th:field="*{id}" class="form-control" id="id" required="required" placeholder="Id">
+                        </div>    
 
-                      <div class="form-group">
-                          <label for="exampleInput1">Nombre</label>
-                          <input type="text" class="form-control" aria-describedby="emailHelp" aria-placeholder="Nombre">
-                      </div>
+                        <div class="form-group">
+                            <label for="exampleInput1">Nombre</label>
+                            <input type="text" th:field="*{nombre}" class="form-control" id="nombre" required="required" placeholder="Nombre">
+                        </div>
 
-                      <div class="form-group">
-                          <label for="exampleInputEmail1">Documento</label>
-                          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Documento">
-                      </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Documento</label>
+                            <input type="text" th:field="*{documento}" class="form-control" id="documento" required="required" placeholder="Documento">
+                        </div>
 
-                      <div class="form-group">
-                          <label for="exampleInput1">Teléfono</label>
-                          <input type="text" class="form-control" aria-describedby="emailHelp" aria-placeholder="Teléfono">
-                      </div>
+                        <div class="form-group">
+                            <label for="exampleInput1">Teléfono</label>
+                            <input type="text" th:field="*{telefono}" class="form-control" id="telefono" required="required" placeholder="Teléfono">
+                        </div>
 
-                      <div class="form-group">
-                          <label for="exampleInput1">Dirección</label>
-                          <input type="text" class="form-control" aria-placeholder="Dirección">
-                      </div>
-
-                      <div class="form-group">
-                          <label for="exampleInput1">Empleado</label>
-                          <input type="text" class="form-control" placeholder="Empleado">
-                      </div>
-
-                      <div class="form-group">
-                          <label for="exampleInput1">Movimiento Dinero</label>
-                          <input type="number" class="form-control" placeholder="Movimiento Dinero">
-                      </div>
-                      
-                      <div class="modal-footer">
-                          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Añadir</button>
-                          <button type="button" class="btn btn-danger">Eliminar</button>
-                      </div>
-                  </form>
-              </div>
-          </div>
-      </div>
-  </div>        
+                        <div class="form-group">
+                            <label for="exampleInput1">Dirección</label>
+                            <input type="text" th:field="*{direccion}" class="form-control" id="direccion" required="required" placeholder="Dirección">
+                        </div>
+                        
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary">Añadir</button>
+                            <button type="button" class="btn btn-success">Eliminar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>        
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </html>

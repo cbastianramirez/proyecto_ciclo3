@@ -3,15 +3,15 @@ package com.proyecto_ciclo3.proyecto_ciclo3.modelos;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.lang.String;
 
 @Entity
-@Table(name = "movimiento dinero")
+
 public class MovimientoDinero {
 
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, unique = true)
@@ -24,19 +24,19 @@ public class MovimientoDinero {
     private float monto;
 
     @ManyToOne
-    @JoinColumn(name = "empleado_id")
+    @JoinColumn(name = "empleado_id") //NECESITO ESTE JOIN Q TRAE LOS DATOS DE UNA VEZ
     private Empleado empleado;
 
     @ManyToOne
-    @JoinColumn(name = "empresa_id") // joincolumn es para llaves foraneas
+    @JoinColumn(name = "empresa_id")
     private Empresa empresa;
 
-    @CreationTimestamp // yo no agrego estos datos entran desde el inicio
+    @CreationTimestamp
     @Column(name = "createdAt")
     private LocalDateTime createdAt;
 
 
-    @UpdateTimestamp  // yo no agrego estos datos entran desde el inicio
+    @UpdateTimestamp
     @Column(name = "updatedAt")
     private LocalDateTime updatedAt;
 

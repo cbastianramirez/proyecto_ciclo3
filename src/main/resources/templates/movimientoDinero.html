@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,23 +8,74 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
 <body>
-    <h1>Sistema de gestión de ingresos y gastos</h1>
-    <!-- Modal -->
-  <!-- Split dropend button -->
-    <div class="btn-group dropend">
-        <button type="button" class="btn btn-primary">
-          Movimiento Dinero
-        </button>
-        <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-          <span class="visually-hidden">Toggle Dropend</span>
-        </button>
-        <ul class="dropdown-menu">
-          <option th:each="movimiento: ${Movimiento}" th:field=*{movimiento} th:text="${movimiento.id}" th:value="${movimiento.id}}>Id</option>
-          <option>Nombre</option>
-          <option>Dirección</option>
-          <option>Teléfono</option>
-        </ul>
-    </div>
+  <h1>Sistema de gestión de ingresos y gastos</h1>
+  <!-- Modal -->
+<!-- Split dropend button -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      Movimiento Dinero
+    </button>
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Sistema de gestión de ingresos y gastos</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  <table class="table table-striped">
+                    <div class="modal-body">
+                      <table class="table table-striped">
+                          <tr>
+                              <th>Id</th>
+                              <th>Concepto</th>
+                              <th>Monto</th>
+                              <th>Empleado</th>
+
+                          </tr>
+
+                          <tr th:each="movimiento : ${movlist}">
+                              <td th:text="${movimiento.id}"></td>
+                              <td th:if="${movimiento.concepto=='1'}">Ingresado</td> <!-- se puede hacer con if o con javascript de abajo, también se puede hacer con los each-->
+                              <td th:if="${movimiento.concepto=='2'}">Debitado</td>
+                              <td th:if="${movimiento.concepto=='3'}">Abonado</td>
+                              <td th:if="${movimiento.concepto=='4'}">Transferido</td>
+                              <td th:text="${#numbers.formatCurrency(movimiento.monto)}"></td>
+                              <td class="text-center" th:text="${movimiento.empleado.nombre}"></td>
+                              <td th:text="${#dates.format(movimiento.fecha, 'dd/MM/yyyy')}"></td>
+
+                          </tr>
+                      </table>
+                    </div>
+                  </table>
+
+                    <div class="row">
+                      <div class="form-group col-md-12">
+                          <label class="col-md-3" form="SumaMontos">Total Movimientos Dinero</label>
+                          <div class="col-md-6">
+                              <p th:text="${#numbers.formatCurrency(SumaMontos)}" class="form-control" id="SumaMontos" ></p>
+
+                          </div>
+                      </div>
+                    </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-info" ><a th:href="@{/AgregarMovimiento}">Añadir</a></button>
+                      <br><br>
+                      <button type="button" class="btn btn-primary"><a th:href="@{/VerEmpleados}">Empleados</a></button></td>
+                      <br><br>
+                      <button type="button" class="btn btn-primary"><a th:href="@{/VerEmpresas}">Empresas</a></button>
+                      <br><br>
+                      <button type="button" class="btn btn-danger"><a th:href="@{/EliminarMovimiento/{id}(id=${movimiento.id})}">Eliminar</a></button>
+                      <br><br>
+                      <button type="button" class="btn btn-warning"><a th:href="@{/EditarMovimiento/{id}(id=${movimiento.id})}">Editar</a></button>
+                  </div>
+
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </body>
 </html>

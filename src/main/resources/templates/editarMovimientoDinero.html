@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,22 +25,22 @@
 
                         <div class="form-group">
                             <label for="exampleInput1">ID</label>
-                            <input type="number" class="form-control" aria-describedby="emailHelp" placeholder="No puedes editar ID" readonly>
-                        </div>  
+                            <input type="number" class="form-control" aria-describedby="emailHelp" placeholder="Id" readonly>
+                        </div>
 
                         <div class="form-group">
                             <label for="exampleInputEmail1">Concepto</label>
-                            <input type="text" class="form-control" id="form-control" aria-describedby="emailHelp" placeholder="Concepto">
+                            <input type="text" class="form-control" id="form-control" aria-describedby="emailHelp" placeholder="Nombre">
                         </div>
 
                         <div class="form-group">
                             <label for="exampleInputEmail1">Monto</label>
-                            <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Monto">                        
+                            <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-success" data-bs-dismiss="modal">Guardar</button>
-                            <button type="button" class="btn btn-danger">Eliminar</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Guardar</button>
+                            <button type="button" class="btn btn-success">Eliminar</button>
                         </div>
                     </form>
                 </div>
