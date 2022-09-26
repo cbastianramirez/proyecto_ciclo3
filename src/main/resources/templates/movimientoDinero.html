@@ -10,13 +10,13 @@
 <body>
   <h1>Sistema de gestión de ingresos y gastos</h1>
   <!-- Modal -->
-<!-- Split dropend button -->
+
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
       Movimiento Dinero
     </button>
 
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
+      <div class="modal-dialog modal-lg modal-dialog-scrollable">
           <div class="modal-content">
               <div class="modal-header">
                   <h5 class="modal-title" id="exampleModalLabel">Sistema de gestión de ingresos y gastos</h5>
@@ -31,6 +31,9 @@
                               <th>Concepto</th>
                               <th>Monto</th>
                               <th>Empleado</th>
+                              <th>Fecha creado</th>
+                              <th>Empleado actual</th>
+
 
                           </tr>
 
@@ -42,7 +45,7 @@
                               <td th:if="${movimiento.concepto=='4'}">Transferido</td>
                               <td th:text="${#numbers.formatCurrency(movimiento.monto)}"></td>
                               <td class="text-center" th:text="${movimiento.empleado.nombre}"></td>
-                              <td th:text="${#dates.format(movimiento.fecha, 'dd/MM/yyyy')}"></td>
+                              <td th:text="${#localdatetime.format(movimiento.fecha, 'dd/MM/yyyy')}"></td>
 
                           </tr>
                       </table>

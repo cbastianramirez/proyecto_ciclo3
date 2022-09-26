@@ -8,15 +8,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
 <body>
-  <h1>Empresa</h1>
+  <h1>Empleado</h1>
   <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Empresa
+  Empleado
 </button>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-xl modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Sistema de gestión de ingresos y gastos</h5>
@@ -33,6 +33,7 @@
             <th>Empresa</th>
             <th>Rol</th>
             <th>Movimientos</th>
+            <th>Fecha</th>
           </tr>
 
           <tr>     
@@ -62,6 +63,9 @@
 
             <td th:if="${empleado.rol=='1'}">Admin</td> <!--falta modificar esto-->
             <td th:if="${empleado.rol=='2'}">operativo</td>
+
+            <td th:text="${#localdatetime.format(movimiento.fecha, 'dd/MM/yyyy')}"></td>
+
 
         </table>
       </div>

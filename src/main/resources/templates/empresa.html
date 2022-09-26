@@ -15,7 +15,7 @@
   
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Sistema de gestión de ingresos y gastos</h5>
@@ -29,6 +29,8 @@
                     <th>Dirección</th>
                     <th>Documento</th>
                     <th>Teléfono</th>
+                    <th>Fecha</th>
+
                 </tr>
                 <tr>     
                     <th>123</th>
@@ -52,6 +54,7 @@
                     <td th:text="${empresa.direccion}"></td>
                     <td th:text="${empresa.documento}"></td>
                     <td th:text="${empresa.telefono}"></td>
+                    <td th:text="${#localdatetime.format(movimiento.fecha, 'dd/MM/yyyy')}"></td>
 
                 </tr>
             </table>
