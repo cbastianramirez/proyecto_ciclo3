@@ -5,29 +5,35 @@ import javax.persistence.*;
 @Entity
 public class Transaction {
 
-    private long id;
+    @Id
+    @Column(nullable = false, unique = true)
+    private Long transactionId;
+
+    @Column
     private String concept;
+    @Column
     private float amount;
-    private Employee user;
+
+    @ManyToOne
+    private Employee employee;
 
 
     public Transaction() {
     }
 
-    public Transaction(long id, String concept, float amount, Employee user) {
-        this.setId(id);
-        this.setConcept(concept);
-        this.setAmount(amount);
-        this.setUser(user);
+    public Transaction(Long transactionId, String concept, float amount, Employee employee) {
+        this.transactionId = transactionId;
+        this.concept = concept;
+        this.amount = amount;
+        this.employee = employee;
     }
 
-
-    public long getId() {
-        return id;
+    public Long getTransactionId() {
+        return transactionId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setTransactionId(Long transactionId) {
+        this.transactionId = transactionId;
     }
 
     public String getConcept() {
@@ -46,22 +52,12 @@ public class Transaction {
         this.amount = amount;
     }
 
-    public Employee getUser() {
-        return user;
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setUser(Employee user) {
-        this.user = user;
-    }
-
-    @Override
-    public String toString() {
-        return "Transaction{" +
-                "id=" + id +
-                ", concept='" + concept + '\'' +
-                ", amount=" + amount +
-                ", user=" + user +
-                '}';
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 }
 

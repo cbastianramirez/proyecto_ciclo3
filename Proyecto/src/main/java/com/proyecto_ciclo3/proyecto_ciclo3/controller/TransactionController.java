@@ -1,77 +1,63 @@
 package com.proyecto_ciclo3.proyecto_ciclo3.controller;
 
-import com.proyecto_ciclo3.proyecto_ciclo3.model.Employee;
-import com.proyecto_ciclo3.proyecto_ciclo3.model.ObjectResponse;
+import com.proyecto_ciclo3.proyecto_ciclo3.model.Enterprise;
 import com.proyecto_ciclo3.proyecto_ciclo3.model.Transaction;
-import com.proyecto_ciclo3.proyecto_ciclo3.service.EmployeeList;
-import com.proyecto_ciclo3.proyecto_ciclo3.service.TransactionList;
+import com.proyecto_ciclo3.proyecto_ciclo3.service.EmployeeService;
+import com.proyecto_ciclo3.proyecto_ciclo3.service.TransactionService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-
-
-@RestController
+@Controller
 public class TransactionController {
 
-    private TransactionList transactionList = new TransactionList();
+    @Autowired
+    private TransactionService transactionService;
+    @Autowired
+    private EmployeeService employeeService;
 
-    //GET ALL TRANSACTIONS
-    @GetMapping("/enterprises/transactions")
-    public ResponseEntity<ArrayList<Transaction>> getTransactions(){
-        return new ResponseEntity<>(transactionList.getAllTransactions(), HttpStatus.OK);
+    //LIST ALL TRANSACTIONS IN DB
+    @GetMapping("/web_transactions")
+    public String web_transactions(Model model) {
+        model.addAttribute("transactions", transactionService.getTransactions());
+        model.addAttribute("employees", employeeService.getEmployees());
+
+        return "transactions";
     }
 
-    //GET TRANSACTION BY ID
-    @GetMapping("/enterprises/{id}/transactions")
-    public ResponseEntity<Object> getTransactions(@PathVariable long id){
-
-        try{
-            TransactionList transactionList = new TransactionList();
-            Transaction transactions = transactionList.getTransaction(id);
-            return new ResponseEntity<>(transactions, HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-
+    //DELETE TRANSACTION FROM LIST
+    @DeleteMapping("/transaction/delete/{id}")
+    public String deleteEnterprise(@PathVariable Long id, Model model){
+        transactionService.deleteTransactionById(id);
+        return "redirect:/web_transactions";
     }
 
-
-    //CREATE NEW TRANSACTION
-    @PostMapping("/enterprises/transactions")
-    public ResponseEntity<String> postTransaction(@RequestBody Transaction transactionPost){
+    //UPDATE SELECTED TRANSACTION FROM LIST
+    @PutMapping("/transaction/update")
+    public String putEnterprise(@ModelAttribute("transactionUpdate") Transaction transaction){
         try {
-            String message = transactionList.setTransaction(transactionPost);
-            return new ResponseEntity<>(message, HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-
-    //UPDATE TRANSACTION
-    @PatchMapping("/enterprises/{id}/transactions")
-    public ResponseEntity<ObjectResponse> putTransaction(@RequestBody Transaction updateTransaction, @PathVariable long id){
-        try {
-            Transaction transaction = transactionList.updateTransaction(updateTransaction, id);
-            return new ResponseEntity<>(new ObjectResponse("Ok", transaction), HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<>(new ObjectResponse(e.getMessage(),null),HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-
-    }
-
-    //DELETE TRANSACTION BY ID
-    @DeleteMapping("/enterprises/{id}/transactions")
-    public ResponseEntity<ObjectResponse> deleteTransaction(@PathVariable long id){
-        try {
-            String message = transactionList.deleteTransaction(id);
-            return  new ResponseEntity<>(new ObjectResponse(message, null),HttpStatus.OK);
+            transactionService.updateTransactionById(transaction, transaction.getTransactionId());
+            return "redirect:/web_transactions";
         } catch (Exception e) {
-            return new ResponseEntity<>(new ObjectResponse(e.getMessage(),null),HttpStatus.INTERNAL_SERVER_ERROR);
+            return  "redirect:/error";
+        }
+    }
+
+    //CREATE TRANSACTION
+    @PostMapping("/transaction/create")
+    public String createEnterprise(@ModelAttribute("transactionCreate") Transaction transaction){
+        try {
+            String message = transactionService.createTransaction(transaction);
+            return "redirect:/web_transactions";
+        } catch (Exception e){
+            e.printStackTrace();
+            new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
+        return "redirect:/error";
     }
 
 }

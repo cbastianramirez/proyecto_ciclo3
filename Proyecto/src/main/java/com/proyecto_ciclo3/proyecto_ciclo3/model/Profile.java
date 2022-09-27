@@ -3,10 +3,10 @@ package com.proyecto_ciclo3.proyecto_ciclo3.model;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity
+
 public class Profile {
 
-    @Id
+
     private String id;
 
     private String image;

@@ -1,40 +1,53 @@
 package com.proyecto_ciclo3.proyecto_ciclo3.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.CollectionId;
+
 import javax.persistence.*;
-//import java.util.Date;
+import java.util.List;
 
 @Entity
+@Table(name = "employee")
 public class Employee {
 
      @Id
-     private long id;
+     private Long employeeId;
 
+     @Column
      private String name;
-     @Column(name = "email", unique = true)
+     @Column(unique = true)
      private String email;
-
+     @Column
+     String password;
+     @Column
      private Enum_RoleName role;
+
+     @ManyToOne
      private Enterprise enterprise;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.REMOVE)
+    private List<Transaction> transactions;
 
     public Employee() {
     }
 
-    public Employee(long id, String name, String email, Enum_RoleName role, Enterprise enterprise) {
-        this.setId(id);
-        this.setName(name);
-        this.setEmail(email);
-        this.setRole(role);
-        this.setEnterprise(enterprise);
+    public Employee(Long employeeId, String name, String email, String password, Enum_RoleName role, Enterprise enterprise, List<Transaction> transactions) {
+        this.employeeId = employeeId;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+        this.enterprise = enterprise;
+        this.transactions = transactions;
     }
 
-
-    public long getId() {
-        return id;
+    public Long getEmployeeId() {
+        return employeeId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setEmployeeId(Long employeeId) {
+        this.employeeId = employeeId;
     }
 
     public String getName() {
@@ -53,6 +66,14 @@ public class Employee {
         this.email = email;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public Enum_RoleName getRole() {
         return role;
     }
@@ -69,14 +90,11 @@ public class Employee {
         this.enterprise = enterprise;
     }
 
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", role=" + role +
-                ", enterprise=" + enterprise +
-                '}';
+    public List<Transaction> getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(List<Transaction> transactions) {
+        this.transactions = transactions;
     }
 }

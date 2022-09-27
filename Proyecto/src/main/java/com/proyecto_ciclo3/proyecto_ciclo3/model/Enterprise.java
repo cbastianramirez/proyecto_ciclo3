@@ -1,35 +1,46 @@
 package com.proyecto_ciclo3.proyecto_ciclo3.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.CollectionId;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
+@Table(name = "enterprise")
 public class Enterprise {
 
     @Id
-    private long id;
+    private Long enterpriseId;
 
-    @Column(name = "name", unique = true)
+    @Column
     private String name;
+    @Column
     private String phone;
+    @Column
     private String address;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "enterprise", cascade = CascadeType.REMOVE)
+    private List<Employee> employees;
 
     public Enterprise() {
     }
 
-    public Enterprise(long id, String name, String phone, String address) {
-        this.setId(id);
-        this.setName(name);
-        this.setPhone(phone);
-        this.setAddress(address);
+    public Enterprise(Long enterpriseId, String name, String phone, String address, List<Employee> employees) {
+        this.enterpriseId = enterpriseId;
+        this.name = name;
+        this.phone = phone;
+        this.address = address;
+        this.employees = employees;
     }
 
-
-    public long getId() {
-        return id;
+    public Long getEnterpriseId() {
+        return enterpriseId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setEnterpriseId(Long enterpriseId) {
+        this.enterpriseId = enterpriseId;
     }
 
     public String getName() {
@@ -56,13 +67,11 @@ public class Enterprise {
         this.address = address;
     }
 
-    @Override
-    public String toString() {
-        return "Enterprise{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", phone='" + phone + '\'' +
-                ", address='" + address + '\'' +
-                '}';
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
     }
 }
