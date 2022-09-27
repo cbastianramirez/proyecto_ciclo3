@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Top Software | Empleados</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link th:href="@{/estilo.css}" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" th:href="@{/employee.svg}">
+</head>
+<body>
+<main>
+    <div sec:authorize="isAuthenticated()">
+<h2 class="title_top">Sistema de gestión de ingresos y egresos</h2><hr>
+
+    <div class="row justify-content-start w-100">
+
+    <div class="list-group col-2 ulmargin">
+        <a href="#" class="list-group-item list-group-item-action active"><i class="fa-solid fa-building-user iconwidth"></i>Empleados</a>
+        <a href="/web_enterprises" class="list-group-item list-group-item-action"><i class="fa-solid fa-building iconwidth"></i>Empresas</a>
+        <a href="/web_transactions" class="list-group-item list-group-item-action"><i class="fa-solid fa-magnifying-glass-dollar iconwidth"></i>Movimientos</a>
+        <a title="Cerrar sesión" th:href="@{/logout}" class="list-group-item list-group-item-action">
+            <i class="fa-solid fa-right-from-bracket iconwidth"></i>Cerrar sesión</a>
+
+
+    </div>
+
+    <div  class="col-8">
+
+        <button th:onclick="create([[${employee}]])"  type="submit" class="btn btn-success btn-sm addbtn"
+        data-bs-toggle="modal" data-bs-target="#createmodal"><i class="fa-solid fa-circle-plus iconwidth"></i>Agregar empleado</button>
+        <hr>
+
+    <table class="table table-sm table-hover">
+        <thead class="thead-ligh">
+        <tr >
+            <th scope="col">Nombre</th>
+            <th scope="col">Correo</th>
+            <th scope="col">Rol</th>
+            <th scope="col" class="d-flex justify-content-center">Gestión</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="employee : ${employees}">
+            <td th:text="${employee.name}"></td>
+            <td th:text="${employee.email}"></td>
+            <td th:text="${employee.role}"></td>
+            <td class="d-flex justify-content-around">
+
+                <button title="Ver movimientos" th:onclick="update([[${employee}]])"
+                        type="button" class="btn btn-info btn-sm"
+                        data-bs-toggle="modal" data-bs-target="#viewtransmodal"><i class="fa-solid fa-eye"></i>
+                </button>
+
+                <form th:action="@{/employee/delete/{id}(id=${employee.employeeId})}" 
+                th:method="delete" th:id="'deletebtn'+${employee.employeeId}">
+                
+                    <button title="Eliminar empleado" th:onclick="setDelId([[${employee.employeeId}]])"
+                            type="button" class="btn btn-danger btn-sm"
+                            data-bs-toggle="modal" data-bs-target="#exampleModal" ><i class="fa-solid fa-trash-can"></i>
+                        </button>
+
+                </form>
+                <button title="Editar empleado" th:onclick="update([[${employee}]])"
+                        type="button" class="btn btn-primary btn-sm"
+                        data-bs-toggle="modal" data-bs-target="#editmodal"><i class="fa-solid fa-pen"></i>
+                    </button>
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    </div>
+
+    </div>
+    <!-- Modal Editar Empleado -->
+    <div class="modal fade" id="editmodal" tabindex="-1" aria-labelledby="editmodalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content modalpos">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editmodalLabel">Editar empleado</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="user_form_update" th:object="${employeeUpdate}" action="#" th:method="put" th:action="@{/employee/update}">
+
+
+                        <div>
+                            <label for="input_id">ID del empleado - No modificable</label><br>
+                            <input class="form-control mb-3"  name="employeeId" id="input_id" type="text"  readonly>
+                        </div>
+                        <div>
+                            <label for="input_name">Nombre del empleado</label><br>
+                            <input class="form-control mb-3"  name="name" id="input_name" type="text" >
+                        </div>
+                        <div>
+                            <label for="input_email">E-mail</label><br>
+                            <input class="form-control mb-3"  name="email"  id="input_email" type="email" >
+                        </div>
+                        <div>
+                            <label for="input_password">Contraseña</label><br>
+                            <input class="form-control mb-3"  name="password"  id="input_password" type="password">
+                        </div>
+
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Crear Empleado -->
+    <div class="modal fade" id="createmodal" tabindex="-1" aria-labelledby="createmodalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content modalpos">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createmodalLabel">Crear empleado</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="user_form_create" th:object="${employeeCreate}" action="#" th:method="post" th:action="@{/employee/create}">
+
+                        <div>
+                            <label for="input_id">ID del empleado</label>
+                            <input class="form-control"  name="employeeId" id="create_input_id" type="text" placeholder="Ingresar Id del empleado" >
+                        </div>
+                        <div>
+                            <label for="input_name">Nombre completo del empleado</label>
+                            <input class="form-control"  name="name" id="create_input_name" type="text" placeholder="Nombre completo del empleado">
+                        </div>
+                        <div>
+                            <label for="input_email">E-mail</label>
+                            <input class="form-control"  name="email"  id="create_input_email" type="email" placeholder="Correo Electrónico">
+                        </div>
+                        <div>
+                            <label for="input_password">Contraseña</label>
+                            <input class="form-control mb-3"  name="password"  id="create_input_password" type="password">
+                        </div>
+                        <div>
+                        <label for="rol">Seleccionar Rol</label>
+
+                        <select class="form-select" name="role" id="rol">
+                            <option selected>Seleccionar Rol</option>
+                            <option value="ADMIN">Administrador</option>
+                            <option value="OPERARIO">Operario</option>
+                        </select>
+                        </div>
+
+                        <div>
+                            <label for="enterpriseid">Seleccionar Empresa</label>
+                            <select class="form-control mb-2" id="enterpriseid" name="enterprise">
+                                <option value="0">Seleccionar Empresa</option>
+                                <option name="enterprise" th:each="enterprise : ${enterprises}" th:value="${enterprise.enterpriseId}" th:text="${enterprise.enterpriseId}+' - '+${enterprise.name}"></option>
+                            </select>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Eliminar Empleado -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content modalpos">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">¿Eliminar empleado?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button id="delbtn" onclick="deleteEmp()" type="button" class="btn btn-primary">Eliminar</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Modal Ver Movimientos x Empleado -->
+    <div class="modal fade" id="viewtransmodal" tabindex="-1" aria-labelledby="viewtransmodalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content modalpos" >
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="viewtransmodalLabel">Movimientos de dinero</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-sm table-hover">
+                            <thead class="thead-ligh">
+                            <tr>
+                                <th scope="col">Concepto</th>
+                                <th scope="col">Valor</th>
+                                <th scope="col">Empleado autor</th>
+                                <th scope="col" class="d-flex justify-content-center">Gestión</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="transaction : ${transactions}">
+                                <td th:text="${transaction.concept}"></td>
+                                <td th:text="'$'+${transaction.amount}"></td>
+                                <td><label th:each="employee : ${employees}"  th:if="${employee.employeeId} == ${transaction.employee.employeeId}"
+                                           th:text="${transaction.employee.employeeId} + ' - ' + ${transaction.employee.name}"></label></td>
+                                <td  class="d-flex justify-content-around">
+
+                                    <form th:action="@{/transaction/delete/{id}(id=${transaction.transactionId})}"
+                                          th:method="delete" th:id="'deletebtn'+${transaction.transactionId}">
+
+                                        <button title="Eliminar movimiento" th:onclick="setDelId([[${transaction.transactionId}]])" type="button"
+                                                class="btn btn-danger btn-sm" style="margin-right: 10px;" data-bs-toggle="modal" data-bs-target="#deletetrnModal" ><i class="fa-solid fa-trash-can"></i></button>
+                                    </form>
+
+                                    <button title="Editar movimiento" th:onclick="updatetrn([[${transaction}]])"  type="submit"
+                                            class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                            data-bs-target="#edittrnmodal"><i class="fa-solid fa-pen"></i></button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!--        Modal confirmación eliminar transacción-->
+        <div class="modal fade" id="deletetrnModal" tabindex="-1" aria-labelledby="deletetrnModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content modalpos">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deletetrnModalLabel">¿Eliminar Movimiento?</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button id="delbtntrn" onclick="deleteEnt()" type="button" class="btn btn-primary">Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Modal Editar Movimiento -->
+        <div class="modal fade" id="edittrnmodal" tabindex="-1" aria-labelledby="edittrnmodalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content modalpos">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="edittrnmodalLabel">Editar movimiento de dinero</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="form_update" th:object="${transactionUpdate}" action="#" th:method="put" th:action="@{/transaction/update}">
+
+                            <div>
+                                <label for="input_id">ID del movimiento</label>
+                                <input class="form-control" name="transactionId" id="input_idtrn" type="text" placeholder="" readonly>
+                            </div>
+                            <div>
+                                <label for="input_concept">Concepto del movimiento</label>
+                                <input class="form-control" name="concept" id="input_concept" type="text" placeholder="">
+                            </div>
+                            <div>
+                                <label for="input_amount">Valor del movimiento</label>
+                                <input class="form-control mb-3" name="amount"  id="input_amount" type="text" placeholder="">
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div sec:authorize="!isAuthenticated()">
+        <div class="alert alert-warning" role="alert">
+            Debe iniciar sesión para visualizar el contenido!
+        </div>
+        <div class="d-flex justify-content-center">
+        <a href="/login" class="btn btn-primary align-left"> Ir a página de Inicio</a>
+        </div>
+    </div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>
+
+
+<script  th:inline="javascript">
+
+    function setDelId(id){
+        var delId = 'deletebtn' + id
+        document.getElementById("delbtn").addEventListener("click",
+        () => document.getElementById(delId).submit());
+    }
+
+    function update(employee) {
+    document.getElementById("input_id").value = employee.employeeId;
+    document.getElementById("input_name").value = employee.name;
+    document.getElementById("input_email").value = employee.email;
+    }
+
+    function updatetrn(transaction) {
+    document.getElementById("input_idtrn").value = transaction.transactionId;
+    document.getElementById("input_concept").value = transaction.concept;
+    document.getElementById("input_amount").value = transaction.amount;
+    }
+
+</script>
+
+
+</body>
+</html>

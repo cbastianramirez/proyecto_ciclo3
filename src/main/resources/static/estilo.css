@@ -1,0 +1,63 @@
+.btnlogout{
+    margin-left: 14px;
+}
+
+.ulmargin{
+    margin-left: 24px;
+}
+
+.modalpos{
+    style="width: 602px;right: 90px;left: auto;"
+}
+
+.addbtn{
+
+       border-right-width: 20px;
+
+}
+
+.imagen{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+}
+.year{
+  color:grey;
+}
+
+.input-user {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  width: 60%;
+}
+
+body{
+    max-width: 100vw;
+}
+
+.input-pass {
+  margin-bottom: -1px;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  width: 60%;
+}
+
+.textnav{
+    font-weight: 500;
+}
+
+.textnav2{
+    font-size: 14px;
+}
+
+.iconwidth{
+    width: 40px;
+}
+
+.title_top{
+    margin-top: 10px;
+    margin-left: 14px;
+}
+
