@@ -5,9 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0842b631-dfab-4dba-a391-762f52967446" name="Changes" comment="bd falta unir html">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/img/Logo mercado electrónico .png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/service/EmpleadoInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/service/EmpresaInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/service/MovimientoDineroInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/img/Welcome-PNG-Free-File-Download.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/home_index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/welcome.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/controlador/Control.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/controlador/Control.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/modelos/MovimientoDinero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/modelos/MovimientoDinero.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/repo/MovimientoDineroRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/repo/MovimientoDineroRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/service/MovimientoDineroService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proyecto_ciclo3/proyecto_ciclo3/service/MovimientoDineroService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/añadirEmpleado.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/añadirEmpleado.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/añadirEmpresa.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/añadirEmpresa.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/añadirMovimientoDinero.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/añadirMovimientoDinero.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/editarEmpleado.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/editarEmpleado.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/editarEmpresa.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/editarEmpresa.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/editarMovimientoDinero.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/editarMovimientoDinero.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/empleado.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/empleado.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/empresa.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/empresa.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/movimientoDinero.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/movimientoDinero.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +93,7 @@
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/solan_000/IdeaProjects/proyecto_ciclo3/src/main/resources/static",
+    "last_opened_file_path": "C:/Users/solan_000/IdeaProjects/proyecto_ciclo3/src/main/resources/templates",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.0",
@@ -84,10 +102,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\solan_000\IdeaProjects\proyecto_ciclo3\src\main\resources\static" />
       <recent name="C:\Users\solan_000\IdeaProjects\proyecto_ciclo3\src\main\resources\templates" />
+      <recent name="C:\Users\solan_000\IdeaProjects\proyecto_ciclo3\src\main\resources\static\img" />
+      <recent name="C:\Users\solan_000\IdeaProjects\proyecto_ciclo3\src\main\java\com\proyecto_ciclo3\proyecto_ciclo3\service" />
+      <recent name="C:\Users\solan_000\IdeaProjects\proyecto_ciclo3\src\main\resources\static" />
       <recent name="C:\Users\solan_000\IdeaProjects\proyecto_ciclo3\src\main\java\com\proyecto_ciclo3\proyecto_ciclo3" />
-      <recent name="C:\Users\solan_000\IdeaProjects\proyecto_ciclo3\src\main\resources" />
     </key>
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="com.proyecto_ciclo3.proyecto_ciclo3.service" />

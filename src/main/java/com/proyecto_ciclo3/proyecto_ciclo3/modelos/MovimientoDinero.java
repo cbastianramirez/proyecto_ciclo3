@@ -3,9 +3,11 @@ package com.proyecto_ciclo3.proyecto_ciclo3.modelos;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 
@@ -39,6 +41,10 @@ public class MovimientoDinero {
     @UpdateTimestamp
     @Column(name = "updatedAt")
     private LocalDateTime updatedAt;
+
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date fecha;
 
 
     // constructor vacío porque debe usar entity

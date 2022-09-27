@@ -23,11 +23,11 @@
                 </div>
                 
                 <div class="modal-body">
-                    <form th:action="@{/GuardarEmpleado}" th:object="${empl}" method="post">
+                    <form th:object="${empleado}" method="post" th:action="@{/empleado/front}">
 
                         <div class="form-group">
-                            <label for="Input1">ID</label>
-                            <input type="text" class="form-control" aria-describedby="emailHelp" aria-placeholder="Id">
+                            <label for="Input">ID</label>
+                            <input type="number" th:field="*{id}" class="form-control" id="id" required="required" placeholder="Id">
                         </div>     
 
                         <div class="form-group">
@@ -42,26 +42,26 @@
                     </div>
                         
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Empresa</label>
+                            <label for="exampleInput1">Nombre Empresa</label>
                             <div>
                                 <select th:field="*{empresa}" class="form-control" id="empresa" required="required" placeholder="Empresa">
-                                    <option th:each="empresa : ${emprelist}" th:text="${empresa.nombre}" th:value="${empresa.id}"></option>
+                                    <option th:each="empresa: ${empresa}" th:text="${empresa.nombre}" th:value="${empresa.id}"></option>
                                 </select>
                             </div>
                     </div>
 
-                    <div class="form-check" th:each="rol": ${Enum_RoleName}>
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" th:each="rol: ${Enum_RoleName}" th:field=*{enum_roleName} th:text="${enum_roleName.name}" th:value="${enum_roleName.name}>
+                    <div class="form-check" th:each="enum_roleName": ${enum_roleName}>
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" th:field=*{enum_roleName} th:text="${enum_roleName.name}" th:value="${enum_roleName.name}">
                             <label class="form-check-label" for="flexRadioDefault1"> Admin  </label>
                     </div>
                 
-                    <div class="form-check" th:each="rol": ${Enum_RoleName}>
-                            <input class="form-check-input"  type="radio" name="flexRadioDefault" id="flexRadioDefault2" th:each="rol: ${Enum_RoleName}" th:field=*{enum_roleName} th:text="${enum_roleName.name}" th:value="${enum_roleName.name} checked>
-                            <label class="form-check-label">Operario</label>
-                        </div>
+                    <div class="form-check" th:each="enum_roleName": ${enum_roleName}>
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked th:field=*{enum_roleName} th:text="${enum_roleName.name}" th:value="${enum_roleName.name}">
+                            <label class="form-check-label"> Operario</label>
+
+                    </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" >Añadir</button>
-                        <button type="button" class="btn btn-success">Eliminar</button>
+                        <button type="submit" class="btn btn-success" >Añadir</button>
                     </div>
                     </form>
                 </div>

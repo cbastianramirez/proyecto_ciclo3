@@ -52,7 +52,7 @@
             <th>2349032859</th>
           </tr>
 
-          <tr th:each="empleado : ${emplist}">
+          <tr th:each="empleado : ${empleado}">
 
             <td th:text="${empleado.id}"></td>
             <td th:text="${empleado.nombre}"></td>
@@ -61,8 +61,8 @@
             <td th:text="${empleado.telefono}"></td>
             <td th:text="${empleado.empresa.nombre}"></td>
 
-            <td th:if="${empleado.rol=='1'}">Admin</td> <!--falta modificar esto-->
-            <td th:if="${empleado.rol=='2'}">operativo</td>
+            <td th:if="${empleado.enum_roleName=='1'}">Admin</td> <!--falta modificar esto-->
+            <td th:if="${empleado.enum_roleName=='2'}">Operario</td>
 
             <td th:text="${#localdatetime.format(movimiento.fecha, 'dd/MM/yyyy')}"></td>
 
@@ -71,11 +71,11 @@
       </div>
       <div class="modal-footer">
         <br><br>
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><a th:href="@{/Empleado/{id}/Movimientos(id=${empleado.id})}">Empleado</a></button>
+        <button type="submit" class="btn btn-primary" ><a th:href="@{/empleado/front/{id}(id=${empleado.id})}" method="get">Empleado</a></button>
         <br><br>
-        <button type="button" class="btn btn-danger"><a th:href="@{/EliminarEmpleado/{id}(id=${empleado.id})}"></a>Eliminar</button>
+        <button type="submit" class="btn btn-danger"><a th:href="@{/empleado/front/{id}(id=${empleado.id})}" th:method="delete"></a>Eliminar</button>
         <br><br>
-        <button type="button" class="btn btn-warning"><a th:href="@{/EditarEmpleado/{id}(id=${empleado.id})}"></a>Editar</button>
+        <button type="submit" class="btn btn-warning"><a th:href="@{empleado/front/update(id=${empleado.id})}" th:method="put"></a>Editar</button>
       </div>
     </div>
   </div>

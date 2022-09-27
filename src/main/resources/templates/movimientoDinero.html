@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"> <!--xmlns:sec="http://thymeleaf.org/thymeleaf-extras-springsecurity5" -->
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -37,7 +37,7 @@
 
                           </tr>
 
-                          <tr th:each="movimiento : ${movlist}">
+                          <tr th:each="movimiento : ${movimiento}">
                               <td th:text="${movimiento.id}"></td>
                               <td th:if="${movimiento.concepto=='1'}">Ingresado</td> <!-- se puede hacer con if o con javascript de abajo, también se puede hacer con los each-->
                               <td th:if="${movimiento.concepto=='2'}">Debitado</td>
@@ -54,23 +54,23 @@
 
                     <div class="row">
                       <div class="form-group col-md-12">
-                          <label class="col-md-3" form="SumaMontos">Total Movimientos Dinero</label>
+                          <label class="col-md-3" form="TotalMontos">Total Movimientos Dinero</label>
                           <div class="col-md-6">
-                              <p th:text="${#numbers.formatCurrency(SumaMontos)}" class="form-control" id="SumaMontos" ></p>
+                              <p th:text="${#numbers.formatCurrency(TotalMontos)}" class="form-control" id="TotalMontos" ></p>
 
                           </div>
                       </div>
                     </div>
                   <div class="modal-footer">
-                      <button type="button" class="btn btn-info" ><a th:href="@{/AgregarMovimiento}">Añadir</a></button>
+                      <button type="submit" class="btn btn-info" ><a th:href="@{/movimiento/front/{id}(id=${movimiento.id})}" method="get">Movimiento Dinero</a></button>
                       <br><br>
-                      <button type="button" class="btn btn-primary"><a th:href="@{/VerEmpleados}">Empleados</a></button></td>
+                      <button type="submit" class="btn btn-primary"><a th:href="@{/updateEmpresa}" method="get">Empresas</a></button>
                       <br><br>
-                      <button type="button" class="btn btn-primary"><a th:href="@{/VerEmpresas}">Empresas</a></button>
+                      <button type="submit" class="btn btn-primary"><a th:href="@{/updateEmpleado}" method="get">Empleados</a></button>
                       <br><br>
-                      <button type="button" class="btn btn-danger"><a th:href="@{/EliminarMovimiento/{id}(id=${movimiento.id})}">Eliminar</a></button>
+                      <button type="submit" class="btn btn-danger"><a th:href="@{/movimiento/front/{id}(id=${movimiento.id})}">Eliminar</a></button>
                       <br><br>
-                      <button type="button" class="btn btn-warning"><a th:href="@{/EditarMovimiento/{id}(id=${movimiento.id})}">Editar</a></button>
+                      <button type="submit" class="btn btn-warning"><a th:href="@{/movimiento/front/update(id=${movimiento.id})}">Editar</a></button>
                   </div>
 
               </div>

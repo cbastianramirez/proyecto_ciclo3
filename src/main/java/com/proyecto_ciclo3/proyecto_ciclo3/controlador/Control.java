@@ -2,17 +2,13 @@ package com.proyecto_ciclo3.proyecto_ciclo3.controlador;
 
 import com.proyecto_ciclo3.proyecto_ciclo3.modelos.Empleado;
 import com.proyecto_ciclo3.proyecto_ciclo3.modelos.Empresa;
+import com.proyecto_ciclo3.proyecto_ciclo3.modelos.Enum_RoleName;
 import com.proyecto_ciclo3.proyecto_ciclo3.modelos.MovimientoDinero;
-import com.proyecto_ciclo3.proyecto_ciclo3.service.EmpleadoService;
-import com.proyecto_ciclo3.proyecto_ciclo3.service.EmpresaService;
-import com.proyecto_ciclo3.proyecto_ciclo3.service.MovimientoDineroService;
+import com.proyecto_ciclo3.proyecto_ciclo3.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -21,268 +17,255 @@ import java.util.List;
 public class Control {
 
     @Autowired
-    EmpresaService empresaService;
+    private EmpleadoInterface empleadoService;
+
+    //@Autowired //EmpleadoService empleadoService;
 
     @Autowired
-    EmpleadoService empleadoService;
+    private EmpresaInterface empresaService;
 
     @Autowired
-    MovimientoDineroService movimientoDineroService;
+    private MovimientoDineroService movimientoDineroService;
+
+    @Autowired MovimientoDineroInterface movimientoDineroInterface;
 
 
-    //Empresas
-    @GetMapping({"/Empresas", "/VerEmpresas"})
-
-    public String viewEmpresas(Model model, @ModelAttribute("mensaje") String mensaje) {
-        List<Empresa> listaEmpresas = empresaService.getAllEmpresas();
-        model.addAttribute("emplist", listaEmpresas);
-        model.addAttribute("mensaje", mensaje);
-        return "verEmpresas";
-
+    @GetMapping("/")
+    public String getIndex(){
+        return "index";
     }
 
-    @GetMapping("/AgregarEmpresa")
-    public String nuevaEmpresa(Model model, @ModelAttribute("mensaje") String mensaje) {
 
-        Empresa emp = new Empresa();
-        model.addAttribute("emp", emp);
-        model.addAttribute("mensaje", mensaje);
-        return "agregarEmpresa";
-
+    @GetMapping("/login")
+    public String getLogin(Model model){
+        model.addAttribute("formUsuario",new Empleado());
+        System.out.println(model.getAttribute("formUsuario"));
+        return "login";
     }
 
-    // guardar empresa
-    @PostMapping("/GuardarEmpresa")
-    public String guardarEmpresa(Empresa emp, RedirectAttributes redirectAttributes) {
-        if (empresaService.saveOrUpdateEmpresa(emp)) {
 
-            redirectAttributes.addFlashAttribute("mensaje", "guargado,ok");
+    @GetMapping("/welcomes")
+    public  String getWelcome(Model model){
+        model.addAttribute("empleados",empleadoService.getAllEmpleados());
+        //model.addAttribute("empresas",empleadoInterface.getAllEmpresas());
+        model.addAttribute("movimientos",movimientoDineroService.getAllMovimientos());
+        System.out.println(model.getAttribute("empleados"));
+        return "welcome";
+    }
 
-            return "redirect:/VerEmpresas";
+    // EMPLEADOS
+    @GetMapping("/addEmpleado")
+    public String getAddEmpleado(Model model){
+        model.addAttribute("empleado", new Empleado());
+        model.addAttribute("Enum_RoleName", Enum_RoleName.values());
+        System.out.println(model.getAttribute("Enum_RoleName"));
+        return "add-empleado";
+    }
+
+    @GetMapping("/updateEmpleado")
+    public String getUpdateEmpleado(Model model){
+        System.out.println(model.getAttribute("empleadoUpdate"));
+        return "update-empleado";
+    }
+
+    @GetMapping("/empleado/front/{id}")
+    public String getEmpleado(@PathVariable Long id, Model model) {
+        try {
+            System.out.println(id);
+            System.out.println(empleadoService.getEmpleado(id));
+            model.addAttribute("empleadoUpdate",empleadoService.getEmpleado(id));
+            model.addAttribute("Enum_RoleName",Enum_RoleName.values());
+            return "update-empleado";
+        } catch (Exception e) {
+            return " redirect:/error";
         }
-        redirectAttributes.addFlashAttribute("mensaje", "saveError");
-        return "redirect:/AgregarEmpresa";
     }
 
-    //editar empresa
-    @GetMapping("/EditarEmpresa/{id}") // faltaba colocarle {id}
-    public String editarEmpresa(Model model, @PathVariable Long id, @ModelAttribute("mensaje") String mensaje) {
-        Empresa emp = empresaService.getEmpresaById(id);
-        model.addAttribute("emp", emp);
-        model.addAttribute("mensaje", mensaje);
-
-        return "editarEmpresa";
-    }
-
-
-    @PostMapping("/ActualizarEmpresa")
-    public String updateEmpresa(@ModelAttribute("emp") Empresa emp, RedirectAttributes redirectAttributes) {
-        if (empresaService.saveOrUpdateEmpresa(emp)) {
-
-            redirectAttributes.addFlashAttribute("mensaje", "update,ok");
-
-            return "redirect:/VerEmpresas";
+    @PostMapping("/empleado/front")
+    public String postEmpleado(
+            @ModelAttribute("empleado") Empleado empleado_parametro){
+        try {
+            System.out.println(empleado_parametro);
+            String mensaje = empleadoService.setEmpleado(empleado_parametro);
+            return "redirect:/welcome";
+        }catch (Exception e){
         }
-        redirectAttributes.addFlashAttribute("mensaje", "updateError");
-
-        return "redirect:/EditarEmpresa/" + emp.getId();
+        return "redirect:/error";
     }
 
-    // delete eliminar
-
-    @GetMapping("/EliminarEmpresa/{id}")
-    public String eliminarEmpresa(@PathVariable Long id, RedirectAttributes redirectAttributes) {
-        if (empresaService.deleteEmpresa(id)) {
-            redirectAttributes.addFlashAttribute("mensaje", "deleteOK");
-            return "redirect:/VerEmpresas";
+    @DeleteMapping("/empleado/front/{id}")
+    public String deleteEmpleado(@PathVariable Long id, Model model) {
+        try {
+            empleadoService.deleteEmpleado(id);
+            return "redirect:/welcome";
+        } catch (Exception e) {
+            return "redirect:/error";
         }
-        redirectAttributes.addFlashAttribute("mensaje", "deleteError");
-        return "redirect:/VerEmpresas";
     }
 
 
-    // EMPLEADO
+    @PutMapping("empleado/front/update")
+    public String putEmpleado(@ModelAttribute("empleadoUpdate") Empleado empleado){
+        try {
+            System.out.println(empleado);
+            empleadoService.updateEmpleado(empleado,empleado.getId());
+            return "redirect:/welcome";
+        } catch (Exception e) {
+            return "redirect:/error";
 
-    @GetMapping("/VerEmpleados")
-    public String viewEmpleado(Model model, @ModelAttribute("mensaje") String mensaje) {
-        List<Empleado> listaEmpleados = empleadoService.getAllEmpleado();
-        model.addAttribute("emplist", listaEmpleados);
-        model.addAttribute("mensaje", mensaje);
-        return "verEmpleados";
-    }
-
-
-    @GetMapping("/AgregarEmpleado")
-    public String nuevaEmpleado(Model model, @ModelAttribute("mensaje") String mensaje) {
-
-        Empresa empl = new Empresa();
-        model.addAttribute("empl", empl);
-        model.addAttribute("mensaje", mensaje);
-        List<Empresa> listaEmpresas = empresaService.getAllEmpresas();
-        model.addAttribute("emprelist", listaEmpresas);
-        return "agregarEmpleado";
-    }
-
-    // guardar empleado
-    @PostMapping("/GuardarEmpleado")
-    public String guardarEmpleado(Empleado empl, RedirectAttributes redirectAttributes) { 
-        if (empleadoService.saveOrUpdateEmpleado(empl)) {
-
-            redirectAttributes.addFlashAttribute("mensaje", "guargado,ok");
-
-
-
-            return "redirect:/VerEmpleados";
         }
-        redirectAttributes.addFlashAttribute("mensaje", "saveError");
-        return "redirect:/AgregarEmpleado";
     }
 
-    //editar empleado
-    @GetMapping("/EditarEmpleado/{id}")
-    public String editarEmpleado(Model model, @PathVariable Long id, @ModelAttribute("mensaje") String mensaje) {
-        Empleado empl = empleadoService.getEmpleadoById(id).get();
-        model.addAttribute("empl", empl);
-        model.addAttribute("mensaje", mensaje);
-        List<Empresa> listaEmpresas = empresaService.getAllEmpresas();
-        model.addAttribute("emprelist", listaEmpresas);
-        return "editarEmpleado";
+
+
+    ////////////////EMPRESAS
+    @GetMapping("/addEmpresa")
+    public String getAddEmpresa(Model model){
+        model.addAttribute("empresa", new Empresa());
+
+        return "add-empresa";
     }
 
-    // actualizar empleado
-    @PostMapping("/ActualizarEmpleado")
-    public String updateEmpleado(@ModelAttribute("empl") Empleado empl, RedirectAttributes redirectAttributes) {
-        if (empleadoService.saveOrUpdateEmpleado(empl)) {
+    @GetMapping("/updateEmpresa") // muestra la actualización dada, dos getmapping estan juntos este y el de getUsuaruario
+    public String getUpdateEmpresa(Model model){ //
+        System.out.println(model.getAttribute("empresaUpdate"));
+        return "update-empresa";
+    }
 
-            redirectAttributes.addFlashAttribute("mensaje", "update,ok");
-
-            return "redirect:/VerEmpleados";
+    @GetMapping("/empresa/front/{id}")
+    public String getEmpresa(@PathVariable Long id, Model model) {
+        try {
+            System.out.println(id);
+            System.out.println(empresaService.getEmpresa(id));
+            model.addAttribute("empresaUpdate",empresaService.getEmpresa(id));
+            return "update-empresa";
+        } catch (Exception e) {
+            return " redirect:/error";
         }
-        redirectAttributes.addFlashAttribute("mensaje", "updateError");
-
-        return "redirect:/EditarEmpleado/" + empl.getId();
     }
 
-    // delete eliminar
-    @GetMapping("/EliminarEmpleado/{id}")
-    public String eliminarEmpleado(@PathVariable Long id, RedirectAttributes redirectAttributes) {
-        if (empleadoService.deleteEmpleado(id)) {
-            redirectAttributes.addFlashAttribute("mensaje", "deleteOK");
-            return "redirect:/VerEmpleados";
+    @PostMapping("/empresa/front")
+    public String postEmpresa(
+            @ModelAttribute("empresa") Empresa empresa_parametro){ // con este Modelattribute cambia la forma de responder (return) y en el public va a cambiar a STring 2. se va welcome
+        try {
+            System.out.println(empresa_parametro);
+            String mensaje = empresaService.setEmpresa(empresa_parametro);
+            return "redirect:/welcome";
+        }catch (Exception e){
         }
-        redirectAttributes.addFlashAttribute("mensaje", "deleteError");
-        return "redirect:/VerEmpleados";
+        return "redirect:/error";
     }
 
-    @GetMapping("/Empresa/{id}/Empleados") // filtrar los empleados ´r empresa
-    public String verEmpleadosPorEmpresa(@PathVariable("id") Long id, Model model) {
-        List<Empleado> listaEmpleados = empleadoService.obtenerPorEmpresa(id);
-        model.addAttribute("emplelist", listaEmpleados);
-        return "verEmpleados";
-        //Llamamos al html con el emplelist de los empleados filtrados
-    }
-
-
-
-
-    //movimientos
-    @GetMapping("/VerMovimientos")
-    public String viewMovimientos(Model model, @ModelAttribute("mensaje") String mensaje) {
-        List<MovimientoDinero> listaMovimientos = movimientoDineroService.getAllMovimientos();
-        model.addAttribute("movlist", listaMovimientos);
-        model.addAttribute("mensaje", mensaje);
-
-        Long sumaMonto = movimientoDineroService.obtenerSumaMontos();
-        model.addAttribute("SumaMontos", sumaMonto);
-        return "verMovimientos";
-    }
-
-
-    @GetMapping("/AgregarMovimiento")
-    public String nuevaMovimiento(Model model, @ModelAttribute("mensaje") String mensaje) {
-        MovimientoDinero movimiento = new MovimientoDinero();
-        model.addAttribute("mov", movimiento);
-        model.addAttribute("mensaje", mensaje);
-        List<Empleado> listaEmpleados = empleadoService.getAllEmpleado();
-        model.addAttribute("emplelist", listaEmpleados);
-        return "agregarMovimiento";
-    }
-
-    // guardar empleado
-    @PostMapping("/GuardarMovimiento")
-    public String guardarMovimiento(MovimientoDinero mov, RedirectAttributes redirectAttributes) {
-        if (movimientoDineroService.saveOrUpdateMovimiento(mov)) {
-
-            redirectAttributes.addFlashAttribute("mensaje", "guargado,ok");
-
-            return "redirect:/VerMovimientos";
+    @DeleteMapping("/empresa/front/{id}")
+    public String deleteEmpresa(@PathVariable Long id, Model model) {
+        try {
+            empresaService.deleteEmpresa(id); //3.
+            return "redirect:/welcome";
+        } catch (Exception e) {
+            return "redirect:/error";
         }
-        redirectAttributes.addFlashAttribute("mensaje", "saveError");
-        return "redirect:/AgregarMovimiento";
     }
 
-    //editar empleado
-    @GetMapping("/EditarMovimiento/{id}") // faltaba colocarle {id}
-    public String editarMovimiento(Model model, @PathVariable Long id, @ModelAttribute("mensaje") String mensaje) {
-        MovimientoDinero mov = movimientoDineroService.getMovimientoById(id);
-        model.addAttribute("mov", mov);
-        model.addAttribute("mensaje", mensaje);
-        List<Empleado> listaEmpleados = empleadoService.getAllEmpleado(); // se requiere por la relación q tienen
-        model.addAttribute("emplelist", listaEmpleados);
-        return "editarMovimiento";
-    }
 
-    // actualizar empleado
-    @PostMapping("/ActualizarMovimiento")
-    public String updateMovimiento(@ModelAttribute("mov") MovimientoDinero mov, RedirectAttributes redirectAttributes) {
-        if (movimientoDineroService.saveOrUpdateMovimiento(mov)) {
+    @PutMapping("empresa/front/update")
+    public String putEmpresa(@ModelAttribute("empresaUpdate") Empresa empresa){
+        try {
+            System.out.println(empresa);
+            empresaService.updateEmpresa(empresa,empresa.getId());
+            return "redirect:/welcome";
+        } catch (Exception e) {
+            return "redirect:/error";
 
-            redirectAttributes.addFlashAttribute("mensaje", "update,ok");
-
-            return "redirect:/VerMovimientos";
         }
-        redirectAttributes.addFlashAttribute("mensaje", "updateError");
-
-        return "redirect:/EditarMovimiento/" + mov.getId();
     }
 
-    // delete eliminar
-    @GetMapping("/EliminarMovimiento/{id}")
-    public String eliminarMovimiento(@PathVariable Long id, RedirectAttributes redirectAttributes) {
-        if (movimientoDineroService.deleteMovimiento(id)) {
-            redirectAttributes.addFlashAttribute("mensaje", "deleteOK");
-            return "redirect:/VerMovimientos";
+
+
+
+
+    /////////////// Movimientos
+    @GetMapping("/addMovimiento")
+    public String getAddMovimiento(Model model){
+        model.addAttribute("movimiento", new MovimientoDinero());
+        return "add-movimiento";
+    }
+
+    @GetMapping("/updateMovimiento") // muestra la actualización dada, dos getmapping estan juntos este y el de getUsuaruario
+    public String getUpdateMovimiento(Model model){ //
+        System.out.println(model.getAttribute("movimientoUpdate"));
+        return "update-movimiento";
+    }
+
+    @GetMapping("/movimiento/front/{id}")
+    public String getMovimiento(@PathVariable Long id, Model model) {
+        try {
+            System.out.println(id);
+            model.addAttribute("movimientoUpdate",movimientoDineroInterface.getMovimiento(id));
+            return "update-movimiento";
+        } catch (Exception e) {
+            return " redirect:/error";
         }
-        redirectAttributes.addFlashAttribute("mensaje", "deleteError");
-        return "redirect:/VerMovimientos";
     }
+
+    @PostMapping("/movimiento/front")
+    public String postMovimiento(
+            @ModelAttribute("movimiento") MovimientoDinero movimiento_parametro){
+        try {
+            System.out.println(movimientoDineroService);
+            String mensaje = movimientoDineroInterface.setMovimiento(movimiento_parametro);
+            return "redirect:/welcome";
+        }catch (Exception e){
+        }
+        return "redirect:/error";
+    }
+
+    @DeleteMapping("/movimiento/front/{id}")
+    public String deleteMovimiento(@PathVariable Long id, Model model) {
+        try {
+            movimientoDineroService.deleteMovimientoDinero(id); //3.
+            return "redirect:/welcome";
+        } catch (Exception e) {
+            return "redirect:/error";
+        }
+    }
+
+    @PutMapping("movimiento/front/update")
+    public String putMovimiento(@ModelAttribute("movimientoUpdate") MovimientoDinero movimientoDinero){
+        try {
+            System.out.println(movimientoDinero);
+            movimientoDineroInterface.updateMovimiento(movimientoDinero,movimientoDinero.getId());
+            return "redirect:/welcome";
+        } catch (Exception e) {
+            return "redirect:/error";
+
+        }
+    }
+
 
 
     //filtro d movimientos por empleados
     @GetMapping("/Empleado/{id}/Movimientos")
-    public String movimientosPorEmpleado(@PathVariable("id") Long id, Model model){
-        List<MovimientoDinero> movlist = movimientoDineroService.obtenerPorEmpleado(id);
-        model.addAttribute("movlist", movlist);
+    public String movimientosEmpleado(@PathVariable("id") Long id, Model model) throws Exception {
+        List<MovimientoDinero> movempl = (List<MovimientoDinero>) movimientoDineroInterface.getMovimiento(id);
+        model.addAttribute("movempl",movempl);
 
-        Long sumaMonto = movimientoDineroService.MontosPorEmpleado(id);
-        model.addAttribute("SumaMontos", sumaMonto);
+        Long totalMonto = movimientoDineroService.MontosEmpleado(id);
+        model.addAttribute("TotalMontos", totalMonto);
 
-        return "verMovimientos";
+        return "movimientos";
     }
 
 
     //Filtro d movimientos por empresa
     @GetMapping("/Empresa/{id}/Movimientos")
-    public String movimientosPorEmpresa(@PathVariable("id")Long id, Model model){
-        List<MovimientoDinero> movlist = movimientoDineroService.obtenerPorEmpresa(id);
-        model.addAttribute("movlist", movlist);
+    public String movimientosEmpresa(@PathVariable("id")Long id, Model model){
+        List<MovimientoDinero> movempr = movimientoDineroService.movimientoEmpleado(id);
+        model.addAttribute("movempr", movempr);
 
-        Long sumaMonto = movimientoDineroService.MontosPorEmpresa(id);
-        model.addAttribute("SumaMontos", sumaMonto);
+        Long totalMonto = movimientoDineroService.MontosEmpresa(id);
+        model.addAttribute("TotalMontos", totalMonto);
 
-        return "verMovimientos";
+        return "movimientos";
     }
-
-
 
 }

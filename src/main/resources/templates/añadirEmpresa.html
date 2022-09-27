@@ -21,7 +21,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form th:action="@{/GuardarEmpresa}" th:object="${emp}" method="post">
+                    <form th:object="${empresa}" method="post" th:action="@{/empresa/front">
                         <div class="form-group">
                             <label for="exampleInput1">ID</label>
                             <input type="number" th:field="*{id}" class="form-control" id="id" required="required" placeholder="Id">
@@ -48,8 +48,7 @@
                         </div>
                         
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary">Añadir</button>
-                            <button type="button" class="btn btn-success">Eliminar</button>
+                            <button type="submit" class="btn btn-success">Añadir</button>
                         </div>
                     </form>
                 </div>

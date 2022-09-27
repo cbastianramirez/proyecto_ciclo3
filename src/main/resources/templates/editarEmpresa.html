@@ -22,11 +22,11 @@
       </div>
         
       <div class="modal-body">
-        <form th:action="@{/ActualizarEmpresa}" th:object="${emp}" method="post">
+        <form th:object="${empresaUpdate}" method="post" th:action="@{empresa/front/update}">
 
           <div class="form-group">
             <label for="Input1">ID</label>
-            <input type="text" th:field="*{id}" class="form-control" id="id" required="required" readonly placeholder="ID">
+            <input type="number" th:field="*{id}" class="form-control" id="id" required="required" readonly placeholder="ID">
           </div>
 
           <div class="form-group">
@@ -41,7 +41,7 @@
 
           <div class="form-group">
             <label for="exampleInput1">Teléfono</label>
-            <nput type="text" th:field="*{telefono}" class="form-control" id="telefono" required="required" placeholder="Teléfono">
+            <Input type="text" th:field="*{telefono}" class="form-control" id="telefono" required="required" placeholder="Teléfono">
           </div>
                                 
           <div class="form-group">
@@ -50,8 +50,7 @@
           </div>
 
           <div class="modal-footer">
-            <button type="button" class="btn btn-success">Guardar</button>
-            <button type="button" class="btn btn-secondary">Eliminar</button>
+            <button type="submit" class="btn btn-success">Guardar</button>
           </div>
         </form>
       </div>

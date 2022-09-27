@@ -47,23 +47,23 @@
                     <th>2349032859</th>
                 </tr>
 
-                <tr th:each="emplist : ${emplist}">
-                    <!--cada elemento q este emplist es una empresa, creado en controller, creamos en viewEmpresa un modelo con un atributo llamado emplist dónde guardada la lista d todas las empresas -->
-                    <td th:text="${empresa.id}"></td> <!--aquí leno por filas la tabla -->
+                <tr th:each="empresa : ${empresa}">
+
+                    <td th:text="${empresa.id}"></td>
                     <td th:text="${empresa.nombre}"></td>
-                    <td th:text="${empresa.direccion}"></td>
                     <td th:text="${empresa.documento}"></td>
                     <td th:text="${empresa.telefono}"></td>
+                    <td th:text="${empresa.direccion}"></td>
                     <td th:text="${#localdatetime.format(movimiento.fecha, 'dd/MM/yyyy')}"></td>
 
                 </tr>
             </table>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" ><a th:href="@{/Empresa/{id}/Empleados (id=${empresa.id})}">Añadir</a></button>
-            <td><button type="button" class="btn btn-info"><a th:href="@{/Empresa/{id}/Movimientos (id=${empresa.id})}">Movimientos</a></button></td>
-          <button type="button" class="btn btn-danger"><a th:href="@{/EliminarEmpresa/{id}(id=${empresa.id})}">Eliminar</a></button>
-          <button type="button" class="btn btn-warning"><a th:href="@{/EditarEmpresa/{id}(id=${empresa.id})}">Editar</a></button>
+          <button type="submit" class="btn btn-primary" ><a th:href="@{/empresa/front/{id}(id=${empresa.id})}" method="get">Empresa</a></button>
+            <td><button type="submit" class="btn btn-info"><a th:href="@{/Empresa/{id}/Movimientos (id=${empresa.id})}">Movimientos</a></button></td> <!--MIRAR ESTO FRONTED Y MOVIMIENTODINEROSERVICE-->
+          <button type="submit" class="btn btn-danger"><a th:href="@{/empresa/front/{id}(id=${empresa.id})}" th:method="delete">Eliminar</a></button>
+          <button type="submit" class="btn btn-warning"><a th:href="@{/empresa/front/update(id=${empresa.id})}" th:method="put">Editar</a></button>
         </div>
       </div>
     </div>
