@@ -1,7 +1,9 @@
 package com.proyecto_ciclo3.proyecto_ciclo3.controller;
 
 import com.proyecto_ciclo3.proyecto_ciclo3.model.Enterprise;
+import com.proyecto_ciclo3.proyecto_ciclo3.service.EmployeeService;
 import com.proyecto_ciclo3.proyecto_ciclo3.service.EnterpriseService;
+import com.proyecto_ciclo3.proyecto_ciclo3.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,11 +19,17 @@ public class EnterpriseController {
 
     @Autowired
     private EnterpriseService enterpriseService;
+    @Autowired
+    private TransactionService transactionService;
+    @Autowired
+    private EmployeeService employeeService;
 
     //LIST ALL ENTERPRISES IN DB
     @GetMapping("/web_enterprises")
     public String web_enterprises(Model model) {
         model.addAttribute("enterprises", enterpriseService.getEnterprises());
+        model.addAttribute("transactions", transactionService.getTransactions());
+        model.addAttribute("employees", employeeService.getEmployees());
         return "enterprises";
     }
 

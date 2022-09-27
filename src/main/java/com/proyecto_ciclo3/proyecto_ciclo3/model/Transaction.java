@@ -17,6 +17,9 @@ public class Transaction {
     @ManyToOne
     private Employee employee;
 
+    @ManyToOne
+    private Enterprise enterprise;
+
 
     public Transaction() {
     }

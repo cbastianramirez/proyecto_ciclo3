@@ -50,6 +50,12 @@
             <td th:text="${enterprise.phone}"></td>
             <td th:text="${enterprise.address}"></td>
             <td class="d-flex justify-content-around">
+
+                <button title="Ver movimientos" th:onclick="update([[${employee}]])"
+                        type="button" class="btn btn-info btn-sm"
+                        data-bs-toggle="modal" data-bs-target="#viewtransmodal"><i class="fa-solid fa-eye"></i>
+                </button>
+
                 <form th:action="@{/enterprise/delete/{id}(id=${enterprise.enterpriseId})}" 
                 th:method="delete" th:id="'deletebtn'+${enterprise.enterpriseId}">
 
@@ -167,6 +173,52 @@
             </div>
         </div>
     </div>
+
+        <!-- Modal Ver Movimientos x Empleado -->
+        <div class="modal fade" id="viewtransmodal" tabindex="-1" aria-labelledby="viewtransmodalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content modalpos" >
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="viewtransmodalLabel">Movimientos de dinero</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-sm table-hover">
+                            <thead class="thead-ligh">
+                            <tr>
+                                <th scope="col">Concepto</th>
+                                <th scope="col">Valor</th>
+                                <th scope="col">Empleado autor</th>
+                                <th scope="col" class="d-flex justify-content-center">Gestión</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="transaction : ${transactions}">
+                                <td th:text="${transaction.concept}"></td>
+                                <td th:text="'$'+${transaction.amount}"></td>
+                                <td><label th:each="employee : ${employees}"  th:if="${employee.employeeId} == ${transaction.employee.employeeId}"
+                                           th:text="${transaction.employee.employeeId} + ' - ' + ${transaction.employee.name}"></label></td>
+                                <td  class="d-flex justify-content-around">
+
+                                    <form th:action="@{/transaction/delete/{id}(id=${transaction.transactionId})}"
+                                          th:method="delete" th:id="'deletebtn'+${transaction.transactionId}">
+
+                                        <button title="Eliminar movimiento" th:onclick="setDelId([[${transaction.transactionId}]])" type="button"
+                                                class="btn btn-danger btn-sm" style="margin-right: 10px;" data-bs-toggle="modal" data-bs-target="#deletetrnModal" ><i class="fa-solid fa-trash-can"></i></button>
+                                    </form>
+
+                                    <button title="Editar movimiento" th:onclick="updatetrn([[${transaction}]])"  type="submit"
+                                            class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                            data-bs-target="#edittrnmodal"><i class="fa-solid fa-pen"></i></button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
 </div>
 <div sec:authorize="!isAuthenticated()">
     <div class="alert alert-warning" role="alert">

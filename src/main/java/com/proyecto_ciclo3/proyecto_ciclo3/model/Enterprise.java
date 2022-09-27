@@ -24,15 +24,20 @@ public class Enterprise {
     @OneToMany(mappedBy = "enterprise", cascade = CascadeType.REMOVE)
     private List<Employee> employees;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "enterprise", cascade = CascadeType.REMOVE)
+    private List<Transaction> transaction;
+
     public Enterprise() {
     }
 
-    public Enterprise(Long enterpriseId, String name, String phone, String address, List<Employee> employees) {
+    public Enterprise(Long enterpriseId, String name, String phone, String address, List<Employee> employees, List<Transaction> transaction) {
         this.enterpriseId = enterpriseId;
         this.name = name;
         this.phone = phone;
         this.address = address;
         this.employees = employees;
+        this.transaction = transaction;
     }
 
     public Long getEnterpriseId() {
@@ -73,5 +78,13 @@ public class Enterprise {
 
     public void setEmployees(List<Employee> employees) {
         this.employees = employees;
+    }
+
+    public List<Transaction> getTransaction() {
+        return transaction;
+    }
+
+    public void setTransaction(List<Transaction> transaction) {
+        this.transaction = transaction;
     }
 }
