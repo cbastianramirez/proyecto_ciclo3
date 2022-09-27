@@ -74,7 +74,7 @@
     <!-- Modal Editar Movimiento -->
     <div class="modal fade" id="editmodal" tabindex="-1" aria-labelledby="editmodalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content modalpos">
                 <div class="modal-header">
                     <h5 class="modal-title" id="editmodalLabel">Editar movimiento de dinero</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -83,7 +83,7 @@
                     <form id="form_update" th:object="${transactionUpdate}" action="#" th:method="put" th:action="@{/transaction/update}">
 
                         <div>
-                            <label for="input_id">ID del movimiento</label>
+                            <label for="input_id">ID del movimiento - No modificable</label>
                             <input class="form-control" name="transactionId" id="input_id" type="text" placeholder="" readonly>
                         </div>
                         <div>
@@ -108,7 +108,7 @@
     <!-- Modal Crear Movimiento-->
     <div class="modal fade" id="createmodal" tabindex="-1" aria-labelledby="createmodalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content modalpos">
                 <div class="modal-header">
                     <h5 class="modal-title" id="createmodalLabel">Crear movimiento de dinero</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -152,7 +152,7 @@
     <!-- Modal Eliminar-->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content modalpos">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">¿Eliminar Movimiento?</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

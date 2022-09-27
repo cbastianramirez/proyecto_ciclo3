@@ -74,7 +74,7 @@
     <!-- Modal Editar Empresa -->
     <div class="modal fade" id="editmodal" tabindex="-1" aria-labelledby="editmodalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content modalpos">
                 <div class="modal-header">
                     <h5 class="modal-title" id="editmodalLabel">Editar empresa</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -83,7 +83,7 @@
                     <form id="user_form_update" th:object="${enterpriseUpdate}" action="#" th:method="put" th:action="@{/enterprise/update}">
 
                         <div>
-                            <label for="input_id">ID de la Empresa</label>
+                            <label for="input_id">ID de la Empresa - No modificable</label>
                             <input class="form-control" name="enterpriseId" id="input_id" type="text" placeholder="" readonly>
                         </div>
                         <div>
@@ -113,7 +113,7 @@
     <!-- Modal Crear Empresa-->
     <div class="modal fade" id="createmodal" tabindex="-1" aria-labelledby="createmodalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content modalpos">
                 <div class="modal-header">
                     <h5 class="modal-title" id="createmodalLabel">Crear empresa</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -154,7 +154,7 @@
     <!-- Modal  Delete-->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content modalpos">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">¿Eliminar Empresa?</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

@@ -6,6 +6,10 @@
     margin-left: 24px;
 }
 
+.modalpos{
+    style="width: 602px;right: 90px;left: auto;"
+}
+
 .addbtn{
 
        border-right-width: 20px;
