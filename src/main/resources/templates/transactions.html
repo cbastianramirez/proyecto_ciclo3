@@ -138,6 +138,14 @@
                         </div>
 
                         <div>
+                            <label for="enterpriseid">Seleccionar Empresa</label>
+                            <select class="form-control mb-2" id="enterpriseid" name="enterprise">
+                                <option value="0">Seleccione Empresa</option>
+                                <option th:each="enterprise : ${enterprises}" th:value="${enterprise.enterpriseId}" th:text="${enterprise.enterpriseId}+' - '+${enterprise.name}" name="enterprise"></option>
+                            </select>
+                        </div>
+
+                        <div>
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>

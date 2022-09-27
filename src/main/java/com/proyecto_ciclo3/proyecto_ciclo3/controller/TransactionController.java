@@ -3,6 +3,7 @@ package com.proyecto_ciclo3.proyecto_ciclo3.controller;
 import com.proyecto_ciclo3.proyecto_ciclo3.model.Enterprise;
 import com.proyecto_ciclo3.proyecto_ciclo3.model.Transaction;
 import com.proyecto_ciclo3.proyecto_ciclo3.service.EmployeeService;
+import com.proyecto_ciclo3.proyecto_ciclo3.service.EnterpriseService;
 import com.proyecto_ciclo3.proyecto_ciclo3.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,12 +19,15 @@ public class TransactionController {
     private TransactionService transactionService;
     @Autowired
     private EmployeeService employeeService;
+    @Autowired
+    private EnterpriseService enterpriseService;
 
     //LIST ALL TRANSACTIONS IN DB
     @GetMapping("/web_transactions")
     public String web_transactions(Model model) {
         model.addAttribute("transactions", transactionService.getTransactions());
         model.addAttribute("employees", employeeService.getEmployees());
+        model.addAttribute("enterprises", enterpriseService.getEnterprises());
 
         return "transactions";
     }
