@@ -62,13 +62,13 @@
                         data-bs-toggle="modal" data-bs-target="#viewtransmodal"><i class="fa-solid fa-eye"></i>
                 </button>
 
-                <form th:action="@{/employee/delete/{id}(id=${employee.employeeId})}" 
-                th:method="delete" th:id="'deletebtn'+${employee.employeeId}">
-                
+                <form th:action="@{/employee/delete/{id}(id=${employee.employeeId})}"
+                      th:method="delete" th:id="'deletebtn'+${employee.employeeId}">
+
                     <button title="Eliminar empleado" th:onclick="setDelId([[${employee.employeeId}]])"
                             type="button" class="btn btn-danger btn-sm"
                             data-bs-toggle="modal" data-bs-target="#exampleModal" ><i class="fa-solid fa-trash-can"></i>
-                        </button>
+                    </button>
 
                 </form>
                 <button title="Editar empleado" th:onclick="update([[${employee}]])"
@@ -182,21 +182,22 @@
     </div>
 
     <!-- Modal Eliminar Empleado -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content modalpos">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">¿Eliminar empleado?</h5>
-                </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">¿Eliminar empleado?</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
 
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button id="delbtn" onclick="deleteEmp()" type="button" class="btn btn-primary">Eliminar</button>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button id="delbtn" onclick="deleteEmp()" type="button" class="btn btn-primary">Eliminar</button>
+                    </div>
                 </div>
             </div>
-        </div>
 
-    </div>
+        </div>
 
     <!-- Modal Ver Movimientos x Empleado -->
     <div class="modal fade" id="viewtransmodal" tabindex="-1" aria-labelledby="viewtransmodalLabel" aria-hidden="true">
@@ -213,7 +214,6 @@
                                 <th scope="col">Concepto</th>
                                 <th scope="col">Valor</th>
                                 <th scope="col">Empleado autor</th>
-                                <th scope="col" class="d-flex justify-content-center">Gestión</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -222,19 +222,7 @@
                                 <td th:text="'$'+${transaction.amount}"></td>
                                 <td><label th:each="employee : ${employees}"  th:if="${employee.employeeId} == ${transaction.employee.employeeId}"
                                            th:text="${transaction.employee.employeeId} + ' - ' + ${transaction.employee.name}"></label></td>
-                                <td  class="d-flex justify-content-around">
 
-                                    <form th:action="@{/transaction/delete/{id}(id=${transaction.transactionId})}"
-                                          th:method="delete" th:id="'deltrnbtn'+${transaction.transactionId}">
-
-                                        <button title="Eliminar movimiento" th:onclick="setDelId([[${transaction.transactionId}]])" type="button"
-                                                class="btn btn-danger btn-sm" style="margin-right: 10px;" data-bs-toggle="modal" data-bs-target="#deletetrnModal" ><i class="fa-solid fa-trash-can"></i></button>
-                                    </form>
-
-                                    <button title="Editar movimiento" th:onclick="updatetrn([[${transaction}]])"  type="submit"
-                                            class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                            data-bs-target="#edittrnmodal"><i class="fa-solid fa-pen"></i></button>
-                                </td>
                             </tr>
                             </tbody>
                         </table>
@@ -248,58 +236,6 @@
             </div>
         </div>
 
-<!--        Modal confirmación eliminar movimiento-->
-        <div class="modal fade" id="deletetrnModal" tabindex="-1" aria-labelledby="deletetrnModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content modalpos">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="deletetrnModalLabel">¿Eliminar Movimiento?</h5>
-
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button id="deltrnbtn" onclick="deleteEnt()" type="button" class="btn btn-primary">Eliminar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <!-- Modal Editar Movimiento -->
-        <div class="modal fade" id="edittrnmodal" tabindex="-1" aria-labelledby="edittrnmodalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content modalpos">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="edittrnmodalLabel">Editar movimiento de dinero</h5>
-
-                    </div>
-                    <div class="modal-body">
-                        <form id="form_update" th:object="${transactionUpdate}" action="#" th:method="put" th:action="@{/transaction/update}">
-
-                            <div>
-                                <label for="input_id">ID del movimiento</label>
-                                <input class="form-control" name="transactionId" id="input_idtrn" type="text" placeholder="" readonly>
-                            </div>
-                            <div>
-                                <label for="input_concept">Concepto del movimiento</label>
-                                <input class="form-control" name="concept" id="input_concept" type="text" placeholder="">
-                            </div>
-                            <div>
-                                <label for="input_amount">Valor del movimiento</label>
-                                <input class="form-control mb-3" name="amount"  id="input_amount" type="text" placeholder="">
-                            </div>
-
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                <button type="submit" class="btn btn-primary">Guardar cambios</button>
-                            </div>
-                        </form>
-
-                    </div>
-                </div>
-            </div>
-        </div>
 
     </div>
 
@@ -345,11 +281,6 @@
         () => document.getElementById(delId).submit());
     }
 
-    function setDelId(id){
-        var delId = 'deltrnbtn' + id
-        document.getElementById("deltrnbtn").addEventListener("click",
-        () => document.getElementById(delId).submit());
-    }
 
     function update(employee) {
     document.getElementById("input_id").value = employee.employeeId;
@@ -357,11 +288,7 @@
     document.getElementById("input_email").value = employee.email;
     }
 
-    function updatetrn(transaction) {
-    document.getElementById("input_idtrn").value = transaction.transactionId;
-    document.getElementById("input_concept").value = transaction.concept;
-    document.getElementById("input_amount").value = transaction.amount;
-    }
+
 
 </script>
 
