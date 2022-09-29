@@ -28,6 +28,20 @@ public class TransactionService {
         repository.save(transaction);
         return "Transaction succesfully created.";
     }
+    
+    public Long sumAmounts(){
+        return repository.sumAmounts();
+    }
+
+    public Long sumposAmounts(){
+        return repository.sumposAmounts();
+    }
+
+    public Long sumnegAmounts(){
+        return repository.sumnegAmounts();
+    }
+
+
 
     public Transaction updateTransactionById(Transaction update_Transaction, Long id) throws Exception {
 

@@ -28,7 +28,9 @@ public class TransactionController {
         model.addAttribute("transactions", transactionService.getTransactions());
         model.addAttribute("employees", employeeService.getEmployees());
         model.addAttribute("enterprises", enterpriseService.getEnterprises());
-
+        model.addAttribute("total", transactionService.sumAmounts());
+        model.addAttribute("totalpos", transactionService.sumposAmounts());
+        model.addAttribute("totalneg", transactionService.sumnegAmounts());
         return "transactions";
     }
 
