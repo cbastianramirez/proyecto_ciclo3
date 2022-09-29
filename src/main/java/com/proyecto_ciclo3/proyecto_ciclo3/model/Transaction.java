@@ -24,12 +24,14 @@ public class Transaction {
     public Transaction() {
     }
 
-    public Transaction(Long transactionId, String concept, float amount, Employee employee) {
+    public Transaction(Long transactionId, String concept, float amount, Employee employee, Enterprise enterprise) {
         this.transactionId = transactionId;
         this.concept = concept;
         this.amount = amount;
         this.employee = employee;
+        this.enterprise = enterprise;
     }
+
 
     public Long getTransactionId() {
         return transactionId;
@@ -61,6 +63,14 @@ public class Transaction {
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
+    }
+
+    public Enterprise getEnterprise() {
+        return enterprise;
+    }
+
+    public void setEnterprise(Enterprise enterprise) {
+        this.enterprise = enterprise;
     }
 }
 

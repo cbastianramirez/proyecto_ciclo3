@@ -14,9 +14,11 @@ public interface EnterpriseRepository extends JpaRepository<Enterprise, Long> {
     public Enterprise findByEnterpriseId(Long id);
     public List<Enterprise> findAllByOrderByEnterpriseIdAsc();
 
-
-
 //    @Query(value = "SELECT name FROM employee;", nativeQuery = true)
 //    public List<Enterprise> findAllEnt();
+
+
+
+
 
 }

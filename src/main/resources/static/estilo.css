@@ -2,12 +2,21 @@
     margin-left: 14px;
 }
 
+.logo{
+     margin-left: 15px;
+     width: 190px;
+}
 .ulmargin{
     margin-left: 24px;
 }
 
 .modalpos{
     style="width: 602px;right: 90px;left: auto;"
+}
+
+.modalview{
+    width: 752px;
+    right: 110px;
 }
 
 .addbtn{
@@ -20,7 +29,7 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 40%;
+    width: 60%;
 }
 .year{
   color:grey;
@@ -58,6 +67,6 @@ body{
 
 .title_top{
     margin-top: 10px;
-    margin-left: 14px;
+    margin-left: 27px;
 }
 

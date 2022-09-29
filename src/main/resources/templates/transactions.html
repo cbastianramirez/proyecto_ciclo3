@@ -14,9 +14,11 @@
 <body>
 <main>
     <div sec:authorize="isAuthenticated()">
-    <h2 class="title_top">Sistema de gestión de ingresos y egresos</h2><hr>
+        <div class="d-flex flex-row mb-2" style="margin-top: 12px;">
+            <img  class="logo" th:src="@{/logo.png}">
+        </div>
 
-    <div class="row justify-content-start w-100">
+        <div class="row justify-content-start w-100">
 
         <div class="list-group col-2 ulmargin">
             <a href="/web_employees" class="list-group-item list-group-item-action"><i class="fa-solid fa-building-user iconwidth"></i>Empleados</a>
@@ -30,18 +32,19 @@
     <div  class="col-8">
 
                 <button th:onclick="create([[${transaction}]])"
-                        type="submit" class="btn btn-success btn-sm addbtn"
+                        type="submit" class="btn btn-success btn-sm addbtn mb-3 shadow rounded"
                         data-bs-toggle="modal" data-bs-target="#createmodal">
                     <i class="fa-solid fa-circle-plus iconwidth"></i>Agregar movimiento</button>
 
-                <hr>
 
-    <table class="table table-sm table-hover">
+
+    <table class="table table-sm table-hover shadow-sm p-3 mb-5 bg-white rounded">
                     <thead class="thead-ligh">
                     <tr>
                         <th scope="col">Concepto</th>
                         <th scope="col">Valor</th>
                         <th scope="col">Empleado autor</th>
+                        <th scope="col">Empresa</th>
                         <th scope="col" class="d-flex justify-content-center">Gestión</th>
                     </tr>
                     </thead>
@@ -51,6 +54,7 @@
                         <td th:text="'$'+${transaction.amount}"></td>
                         <td><label th:each="employee : ${employees}"  th:if="${employee.employeeId} == ${transaction.employee.employeeId}"
                                    th:text="${transaction.employee.employeeId} + ' - ' + ${transaction.employee.name}"></label></td>
+                        <td th:text="${transaction.enterprise.name}"></td>
                         <td  class="d-flex justify-content-around">
 
                             <form th:action="@{/transaction/delete/{id}(id=${transaction.transactionId})}"
@@ -68,6 +72,27 @@
                     </tbody>
                 </table>
 
+        <table class="table table-sm shadow-sm p-3 mb-5 bg-white rounded">
+            <thead class="thead-ligh">
+            <tr>
+                <th>Acumulado de movimientos</th>
+            </tr>
+            <tr>
+                <th scope="col">Ingresos y egresos</th>
+                <th scope="col">Ingresos</th>
+                <th scope="col">Egresos</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr >
+                <td th:text="'$' + ${total}"></td>
+                <td th:text="'$' + ${totalpos}"></td>
+                <td th:text="'$' + ${totalneg}"></td>
+                <td></td>
+            </tr>
+            </tbody>
+        </table>
+
     </div>
 
     </div>
@@ -77,7 +102,7 @@
             <div class="modal-content modalpos">
                 <div class="modal-header">
                     <h5 class="modal-title" id="editmodalLabel">Editar movimiento de dinero</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
                 </div>
                 <div class="modal-body">
                     <form id="form_update" th:object="${transactionUpdate}" action="#" th:method="put" th:action="@{/transaction/update}">
@@ -111,7 +136,6 @@
             <div class="modal-content modalpos">
                 <div class="modal-header">
                     <h5 class="modal-title" id="createmodalLabel">Crear movimiento de dinero</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="form_create" th:object="${transactionCreate}" action="#" th:method="post" th:action="@{/transaction/create}">
@@ -163,7 +187,6 @@
             <div class="modal-content modalpos">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">¿Eliminar Movimiento?</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
                 <div class="modal-footer">
@@ -175,12 +198,32 @@
     </div>
 </div>
 
+    <!-- Footer -->
+    <footer class="text-center text-lg-start bg-white text-muted fixed-bottom">
+
+
+        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.025);">
+            © 2022
+            <span>Top Developers</span>
+        </div>
+
+    </footer>
+
 <div sec:authorize="!isAuthenticated()">
     <div class="alert alert-warning" role="alert">
         Debe iniciar sesión para visualizar el contenido!
     </div>
     <div class="d-flex justify-content-center">
     <a href="/login" class="btn btn-primary align-left"> Ir a página de Inicio</a>
+        <footer class="text-center text-lg-start bg-white text-muted fixed-bottom">
+
+
+            <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.025);">
+                © 2022
+                <span>Top Developers</span>
+            </div>
+
+        </footer>
     </div>
 </div>
 
